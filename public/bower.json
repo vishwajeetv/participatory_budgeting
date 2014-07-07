@@ -1,0 +1,24 @@
+{
+  "name": "hrms",
+  "version": "0.0.0",
+  "dependencies": {
+    "font-awesome": "latest",
+    "angular": "latest",
+    "json3": "latest",
+    "es5-shim": "latest",
+    "jquery": "latest",
+    "bootstrap": "latest",
+    "angular-resource": "latest",
+    "angular-cookies": "latest",
+    "angular-sanitize": "latest",
+    "angular-route": "latest",
+    "angular-bootstrap": "latest"
+  },
+  "devDependencies": {
+    "angular-mocks": "latest",
+    "angular-scenario": "latest"
+  },
+  "resolutions": {
+    "angular": "1.2.19"
+  }
+}
