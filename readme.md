@@ -1,6 +1,7 @@
 # Laravel AngularJS SPA
 Single Page Application built with AngularJS for frontend consuming RESTful backend services built with Laravel 4
 
+[ ![Codeship Status for vishwajeetv/laravel_angular_SPA](https://www.codeship.io/projects/ecb67f10-edb0-0131-d564-6aa82b9d02a6/status)](https://www.codeship.io/projects/26723)
 ## Dependencies
 ### Composer Dependencies
 1. Laravel Framework 4.2
