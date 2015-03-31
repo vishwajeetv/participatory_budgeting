@@ -15,13 +15,21 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+        'ngMaterial'
   ])
+    .config(function($mdThemingProvider) {
+        $mdThemingProvider.theme('default')
+            .primaryPalette('indigo')
+            .accentPalette('pink')
+            .warnPalette('red')
+            .backgroundPalette('grey');
+    })
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'AuthenticationCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
