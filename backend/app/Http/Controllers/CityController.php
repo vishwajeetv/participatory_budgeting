@@ -3,10 +3,11 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Request, Crypt;
-use App\User;
+use Illuminate\Http\Request;
+use App\City, App\Instance, App\Zone;
+use Config;
 
-class UserController extends Controller {
+class CityController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -15,8 +16,16 @@ class UserController extends Controller {
 	 */
 	public function index()
 	{
-		//
-	}
+        $city = Instance::find(1)->first();
+
+        if(isset($city->id))
+        {
+            $zones = Zone::where('city_id','=',$city->id)->get();
+            return $this->respond('success','good','bad',$zones,'worse');
+        }
+        return $this->respond(null,'City found','Can not find city for this instance',null,'No city');
+
+    }
 
 	/**
 	 * Show the form for creating a new resource.
@@ -25,36 +34,18 @@ class UserController extends Controller {
 	 */
 	public function create()
 	{
-
+		//
 	}
 
 	/**
 	 * Store a newly created resource in storage.
-	 * @param  StoreBlogPostRequest  $request
+	 *
 	 * @return Response
 	 */
-	public function store(Requests\SignUpRequest $request)
+	public function store()
 	{
-        $input = Request::all();
 
-        $user = new User;
-        $user->email = $input['email'];
-        $user->password = md5( $input['password'] );
-        $user->role = $input['role'];
-        $user->instance_id = Config::get('dev_instance');
-        $saveStatus = $user->save();
-        return $this->respond($saveStatus,'SignUp Successful','SignUp Failed',$user,'none');
 	}
-
-
-    public function login(Requests\LoginRequest $request)
-    {
-        $input = Request::all();
-
-        $user = User::where('email','=',$input['email'])->where('password', '=', md5($input['password']))->first();
-
-        return $this->respond($user,'Login Successful','Login failed',$user,'Email id or password incorrect');
-    }
 
 	/**
 	 * Display the specified resource.

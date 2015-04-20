@@ -16,3 +16,4 @@ Route::get('/', 'WelcomeController@index');
 Route::post('user/login', 'UserController@login');
 
 Route::resource('user', 'UserController');
+Route::resource('city', 'CityController');
