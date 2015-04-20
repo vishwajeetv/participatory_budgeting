@@ -13,8 +13,10 @@ class SuggestionController extends Controller {
 	 * @return Response
 	 */
 	public function index()
-	{
-		//
+    {
+        $instanceId = 1;
+        $suggestion = Suggestion::where('instance_id','=',$instanceId)->get();
+        return $this->respond($suggestion,"Suggestions retrieved successfully",'Suggestions could not be retrieved',$suggestion,"no suggestion");
 	}
 
 	/**

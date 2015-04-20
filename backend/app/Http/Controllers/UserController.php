@@ -36,12 +36,12 @@ class UserController extends Controller {
 	public function store(Requests\SignUpRequest $request)
 	{
         $input = Request::all();
-
+        $instanceId = 1;
         $user = new User;
         $user->email = $input['email'];
         $user->password = md5( $input['password'] );
         $user->role = $input['role'];
-        $user->instance_id = Config::get('dev_instance');
+        $user->instance_id = $instanceId;
         $saveStatus = $user->save();
         return $this->respond($saveStatus,'SignUp Successful','SignUp Failed',$user,'none');
 	}

@@ -39,6 +39,10 @@ angular
         templateUrl: 'views/suggestion.html',
         controller: 'SuggestionCtrl'
       })
+        .when('/admin', {
+            templateUrl: 'views/admin.html',
+            controller: 'AdminCtrl'
+        })
       .otherwise({
         redirectTo: '/'
       });
