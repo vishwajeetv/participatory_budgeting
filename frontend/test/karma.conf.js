@@ -28,7 +28,7 @@ module.exports = function(config) {
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/angular-aria/angular-aria.js',
       'bower_components/angular-material/angular-material.js',
-      'bower_components/lodash/dist/lodash.compat.js',
+      'bower_components/lodash/lodash.js',
       'bower_components/restangular/dist/restangular.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower

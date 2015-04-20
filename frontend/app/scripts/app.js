@@ -16,8 +16,12 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-        'ngMaterial'
+        'ngMaterial', 'restangular'
   ])
+    .config(function (RestangularProvider, SERVER_URL) {
+        RestangularProvider.setBaseUrl(SERVER_URL);
+        RestangularProvider.setDefaultHeaders({"Content-Type": "application/json"});
+    })
     .config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
             .primaryPalette('indigo')
@@ -31,7 +35,7 @@ angular
         templateUrl: 'views/main.html',
         controller: 'AuthenticationCtrl'
       })
-      .when('/about', {
+      .when('/citizen', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })

@@ -14,4 +14,18 @@ angular.module('frontendApp')
       'AngularJS',
       'Karma'
     ];
+
+
+        $scope.previousTab = function(selectedIndex)
+        {
+            console.log(selectedIndex);
+            $scope.selectedIndex = selectedIndex - 1;
+        }
+
+        $scope.nextTab = function($selectedIndex)
+        {
+            console.log(selectedIndex);
+            $scope.selectedIndex = selectedIndex + 1;
+        }
+
   });
