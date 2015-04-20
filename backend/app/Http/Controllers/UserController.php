@@ -41,9 +41,9 @@ class UserController extends Controller {
         $user->email = $input['email'];
         $user->password = md5( $input['password'] );
         $user->role = $input['role'];
-        $user->instance_id = 1;
+        $user->instance_id = Config::get('dev_instance');;
         $saveStatus = $user->save();
-        return $this->respond($saveStatus,'SignUp Successful',$user,'none');
+        return $this->respond($saveStatus,'SignUp Successful','SignUp Failed',$user,'none');
 	}
 
 
@@ -53,7 +53,7 @@ class UserController extends Controller {
 
         $user = User::where('email','=',$input['email'])->where('password', '=', md5($input['password']))->first();
 
-        return $this->respond($user,'SignUp Successful',$user,'Email id or password incorrect');
+        return $this->respond($user,'Login Successful','Login failed',$user,'Email id or password incorrect');
     }
 
 	/**
