@@ -36,8 +36,8 @@ angular
         controller: 'AuthenticationCtrl'
       })
       .when('/citizen', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+        templateUrl: 'views/suggestion.html',
+        controller: 'SuggestionCtrl'
       })
       .otherwise({
         redirectTo: '/'

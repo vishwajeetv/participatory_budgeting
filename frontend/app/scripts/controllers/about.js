@@ -19,13 +19,21 @@ angular.module('frontendApp')
         $scope.previousTab = function(selectedIndex)
         {
             console.log(selectedIndex);
-            $scope.selectedIndex = selectedIndex - 1;
+            if(selectedIndex > 0)
+            {
+                $scope.selectedIndex = selectedIndex - 1;
+            }
+
         }
 
         $scope.nextTab = function($selectedIndex)
         {
             console.log(selectedIndex);
-            $scope.selectedIndex = selectedIndex + 1;
+            if(selectedIndex < 3)
+            {
+                $scope.selectedIndex = selectedIndex + 1;
+            }
+
         }
 
   });
