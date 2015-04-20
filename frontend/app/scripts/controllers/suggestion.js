@@ -14,8 +14,13 @@ angular.module('frontendApp')
       'AngularJS',
       'Karma'
     ];
+        $scope.disabledFirst = true;
+        $scope.disabledSecond = true;
+        $scope.disabledThird = true;
 
         $scope.submitedCitizen = false;
+        $scope.submitedSuggestion = false;
+        $scope.submitedFinal = false;
 
         $scope.submitCitizen = function(citizenForm)
         {
@@ -23,6 +28,7 @@ angular.module('frontendApp')
 
             if(citizenForm.$valid == true)
             {
+                $scope.nextTab(0);
                 return true;
             }
             else
@@ -30,6 +36,53 @@ angular.module('frontendApp')
                 return false;
             }
         }
+
+        $scope.checkDisabled = function(selectedIndex)
+        {
+            if(selectedIndex == 0 && $scope.disabledFirst == true)
+            {
+                return true;
+            }
+            if(selectedIndex == 1 && $scope.disabledSecond == true)
+            {
+                return true;
+            }
+            if(selectedIndex == 2 && $scope.disabledSecond == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        };
+        $scope.submitSuggestion = function(suggestionForm)
+        {
+            $scope.submitedSuggestion = true;
+
+            if(suggestionForm.$valid == true)
+            {
+
+                    $scope.nextTab(1);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        $scope.submitFinal = function()
+        {
+            $scope.submitedFinal = true;
+
+            var citizen = $scope.citizen;
+            var suggestion = $scope.suggestion;
+
+            return true;
+        }
+
+
         $scope.loadZones = function() {
 
             $scope.zones = [];
@@ -37,6 +90,19 @@ angular.module('frontendApp')
             getZones.get().then(function (response)
             {
                $scope.zones = response.body;
+
+            }, function () {
+                console.log('error');
+
+            });
+        };
+        $scope.loadWorks = function() {
+
+            $scope.zones = [];
+            var getZones = Restangular.one('city/works');
+            getZones.get().then(function (response)
+            {
+                $scope.works = response.body;
 
             }, function () {
                 console.log('error');

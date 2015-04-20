@@ -8,3 +8,8 @@
 body {
   padding: 0;
 }
+
+.errors
+{
+    font-size: x-small;
+}
