@@ -23,18 +23,18 @@ abstract class Controller extends BaseController {
 
     }
 
-    public function respond($flag, $message, $data, $errors)
+    public function respond($flag, $successMessage,$failMessage, $data, $errors)
     {
         if ($flag) {
             return $this->generateResponse(
                 'success',
-                $message,
+                $successMessage,
                 $data
             );
         } else {
             return $this->generateResponse(
                 'error',
-                $message,
+                $failMessage,
                 $errors
             );
         }
