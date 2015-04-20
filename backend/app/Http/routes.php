@@ -13,6 +13,6 @@
 
 Route::get('/', 'WelcomeController@index');
 
-//Route::post('user/login', 'UserController@login');
+Route::post('user/login', 'UserController@login');
 
 Route::resource('user', 'UserController');
