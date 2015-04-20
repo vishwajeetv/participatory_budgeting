@@ -2,7 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\User, App\Suggestion;
 use Request;
 
 class SuggestionController extends Controller {
@@ -40,9 +40,10 @@ class SuggestionController extends Controller {
 
         $instanceId = 1;
 
-        $user = User::where('email','=',$citizenInput['email']);
+        $userByEmail = User::where('email','=',$citizenInput['email'])->first();
         if(isset($user))
         {
+            $user = User::find($userByEmail->email);
             $user->name = $citizenInput['name'];
             $user->mobile = $citizenInput['mobile'];
             $user->instance_id = $instanceId;
@@ -62,8 +63,9 @@ class SuggestionController extends Controller {
         {
             $suggestion = new Suggestion;
             $suggestion->instance_id = $instanceId;
-            $suggestion->city_function_id = $suggestionInput['work']['id'];
-            $suggestion->zone_division_id = $suggestionInput['division']['id'];
+            $suggestion->user_id = $user->id;
+            $suggestion->city_function_id = $suggestionInput['work_id'];
+            $suggestion->zone_division_id = $suggestionInput['division_id'];
             $suggestion->suggestion = $suggestionInput['suggestion'];
             $suggestion->status = 'citizen_submitted';
             $suggestionSaveSuccess = $suggestion->save();

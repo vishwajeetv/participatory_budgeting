@@ -18,3 +18,4 @@ Route::get('city/works', 'CityController@getWorks');
 
 Route::resource('user', 'UserController');
 Route::resource('city', 'CityController');
+Route::resource('suggestion', 'SuggestionController');

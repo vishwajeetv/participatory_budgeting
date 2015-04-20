@@ -8,12 +8,12 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('SuggestionCtrl', function ($scope, $timeout, Restangular) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('SuggestionCtrl', function ($scope, $timeout, Restangular, $mdToast) {
+
+        $scope.citizen = null;
+        $scope.suggestion = null;
+
+
         $scope.disabledFirst = true;
         $scope.disabledSecond = true;
         $scope.disabledThird = true;
@@ -72,13 +72,46 @@ angular.module('frontendApp')
             }
         }
 
-        $scope.submitFinal = function()
+        $scope.submitFinal = function(citizenForm, suggestionForm)
         {
             $scope.submitedFinal = true;
 
             var citizen = $scope.citizen;
             var suggestion = $scope.suggestion;
 
+            var saveSuggestionData = {
+                'citizen' :
+                {
+                    'name' : citizenForm.name.$modelValue,
+                    'email' : citizenForm.email.$modelValue,
+                    'mobile': citizenForm.mobile.$modelValue
+                }
+                ,
+                'suggestion':{
+                    'work_id' : suggestionForm.work.$modelValue.id,
+                    'division_id' : suggestionForm.division.$modelValue.id,
+                    'suggestion' : suggestionForm.suggestion.$modelValue
+                }
+            };
+            console.log(saveSuggestionData);
+            var saveSuggestion = Restangular.all('suggestion');
+            saveSuggestion.post(saveSuggestionData).then(function (response)
+            {
+                if(response.header.status == "success")
+                {
+
+                    console.log(response.header.message);
+                    $mdToast.show($mdToast.simple().content(response.header.message));
+
+                }
+                else
+                {
+                    console.log(response.header.message);
+                }
+            }, function () {
+                console.log('error');
+
+            });
             return true;
         }
 

@@ -89,7 +89,7 @@
 
                                     <form name="suggestionForm" novalidate>
 
-                                        <md-select ng-model="suggestion.zone" md-on-open="loadZones()" style="min-width: 300px;" required>
+                                        <md-select name="zone" ng-model="suggestion.zone" md-on-open="loadZones()" style="min-width: 300px;" required>
                                             <md-select-label>{{ zone ? zone.name : 'Zone' }}</md-select-label>
                                             <md-option ng-value="zone" ng-repeat="zone in zones">{{zone.name}}</md-option>
 
@@ -98,7 +98,7 @@
                                             <div ng-message="required">Required</div>
                                         </div>
 
-                                        <md-select ng-model="suggestion.division" style="min-width: 300px;" required>
+                                        <md-select name="division" ng-model="suggestion.division" style="min-width: 300px;" required>
                                             <md-select-label>{{ division ? division.division_name : 'Division' }}</md-select-label>
                                             <md-option ng-value="division" ng-repeat="division in zones |  filter:suggestion.zone">{{division.division_name}}</md-option>
                                         </md-select>
@@ -106,7 +106,7 @@
                                             <div ng-message="required">Required</div>
                                         </div>
 
-                                        <md-select ng-model="suggestion.work" md-on-open="loadWorks()" style="min-width: 300px;" required>
+                                        <md-select name="work" ng-model="suggestion.work" md-on-open="loadWorks()" style="min-width: 300px;" required>
                                             <md-select-label>{{ work ? work.name : 'Work Type' }}</md-select-label>
                                             <md-option ng-value="work" ng-repeat="work in works">{{work.function}}</md-option>
                                         </md-select>
@@ -179,7 +179,7 @@
 
                                             <div flex="20">
                                                 <md-input-container>
-                                                    <md-button ng-click="submitFinal()" class="md-fab md-primary" aria-label="Use Android">
+                                                    <md-button ng-click="submitFinal(citizenForm, suggestionForm)" class="md-fab md-primary" aria-label="Use Android">
                                                         <md-icon md-svg-src="img/icons/android.svg"></md-icon>
                                                     </md-button>
                                                 </md-input-container>
