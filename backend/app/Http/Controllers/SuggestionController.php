@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\User, App\Suggestion;
 use Request;
 
+
 class SuggestionController extends Controller {
 
 	/**
@@ -77,7 +78,14 @@ class SuggestionController extends Controller {
             return $this->respond(null,null,'Failed to save user',null,'User saving error');
 
         }
-
+        if (isset($suggestionSaveSuccess)) {
+            $emailData = array(
+                'citizenName' => $user->name,
+                'email' => $user->email,
+                'suggestion' => $suggestion->suggestion
+            );
+            $this->sendMail($emailData, 'emails.suggestion.submitSuggestion', 'Participatory Budgeting');
+        }
         return $this->respond($suggestionSaveSuccess,'Suggestion saved successfully','could not save suggestion',$suggestion,'suggestion error');
 
 	}

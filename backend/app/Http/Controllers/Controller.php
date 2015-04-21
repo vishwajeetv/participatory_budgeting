@@ -3,27 +3,30 @@
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Mail;
 
 abstract class Controller extends BaseController {
 
 	use DispatchesCommands, ValidatesRequests;
 
 
-    public function generateResponse($status, $message, $body)
+    public function sendMail($emailData, $template, $subject)
     {
-        return response([
-            'header' => array(
-                'status' => $status,
-                'message' => $message
-            ),
-            'body' =>
-                $body
-        ], 200)
-            ->header('Content-Type', 'json');
+        try {
+            Mail::send($template,
+                $emailData,
+                function ($message) use ($emailData, $subject) {
+                    $message->to($emailData['email'])->subject($subject);
 
+                });
+            return true;
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return false;
+        }
     }
 
-    public function respond($flag, $successMessage,$failMessage, $data, $errors)
+    public function respond($flag, $successMessage, $failMessage, $data, $errors)
     {
         if ($flag) {
             return $this->generateResponse(
@@ -38,6 +41,20 @@ abstract class Controller extends BaseController {
                 $errors
             );
         }
+    }
+
+    public function generateResponse($status, $message, $body)
+    {
+        return response([
+            'header' => array(
+                'status' => $status,
+                'message' => $message
+            ),
+            'body' =>
+                $body
+        ], 200)
+            ->header('Content-Type', 'json');
+
     }
 
 }
