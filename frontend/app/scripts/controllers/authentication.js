@@ -8,7 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('AuthenticationCtrl', function ($scope, Restangular, $location, $mdToast) {
+    .controller('AuthenticationCtrl', function ($scope, Restangular, $location, $mdToast, $rootScope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -34,6 +34,7 @@ angular.module('frontendApp')
                 {
                     if(response.header.status == "success")
                     {
+                        $rootScope.authenticated = true;
                         sessionStorage.authenticated = true;
                         sessionStorage.id = response.body.id;
                         sessionStorage.role = response.body.role;

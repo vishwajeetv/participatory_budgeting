@@ -3,7 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User, App\Suggestion;
-use Request;
+use Request, DB;
 
 
 class SuggestionController extends Controller {
@@ -16,7 +16,17 @@ class SuggestionController extends Controller {
 	public function index()
     {
         $instanceId = 1;
-        $suggestion = Suggestion::where('instance_id','=',$instanceId)->get();
+
+        $suggestion = DB::table('suggestions')
+            ->join('zones', 'suggestions.zone_division_id', '=', 'zones.id')
+            ->join('users', 'suggestions.user_id', '=', 'users.id')
+            ->join('city_functions', 'suggestions.city_function_id', '=', 'city_functions.id')
+            ->join('instances', 'instances.id', '=', 'suggestions.instance_id')
+            ->join('cities', 'cities.id', '=', 'instances.city_id')
+            ->where('suggestions.instance_id', '=', $instanceId)
+            ->select('cities.name as city_name', 'zones.name as zone_name',
+                'zones.division_name as division_name', 'users.name as citizen_name', 'suggestions.suggestion', 'city_functions.function as work_name')
+            ->get();
         return $this->respond($suggestion,"Suggestions retrieved successfully",'Suggestions could not be retrieved',$suggestion,"no suggestion");
 	}
 
