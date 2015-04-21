@@ -1,0 +1,54 @@
+<div layout="row" layout-wrap>
+    <div flex="10">
+
+
+    </div>
+    <div flex="80">
+
+        <md-input-container>
+            <label>Filter by zone</label>
+            <input required name="email" type="text" ng-model="search.zone_division_id">
+        </md-input-container>
+        <md-content>
+            <div ng-repeat="suggestion in suggestions | filter: search">
+
+                <md-card>
+                    <md-card-content>
+                        <md-subheader class="md-no-sticky">
+                     <span layout="row" layout-align="space-around center">
+                      <span flex="30">
+                            <i class="mdi mdi-account"></i> {{suggestion.citizen_name}}
+                      </span>
+                      <span flex="20">
+                           <i class="mdi mdi-city"></i> {{suggestion.zone_name}}
+                      </span>
+                        <span flex="20">
+                             <i class="mdi mdi-map-marker-circle"></i> {{suggestion.division_name}}
+                        </span>
+                        <span flex="30">
+
+                        </span>
+</span>
+
+                        </md-subheader>
+                        <p layout="row" layout-align="space-around center">
+                            <span flex="10"></span>
+                       <span flex="15">
+                            <i class="mdi mdi-flash"></i> {{suggestion.work_name}}
+                       </span>
+                       <span flex="65">
+                             <i class="mdi mdi-bell"></i> {{suggestion.suggestion}}
+                       </span>
+
+                            <span flex="10"></span>
+                        </p>
+                    </md-card-content>
+                </md-card>
+
+
+            </div>
+        </md-content>
+    </div>
+    <div flex="10">
+    </div>
+</div>
