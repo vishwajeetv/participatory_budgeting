@@ -8,10 +8,38 @@
             <md-card>
                 <md-card-content>
                     <md-content class="md-padding">
-                        <md-tabs  md-selected="selectedIndex" md-dynamic-height md-border-bottom>
+                        <p ng-show="instanceError == 'before'">
+                            Participatory Budgeting will be started from {{instance.start_time | date:'mediumDate'}}
+                        </p>
+
+                        <p ng-show="instanceError == 'after'">
+                            Psst! Participatory Budgeting ended on {{instance.end_time | date:'mediumDate'}}
+                        </p>
+                        <md-tabs md-selected="selectedIndex" md-dynamic-height md-border-bottom ng-hide="instanceError">
+                            <md-tab label="Lets' Begin!" ng-disabled="checkDisabled(selectedIndex)">
+                                <md-content class="md-padding">
+                                    <div class="md-headline">Let's Begin!</div>
+                                    <br>
+
+                                    <md-list>
+
+                                        <md-list-item ng-repeat="instruction in instructions">
+                                            <p> {{instruction.instruction}}</p>
+                                        </md-list-item>
+
+                                    </md-list>
+
+                                    <md-button class="md-raised md-accent md-hue-4" ng-click="nextTab(0)"
+                                               aria-label="Begin">
+                                        Begin!
+                                    </md-button>
+
+                                </md-content>
+                            </md-tab>
+
                             <md-tab label="About You"  ng-disabled="checkDisabled(selectedIndex)">
                                 <md-content class="md-padding">
-
+                                    <div class="md-headline">About You</div>
                                     <form name="citizenForm" novalidate>
                                         <md-input-container>
 
@@ -59,11 +87,13 @@
 
                                         <div layout="row" layout-wrap>
                                             <div flex="20">
-                                                <!--<md-input-container>-->
-                                                    <!--<md-button ng-click="previousTab(selectedIndex)" class="md-fab md-primary" aria-label="Use Android">-->
-                                                        <!--<md-icon md-svg-src="img/icons/android.svg"></md-icon>-->
-                                                    <!--</md-button>-->
-                                                <!--</md-input-container>-->
+                                                <md-input-container>
+                                                    <md-button ng-click="previousTab(1)" class="md-fab md-primary"
+                                                               aria-label="Use Android">
+                                                        <md-icon
+                                                                md-svg-src="images/icons/ic_navigate_before_24px.svg"></md-icon>
+                                                    </md-button>
+                                                </md-input-container>
 
                                             </div>
                                             <div flex="60">
@@ -73,7 +103,8 @@
                                             <div flex="20">
                                                 <md-input-container>
                                                     <md-button ng-click="submitCitizen(citizenForm)" class="md-fab md-primary" aria-label="Use Android">
-                                                        <md-icon md-svg-src="img/navigate_next_24px.svg"></md-icon>
+                                                        <md-icon
+                                                                md-svg-src="images/icons/ic_navigate_next_24px.svg"></md-icon>
                                                     </md-button>
                                                 </md-input-container>
                                             </div>
@@ -133,7 +164,8 @@
                                             <div flex="20">
                                                 <md-input-container>
                                                     <md-button ng-click="previousTab(selectedIndex)" class="md-fab md-primary" aria-label="Use Android">
-                                                        <md-icon md-svg-src="img/navigate_before_24px.svg"></md-icon>
+                                                        <md-icon
+                                                                md-svg-src="images/icons/ic_navigate_before_24px.svg"></md-icon>
                                                     </md-button>
                                                 </md-input-container>
 
@@ -145,7 +177,8 @@
                                             <div flex="20">
                                                 <md-input-container>
                                                     <md-button ng-click="submitSuggestion(suggestionForm)" class="md-fab md-primary" aria-label="Use Android">
-                                                        <md-icon md-svg-src="img/navigate_next_24px.svg"></md-icon>
+                                                        <md-icon
+                                                                md-svg-src="images/icons/ic_navigate_next_24px.svg"></md-icon>
                                                     </md-button>
                                                 </md-input-container>
                                             </div>
@@ -168,7 +201,8 @@
                                             <div flex="20">
                                                 <md-input-container>
                                                     <md-button ng-click="previousTab(selectedIndex)" class="md-fab md-primary" aria-label="Use Android">
-                                                        <md-icon md-svg-src="img/navigate_before_24px.svg"></md-icon>
+                                                        <md-icon
+                                                                md-svg-src="images/icons/ic_navigate_before_24px.svg"></md-icon>
                                                     </md-button>
                                                 </md-input-container>
 
@@ -179,8 +213,10 @@
 
                                             <div flex="20">
                                                 <md-input-container>
-                                                    <md-button ng-click="submitFinal(citizenForm, suggestionForm)" class="md-fab md-primary" aria-label="Use Android">
-                                                        <md-icon md-svg-src="img/ic_done_all_24px.svg"></md-icon>
+                                                    <md-button ng-click="submitFinal(citizenForm, suggestionForm)"
+                                                               class="md-fab md-accent" aria-label="Final submit">
+                                                        <md-icon
+                                                                md-svg-src="images/icons/ic_done_all_24px.svg"></md-icon>
                                                     </md-button>
                                                 </md-input-container>
                                             </div>
