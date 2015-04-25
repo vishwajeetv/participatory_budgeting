@@ -28,14 +28,21 @@ angular.module('frontendApp')
 
             if(citizenForm.$valid == true)
             {
-                $scope.nextTab(0);
+                $scope.nextTab(1);
                 return true;
             }
             else
             {
                 return false;
             }
-        }
+        };
+
+        $scope.instructions =
+            [
+                {'instruction': 'Wow good'},
+                {'instruction': 'Wow great'},
+                {'instruction': 'Wow awesome'}
+            ];
 
         $scope.checkDisabled = function(selectedIndex)
         {
@@ -63,7 +70,7 @@ angular.module('frontendApp')
             if(suggestionForm.$valid == true)
             {
 
-                    $scope.nextTab(1);
+                $scope.nextTab(2);
                 return true;
             }
             else
@@ -115,7 +122,46 @@ angular.module('frontendApp')
             return true;
         }
 
+        $scope.loadInstance = function () {
 
+            var getInstance = Restangular.one('instance');
+            getInstance.get().then(function (response) {
+                $scope.instance = response.body;
+
+                $scope.instance.start_time = convertDateTime($scope.instance.start_time);
+
+                $scope.instance.end_time = convertDateTime($scope.instance.end_time);
+                $scope.checkInstanceDates();
+            }, function () {
+                console.log('error');
+
+            });
+        };
+
+        function convertDateTime(dateTime) {
+
+            var t = dateTime.split(/[- :]/);
+            var javaScriptDate = new Date(t[0], t[1] - 1, t[2], t[3], t[4], t[5]);
+            return javaScriptDate;
+        }
+
+        $scope.checkInstanceDates = function () {
+
+
+            var start_time = $scope.instance.start_time;
+
+            var end_time = ($scope.instance.end_time);
+
+            var current_time = new Date();
+
+            if (current_time > start_time) {
+                $scope.instanceError = "before";
+            }
+
+
+        }
+
+        $scope.instanceError = null;
         $scope.loadZones = function() {
 
             $scope.zones = [];
@@ -161,4 +207,11 @@ angular.module('frontendApp')
             }
 
         }
+
+
+        function init() {
+            $scope.loadInstance();
+        }
+
+        init();
   });
