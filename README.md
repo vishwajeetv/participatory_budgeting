@@ -4,7 +4,7 @@ For municipal corporations in India.
 
 
 ##TODO
-1. Instance start - end switch (fetch instance data from backend, dynamically change frontend accordingly)
+1. ~~Instance start - end switch (fetch instance data from backend, dynamically change frontend accordingly)~~ Done
 2. Receipts generation - logic pending
 3. Tab-wizard tab titles css improvement for brighter titles
 4. Tab-wizard progress bar
