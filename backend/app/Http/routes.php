@@ -11,12 +11,6 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
-
-Route::post('user/login', 'UserController@login');
-Route::get('city/works', 'CityController@getWorks');
-
-Route::resource('user', 'UserController');
-Route::resource('city', 'CityController');
-Route::resource('suggestion', 'SuggestionController');
-Route::resource('instance', 'InstanceController');
+Route::get('/', function () {
+    return view('welcome');
+});
