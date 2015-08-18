@@ -11,7 +11,8 @@
     "angular-touch": "^1.4.*",
     "angular-material": "*",
     "restangular": "~1.5.1",
-    "mdi": "~1.0.62-beta"
+    "mdi": "~1.0.62-beta",
+    "material-design-icons": "~2.0.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.*"

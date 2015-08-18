@@ -41,9 +41,11 @@
                                 <md-content class="md-padding">
                                     <div class="md-headline">About You</div>
                                     <form name="citizenForm" novalidate>
-                                        <md-input-container>
 
+                                        <md-input-container class="md-icon-float">
                                             <label>Email</label>
+
+                                            <md-icon><i class="material-icons">email</i></md-icon>
                                             <input required name="email" type="email" ng-model="citizen.email">
 
                                             <div ng-messages="citizenForm.email.$error">
@@ -57,9 +59,11 @@
 
                                         </md-input-container>
 
-                                        <md-input-container>
 
+                                        <md-input-container class="md-icon-float" >
+                                            <!-- Use floating label instead of placeholder -->
                                             <label>Name</label>
+                                            <md-icon><i class="material-icons">face</i></md-icon>
                                             <input required name="name" type="text" ng-model="citizen.name">
 
                                             <div ng-messages="citizenForm.name.$error">
@@ -68,11 +72,13 @@
                                                         Required.</div>
                                                 </div>
                                             </div>
-
                                         </md-input-container>
-                                        <md-input-container>
+
+                                        <md-input-container class="md-icon-float">
 
                                             <label>Mobile</label>
+
+                                            <md-icon><i class="material-icons">phone</i></md-icon>
                                             <input required name="mobile" type="text" ng-model="citizen.mobile">
 
                                             <div ng-messages="citizenForm.mobile.$error">
@@ -121,6 +127,7 @@
                                     <form name="suggestionForm" novalidate>
 
                                         <md-select name="zone" ng-model="suggestion.zone" md-on-open="loadZones()" style="min-width: 300px;" required>
+
                                             <md-select-label>{{ zone ? zone.name : 'Zone' }}</md-select-label>
                                             <md-option ng-value="zone" ng-repeat="zone in zones">{{zone.name}}</md-option>
 

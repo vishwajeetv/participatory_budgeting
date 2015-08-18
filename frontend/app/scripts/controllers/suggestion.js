@@ -154,7 +154,7 @@ angular.module('frontendApp')
 
             var current_time = new Date();
 
-            if (current_time > start_time) {
+            if (current_time < start_time) {
                 $scope.instanceError = "before";
             }
 
