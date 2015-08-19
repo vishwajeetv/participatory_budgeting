@@ -97,18 +97,20 @@ angular.module('frontendApp')
                 'suggestion':{
                     'work_id' : suggestionForm.work.$modelValue.id,
                     'division_id' : suggestionForm.division.$modelValue.id,
+                    'zone_id' : suggestionForm.zone.$modelValue.id,
                     'suggestion' : suggestionForm.suggestion.$modelValue
                 }
             };
+
             console.log(saveSuggestionData);
             var saveSuggestion = Restangular.all('suggestion');
             saveSuggestion.post(saveSuggestionData).then(function (response)
             {
                 if(response.header.status == "success")
                 {
-
                     console.log(response.header.message);
                     $mdToast.show($mdToast.simple().content(response.header.message));
+                    $scope.submitedFinal = true;
 
                 }
                 else
@@ -177,9 +179,9 @@ angular.module('frontendApp')
         };
         $scope.loadWorks = function() {
 
-            $scope.zones = [];
-            var getZones = Restangular.one('city/works');
-            getZones.get().then(function (response)
+            $scope.works = [];
+            var getWorks = Restangular.one('city/works');
+            getWorks.get().then(function (response)
             {
                 $scope.works = response.body;
 

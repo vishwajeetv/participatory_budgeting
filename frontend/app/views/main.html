@@ -8,8 +8,9 @@
             <md-card layout-align="center center">
                 <md-card-content>
                     <form name="loginForm" novalidate>
-                        <md-input-container>
+                        <md-input-container class="md-icon-float">
                             <label>Email</label>
+                           <md-icon><i class="material-icons">email</i> </md-icon>
                             <input required name="email" type="email" ng-model="user.email">
 
                             <div ng-messages="loginForm.email.$error">
@@ -22,8 +23,9 @@
                             </div>
 
                         </md-input-container>
-                        <md-input-container>
+                        <md-input-container class="md-icon-float">
                             <label>Password</label>
+                            <md-icon><i class="material-icons">vpn_key</i> </md-icon>
                             <input type="password" required name="password" ng-model="user.password">
 
                             <div ng-messages="loginform.password.$error">
