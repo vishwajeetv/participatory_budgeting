@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\Mail;
 use Log;
+use Storage;
 
 abstract class Controller extends BaseController
 {
@@ -14,21 +15,19 @@ abstract class Controller extends BaseController
 
     public function sendMail($emailData, $template, $subject, $attachment)
     {
-        try {
+
             Mail::send($template,
                 $emailData,
-                function ($message) use ($emailData, $subject) {
+                function ($message) use ($emailData, $subject, $attachment) {
+
                     $message->to($emailData['email'])->subject($subject);
-                    if(isset($attachment)){
-                        $message->attach(Storage::get($attachment));
-                    }
+//                        ->attach(Storage::get($attachment));
+
+
 
                 });
             return true;
-        } catch (Exception $e) {
-            Log::error($e->getMessage());
-            return false;
-        }
+
     }
 
     public function respond($flag, $successMessage, $failMessage, $data, $errors)
