@@ -27,27 +27,7 @@
 
 <!-- Add your site or application content here -->
 <div ng-controller="MainCtrl">
-<md-content>
-    <md-toolbar>
-        <h2 class="md-toolbar-tools">
-            <span flex="85"> Participatory Budgeting <small>Pune Municipal Corporation</small>  </span>
 
-               <span flex="5">
-            <md-button class="md-icon-button" aria-label="Favorite">
-                <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
-            </md-button>
-                    </span>
-            <span flex="5"></span>
-                <span flex="5">
-            <md-button class="md-icon-button" aria-label="Logout" ng-show="showLogout()">
-                <i class="mdi mdi-logout" style="font-size: 20px"></i>
-            </md-button>
-                    </span>
-
-        </h2>
-
-    </md-toolbar>
-</md-content>
 </div>
 
 
@@ -89,6 +69,9 @@
 <script src="scripts/services/constants.js"></script>
 <script src="scripts/controllers/suggestion.js"></script>
 <script src="scripts/controllers/admin.js"></script>
+<script src="scripts/services/instanceprovider.js"></script>
+<script src="scripts/services/suggestionprovider.js"></script>
+<script src="scripts/services/userprovider.js"></script>
 <!-- endbuild -->
 </body>
 </html>
