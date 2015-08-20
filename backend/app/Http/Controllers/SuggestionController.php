@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\User, App\Suggestion, App\Instance;
 use Request, DB, Log, Storage;
 use PDF;
+use App\Http\Requests\SaveSuggestionRequest;
 
 
 class SuggestionController extends Controller {
@@ -46,37 +47,26 @@ class SuggestionController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(SaveSuggestionRequest $request)
 	{
-        $instanceId = 1;
 	    $citizenInput = Request::input('citizen');
 
-        $suggestionInput = Request::input('suggestion');
+        $suggestionInput = Request::all();
 
-        $citizenInput['instance_id'] = $instanceId;
-        $user = User::updateOrCreate(array('email'=>$citizenInput['email']),$citizenInput);
-        if(isset($user))
-        {
-            $suggestion = new Suggestion;
-            $suggestion->instance_id = $instanceId;
-            $suggestion->user_id = $user->id;
-            $suggestion->city_function_id = $suggestionInput['work_id'];
-            $suggestion->zone_division_id = $suggestionInput['division_id'];
-            $suggestion->area = $suggestionInput['area'];
-            $suggestion->suggestion = $suggestionInput['suggestion'];
-            $suggestion->work_purpose = $suggestionInput['work_purpose'];
-            $suggestion->status = 'citizen_submitted';
-            $suggestionSaveSuccess = $suggestion->save();
-        }
-        else
-        {
-            return $this->respond(null,null,'Failed to save user',null,'User saving error');
-
-        }
-
+        $suggestion = new Suggestion;
+        $suggestion->instance_id = $suggestionInput['instance_id'];
+        $suggestion->user_id = $suggestionInput['user_id'];
+        $suggestion->city_function_id = $suggestionInput['work_id'];
+        $suggestion->zone_division_id = $suggestionInput['division_id'];
+        $suggestion->area = $suggestionInput['area'];
+        $suggestion->suggestion = $suggestionInput['suggestion'];
+        $suggestion->work_purpose = $suggestionInput['work_purpose'];
+        $suggestion->status = 'citizen_submitted';
+        $suggestionSaveSuccess = $suggestion->save();
 
         $instance = Instance::find($suggestion->instance_id);
 
+        $user = User::find($suggestion->user_id);
         if (isset($suggestionSaveSuccess)) {
             $emailData = array(
                 'instance'=>$instance,
