@@ -1,9 +1,45 @@
 
+
+
+<md-content>
+    <md-toolbar>
+        <h2 class="md-toolbar-tools">
+            <span flex="75"> Participatory Budgeting  <small>Pune Municipal Corporation</small>  </span>
+
+            <span flex="20"><span class="md-body-copy-2">{{name}}</span></span>
+            <span flex="5"><span class="md-body-copy-2"><md-button ng-click="logout()"><i class="material-icons">exit_to_app</i></md-button> </span></span>
+
+        </h2>
+
+    </md-toolbar>
+</md-content>
+
 <md-content>
 
-    <div layout="row" layout-wrap  layout-align="center center">
-        <div flex="30">
+    <div layout="row" layout-wrap  layout-align="center">
+        <div flex="10"><br>
+            <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+                <!--<md-toolbar class="md-hue-1">-->
+                    <!--<h1 class="md-toolbar-tools" align="center center">Menu</h1>-->
+                <!--</md-toolbar>-->
+
+                    <md-button ng-click="close()" class="md-warn" show-gt-md>
+                       <md-icon><i class="material-icons">note_add</i> </md-icon>New Suggestion
+                    </md-button>
+
+
+
+                    <md-button ng-click="close()" class="md-primary md-hue-1  md-whiteframe-z1" show-gt-md>
+                        <md-icon><i class="material-icons">view_list</i> </md-icon>My Suggestions
+                    </md-button>
+
+                <md-button ng-click="close()" class="md-primary md-hue-1  md-whiteframe-z1" show-gt-md>
+                    <md-icon><i class="material-icons">rate_review</i> </md-icon>The Process
+                </md-button>
+
+            </md-sidenav>
         </div>
+        <div flex="20"></div>
         <div flex="40">
             <md-card>
                 <md-card-content>
@@ -112,8 +148,7 @@
                                                 <md-input-container>
                                                     <md-button ng-click="previousTab(1)" class="md-fab md-primary"
                                                                aria-label="Use Android">
-                                                        <md-icon
-                                                                md-svg-src="images/icons/ic_navigate_before_24px.svg"></md-icon>
+                                                        <md-icon><i class="material-icons">navigate_before</i> </md-icon>
                                                     </md-button>
                                                 </md-input-container>
 
@@ -126,7 +161,7 @@
                                                 <md-input-container>
                                                     <md-button ng-click="submitCitizen(citizenForm)" class="md-fab md-primary" aria-label="Use Android">
                                                         <md-icon
-                                                                md-svg-src="images/icons/ic_navigate_next_24px.svg"></md-icon>
+                                                        <md-icon><i class="material-icons">navigate_next</i> </md-icon>
                                                     </md-button>
                                                 </md-input-container>
                                             </div>
@@ -172,7 +207,7 @@
                                         <md-input-container class="md-icon-float">
                                             <label>Area</label>
 
-                                            <md-icon><i class="material-icons">stars</i> </md-icon>
+                                            <md-icon><i class="material-icons">location_searching</i> </md-icon>
                                             <input required name="area" type="text" ng-model="suggestion.area"/>
 
                                             <div ng-messages="suggestion.area.$error">
@@ -220,7 +255,7 @@
                                         <md-input-container class="md-icon-float">
                                                 <label>Work Purpose</label>
 
-                                                <md-icon><i class="material-icons">stars</i> </md-icon>
+                                                <md-icon><i class="material-icons">thumb_up</i> </md-icon>
                                                 <input required name="work_purpose" type="text" ng-model="suggestion.work_purpose"/>
 
                                                 <div ng-messages="suggestion.work_purpose.$error">
@@ -270,7 +305,8 @@
 
                                     <div ng-hide="submitedFinal == true">
                                     <p>
-                                        {{citizen.email}}
+                                     Suggestion Receipt will be mailed to {{citizen.email}} .<br>
+
                                     </p>
 
                                         <div layout="row" layout-wrap>
