@@ -89,6 +89,21 @@
                                             </div>
 
                                         </md-input-container>
+                                        <md-input-container class="md-icon-float">
+
+                                            <label>Address</label>
+
+                                            <md-icon><i class="material-icons">home</i></md-icon>
+                                            <textarea required name="address" type="text" ng-model="citizen.address"></textarea>
+
+                                            <div ng-messages="citizenForm.address.$error">
+                                                <div ng-click="submitCitizen(citizenForm)" ng-show="(!citizenForm.address.$valid) && (citizenForm.address.$dirty || submitedCitizen)">
+                                                    <div ng-message="required" ng-show="citizenForm.address.$error.required">
+                                                        Required.</div>
+                                                </div>
+                                            </div>
+
+                                        </md-input-container>
 
 
                                         <div layout="row" layout-wrap>
@@ -152,6 +167,22 @@
                                             <div ng-message="required">Required</div>
                                         </div>
                                             </md-input-container>
+
+                                        <md-input-container class="md-icon-float">
+
+                                            <label>Area</label>
+
+                                            <md-icon><i class="material-icons">home</i></md-icon>
+                                            <input required name="area" type="text" ng-model="suggestion.area"></input>
+
+                                            <div ng-messages="suggestionForm.area.$error">
+                                                <div ng-show="(!suggestionForm.area.$valid) && (suggestionForm.area.$dirty || submitedCitizen)">
+                                                    <div ng-message="required" ng-show="suggestionForm.area.$error.required">
+                                                        Required.</div>
+                                                </div>
+                                            </div>
+
+                                        </md-input-container>
 
                                         <div class="md-body-2"><i class="material-icons">build</i> Work</div>
                                         <md-input-container>

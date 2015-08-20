@@ -81,7 +81,6 @@ angular.module('frontendApp')
 
         $scope.submitFinal = function(citizenForm, suggestionForm)
         {
-            $scope.submitedFinal = true;
 
             var citizen = $scope.citizen;
             var suggestion = $scope.suggestion;
@@ -91,13 +90,15 @@ angular.module('frontendApp')
                 {
                     'name' : citizenForm.name.$modelValue,
                     'email' : citizenForm.email.$modelValue,
-                    'mobile': citizenForm.mobile.$modelValue
+                    'mobile': citizenForm.mobile.$modelValue,
+                    'address': citizenForm.address.$modelValue
                 }
                 ,
                 'suggestion':{
                     'work_id' : suggestionForm.work.$modelValue.id,
                     'division_id' : suggestionForm.division.$modelValue.id,
                     'zone_id' : suggestionForm.zone.$modelValue.id,
+                    'area' : suggestionForm.area.$modelValue,
                     'suggestion' : suggestionForm.suggestion.$modelValue
                 }
             };
