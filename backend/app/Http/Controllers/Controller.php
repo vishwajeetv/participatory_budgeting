@@ -6,6 +6,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\Mail;
+use Log;
 
 abstract class Controller extends BaseController
 {
@@ -19,7 +20,7 @@ abstract class Controller extends BaseController
                 function ($message) use ($emailData, $subject) {
                     $message->to($emailData['email'])->subject($subject);
                     if(isset($attachment)){
-                        $message->attach($attachment);
+                        $message->attach(Storage::get($attachment));
                     }
 
                 });
