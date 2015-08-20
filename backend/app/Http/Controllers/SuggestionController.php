@@ -2,8 +2,9 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\User, App\Suggestion;
+use App\User, App\Suggestion, App\Instance;
 use Request, DB;
+use Barryvdh\DomPDF\PDF;
 
 
 class SuggestionController extends Controller {
@@ -53,35 +54,25 @@ class SuggestionController extends Controller {
 
         $instanceId = 1;
 
-        $userByEmail = User::where('email','=',$citizenInput['email'])->first();
-        if(isset($user))
-        {
-            $user = User::find($userByEmail->email);
-            $user->name = $citizenInput['name'];
-            $user->mobile = $citizenInput['mobile'];
-            $user->instance_id = $instanceId;
-            $userSaveSuccess = $user->save();
-        }
-        else
-        {
-            $user = new User;
-            $user->email = $citizenInput['email'];
-            $user->name = $citizenInput['name'];
-            $user->mobile = $citizenInput['mobile'];
-            $user->instance_id = $instanceId;
-            $userSaveSuccess = $user->save();
-        }
+        $user = User::firstOrCreate(array('email'=>$citizenInput['email']));
 
-        if(isset($userSaveSuccess))
+        $user->name = $citizenInput['name'];
+        $user->mobile = $citizenInput['mobile'];
+        $user->address = $citizenInput['address'];
+        $user->instance_id = $instanceId;
+        $user = $user->save();
+
+        if(isset($user))
         {
             $suggestion = new Suggestion;
             $suggestion->instance_id = $instanceId;
             $suggestion->user_id = $user->id;
             $suggestion->city_function_id = $suggestionInput['work_id'];
             $suggestion->zone_division_id = $suggestionInput['division_id'];
+            $suggestion->area = $suggestionInput['area'];
             $suggestion->suggestion = $suggestionInput['suggestion'];
             $suggestion->status = 'citizen_submitted';
-            $suggestionSaveSuccess = $suggestion->save();
+            $suggestion = $suggestion->save();
         }
         else
         {
@@ -94,11 +85,26 @@ class SuggestionController extends Controller {
                 'email' => $user->email,
                 'suggestion' => $suggestion->suggestion
             );
-            $this->sendMail($emailData, 'emails.suggestion.submitSuggestion', 'Participatory Budgeting');
+            $this->generateReceipt($user, $suggestion);
+            $this->sendMail($emailData, 'emails.suggestion.submitSuggestion', 'Participatory Budgeting',$suggestion->id.'.pdf');
         }
-        return $this->respond($suggestionSaveSuccess,'Suggestion saved successfully','could not save suggestion',$suggestion,'suggestion error');
+        return $this->respond($suggestion,'Suggestion saved successfully','could not save suggestion',$suggestion,'suggestion error');
 
 	}
+
+    public function generateReceipt( $user, $suggestion )
+    {
+        $instance = Instance::find($suggestion->instance_id);
+
+        $receiptData = array(
+          'instance'=>$instance,
+            'suggestion'=>$suggestion,
+            'user'=>$user
+        );
+        $pdf = PDF::loadView('pdf.timesheet', $receiptData);
+        $pdf->save($suggestion->id.'.pdf');
+        return $pdf->getDomPDF();
+    }
 
 	/**
 	 * Display the specified resource.
