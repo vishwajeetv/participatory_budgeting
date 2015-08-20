@@ -3,8 +3,8 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User, App\Suggestion, App\Instance;
-use Request, DB;
-use Barryvdh\DomPDF\PDF;
+use Request, DB, Log, Storage;
+use PDF;
 
 
 class SuggestionController extends Controller {
@@ -48,20 +48,13 @@ class SuggestionController extends Controller {
 	 */
 	public function store()
 	{
+        $instanceId = 1;
 	    $citizenInput = Request::input('citizen');
 
         $suggestionInput = Request::input('suggestion');
 
-        $instanceId = 1;
-
-        $user = User::firstOrCreate(array('email'=>$citizenInput['email']));
-
-        $user->name = $citizenInput['name'];
-        $user->mobile = $citizenInput['mobile'];
-        $user->address = $citizenInput['address'];
-        $user->instance_id = $instanceId;
-        $user = $user->save();
-
+        $citizenInput['instance_id'] = $instanceId;
+        $user = User::updateOrCreate(array('email'=>$citizenInput['email']),$citizenInput);
         if(isset($user))
         {
             $suggestion = new Suggestion;
@@ -72,21 +65,27 @@ class SuggestionController extends Controller {
             $suggestion->area = $suggestionInput['area'];
             $suggestion->suggestion = $suggestionInput['suggestion'];
             $suggestion->status = 'citizen_submitted';
-            $suggestion = $suggestion->save();
+            $suggestionSaveSuccess = $suggestion->save();
         }
         else
         {
             return $this->respond(null,null,'Failed to save user',null,'User saving error');
 
         }
+
+
+        $instance = Instance::find($suggestion->instance_id);
+
         if (isset($suggestionSaveSuccess)) {
             $emailData = array(
-                'citizenName' => $user->name,
-                'email' => $user->email,
-                'suggestion' => $suggestion->suggestion
+                'instance'=>$instance,
+                'suggestion'=>$suggestion,
+                'user'=>$user,
+                'email'=>$user->email
             );
             $this->generateReceipt($user, $suggestion);
-            $this->sendMail($emailData, 'emails.suggestion.submitSuggestion', 'Participatory Budgeting',$suggestion->id.'.pdf');
+            $this->sendMail($emailData, 'emails.suggestion.submitSuggestion',
+                'Participatory Budgeting',$suggestion->id.'.pdf');
         }
         return $this->respond($suggestion,'Suggestion saved successfully','could not save suggestion',$suggestion,'suggestion error');
 
@@ -101,8 +100,8 @@ class SuggestionController extends Controller {
             'suggestion'=>$suggestion,
             'user'=>$user
         );
-        $pdf = PDF::loadView('pdf.timesheet', $receiptData);
-        $pdf->save($suggestion->id.'.pdf');
+        $pdf = PDF::loadView('receipt.suggestionReceipt', $receiptData);
+        Storage::put($suggestion->id.'.pdf', $pdf->output());
         return $pdf->getDomPDF();
     }
 
