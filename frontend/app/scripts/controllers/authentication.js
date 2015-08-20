@@ -8,7 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-    .controller('AuthenticationCtrl', function ($scope, Restangular, $location, $mdToast, $rootScope) {
+    .controller('AuthenticationCtrl', function ($scope, Restangular, $location, $mdToast, $rootScope, UserProvider) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -36,9 +36,7 @@ angular.module('frontendApp')
                     {
                         $rootScope.authenticated = true;
                         sessionStorage.authenticated = true;
-                        sessionStorage.id = response.body.id;
-                        sessionStorage.role = response.body.role;
-                        sessionStorage.instance_id = response.body.instance_id;
+                        UserProvider.setUser(response.body);
                         $mdToast.show($mdToast.simple().content(response.header.message));
                             console.log(response.header.message);
                         $scope.redirectToRole();
@@ -86,11 +84,12 @@ angular.module('frontendApp')
         };
 
         $scope.redirectToRole = function() {
-
-            if (sessionStorage.role == "citizen") {
+            var user = UserProvider.getUser();
+            console.log(user.role);
+            if (user.role == "citizen") {
                 $location.path('/citizen');
             }
-            else if (sessionStorage.role == "admin") {
+            else if (user.role == "admin") {
                 $location.path('/admin');
             }
 
