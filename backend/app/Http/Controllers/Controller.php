@@ -11,13 +11,16 @@ abstract class Controller extends BaseController
 {
     use DispatchesJobs, ValidatesRequests;
 
-    public function sendMail($emailData, $template, $subject)
+    public function sendMail($emailData, $template, $subject, $attachment)
     {
         try {
             Mail::send($template,
                 $emailData,
                 function ($message) use ($emailData, $subject) {
                     $message->to($emailData['email'])->subject($subject);
+                    if(isset($attachment)){
+                        $message->attach($attachment);
+                    }
 
                 });
             return true;
