@@ -33,19 +33,25 @@ class UserController extends Controller {
 	 * @param  StoreBlogPostRequest  $request
 	 * @return Response
 	 */
-	public function store(Requests\SignUpRequest $request)
+	public function store()
 	{
-        $input = Request::all();
-        $instanceId = 1;
-        $user = new User;
-        $user->email = $input['email'];
-        $user->password = md5( $input['password'] );
-        $user->role = $input['role'];
-        $user->instance_id = $instanceId;
-        $saveStatus = $user->save();
-        return $this->respond($saveStatus,'SignUp Successful','SignUp Failed',$user,'none');
+		$citizenInput = Request::all();
+        $user = User::updateOrCreate(array('email'=>$citizenInput['email']),$citizenInput);
+		return $this->respond($user,'User saved successfully','could not save user',$user,'user error');
 	}
 
+	public function signup(Requests\SignUpRequest $request)
+	{
+		$input = Request::all();
+		$user = new User;
+		$user->email = $input['email'];
+		$user->password = md5( $input['password'] );
+		$user->role = $input['role'];
+		$user->instance_id = $input['instance_id'];
+		$saveStatus = $user->save();
+
+		return $this->respond($saveStatus,'SignUp Successful','SignUp Failed',$user,'none');
+	}
 
     public function login(Requests\LoginRequest $request)
     {
@@ -64,7 +70,9 @@ class UserController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$user = User::find($id);
+		return $this->respond($user,'User retrieval Successful','User can not be retrieved',$user,null);
+
 	}
 
 	/**
