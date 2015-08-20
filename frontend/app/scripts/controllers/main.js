@@ -8,7 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-    .controller('MainCtrl', function ($scope, $rootScope) {
+    .controller('MainCtrl', function ($scope, $rootScope, UserProvider) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -16,12 +16,14 @@ angular.module('frontendApp')
     ];
 
         $rootScope.authenticated = false;
-        $scope.showLogout = function () {
+        $rootScope.showName = function () {
             if ($rootScope.authenticated == true || sessionStorage.authenticated == true) {
-                return true;
+                var user = UserProvider.getUser();
+                console.log(user);
+                return user.name;
             }
             else {
-                return false;
+                return null;
             }
         }
   });

@@ -8,7 +8,8 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('SuggestionCtrl', function ($scope, $timeout, Restangular, $mdToast) {
+  .controller('SuggestionCtrl', function ($scope, $timeout, Restangular, $mdToast,
+                                          InstanceProvider, UserProvider, $location) {
 
         $scope.citizen = null;
         $scope.suggestion = null;
@@ -24,12 +25,45 @@ angular.module('frontendApp')
 
         $scope.submitCitizen = function(citizenForm)
         {
-            $scope.submitedCitizen = true;
 
             if(citizenForm.$valid == true)
             {
-                $scope.nextTab(1);
-                return true;
+                var citizen = $scope.citizen;
+                var saveCitizenData = {
+                    'instance': InstanceProvider.getInstanceId(),
+                    'name' : citizenForm.name.$modelValue,
+                    'email' : citizenForm.email.$modelValue,
+                    'mobile': citizenForm.mobile.$modelValue,
+                    'address': citizenForm.address.$modelValue,
+                    'role':'citizen'
+
+                };
+
+                var saveCitizen = Restangular.all('user');
+                saveCitizen.post(saveCitizenData).then(function (response)
+                {
+                    if(response.header.status == "success")
+                    {
+                        $scope.submitedCitizen = true;
+                        UserProvider.setUser(response.body);
+                        $scope.nextTab(1);
+                        return true;
+
+                    }
+                    else
+                    {
+                        console.log(response.header.message);
+                    }
+                }, function (response) {
+                    console.log('error');
+                    if(response.status == 422)
+                    {
+
+                    }
+
+                });
+
+
             }
             else
             {
@@ -82,26 +116,18 @@ angular.module('frontendApp')
         $scope.submitFinal = function(citizenForm, suggestionForm)
         {
 
-            var citizen = $scope.citizen;
             var suggestion = $scope.suggestion;
 
             var saveSuggestionData = {
-                'citizen' :
-                {
-                    'name' : citizenForm.name.$modelValue,
-                    'email' : citizenForm.email.$modelValue,
-                    'mobile': citizenForm.mobile.$modelValue,
-                    'address': citizenForm.address.$modelValue
-                }
-                ,
-                'suggestion':{
+
+                    'instance_id' : InstanceProvider.getInstanceId(),
+                    'user_id' : UserProvider.getUserId(),
                     'work_id' : suggestionForm.work.$modelValue.id,
                     'division_id' : suggestionForm.division.$modelValue.id,
                     'zone_id' : suggestionForm.zone.$modelValue.id,
                     'area' : suggestionForm.area.$modelValue,
                     'suggestion' : suggestionForm.suggestion.$modelValue,
                     'work_purpose' : suggestionForm.work_purpose.$modelValue
-                }
             };
 
             console.log(saveSuggestionData);
@@ -119,8 +145,12 @@ angular.module('frontendApp')
                 {
                     console.log(response.header.message);
                 }
-            }, function () {
+            }, function (response) {
                 console.log('error');
+                if(response.status == 422)
+                {
+
+                }
 
             });
             return true;
@@ -131,9 +161,8 @@ angular.module('frontendApp')
             var getInstance = Restangular.one('instance');
             getInstance.get().then(function (response) {
                 $scope.instance = response.body;
-
                 $scope.instance.start_time = convertDateTime($scope.instance.start_time);
-
+                InstanceProvider.setInstance(response.body);
                 $scope.instance.end_time = convertDateTime($scope.instance.end_time);
                 $scope.checkInstanceDates();
             }, function () {
@@ -212,9 +241,25 @@ angular.module('frontendApp')
 
         }
 
+        $scope.name = UserProvider.getUser().name;
 
+        $scope.loadUser= function(){
+
+            $scope.citizen = UserProvider.getUserById
+            (UserProvider.getUserId())
+                .then(function (user) {
+                    $scope.citizen = user;
+                    console.log(user);
+            });
+        }
+
+        $scope.logout = function(){
+            UserProvider.logout();
+            $location.path('/');
+        }
         function init() {
             $scope.loadInstance();
+            $scope.loadUser();
         }
 
         init();
