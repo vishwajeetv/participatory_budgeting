@@ -99,7 +99,8 @@ angular.module('frontendApp')
                     'division_id' : suggestionForm.division.$modelValue.id,
                     'zone_id' : suggestionForm.zone.$modelValue.id,
                     'area' : suggestionForm.area.$modelValue,
-                    'suggestion' : suggestionForm.suggestion.$modelValue
+                    'suggestion' : suggestionForm.suggestion.$modelValue,
+                    'work_purpose' : suggestionForm.work_purpose.$modelValue
                 }
             };
 
@@ -111,7 +112,7 @@ angular.module('frontendApp')
                 {
                     console.log(response.header.message);
                     $mdToast.show($mdToast.simple().content(response.header.message));
-                    $scope.submitedFinal = true;
+                    //$scope.submitedFinal = true;
 
                 }
                 else

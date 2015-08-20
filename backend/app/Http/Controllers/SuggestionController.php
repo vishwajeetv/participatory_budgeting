@@ -64,6 +64,7 @@ class SuggestionController extends Controller {
             $suggestion->zone_division_id = $suggestionInput['division_id'];
             $suggestion->area = $suggestionInput['area'];
             $suggestion->suggestion = $suggestionInput['suggestion'];
+            $suggestion->work_purpose = $suggestionInput['work_purpose'];
             $suggestion->status = 'citizen_submitted';
             $suggestionSaveSuccess = $suggestion->save();
         }

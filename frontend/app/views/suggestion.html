@@ -82,22 +82,23 @@
                                             <input required name="mobile" type="text" ng-model="citizen.mobile">
 
                                             <div ng-messages="citizenForm.mobile.$error">
-                                                <div ng-click="submitCitizen(citizenForm)" ng-show="(!citizenForm.mobile.$valid) && (citizenForm.mobile.$dirty || submitedCitizen)">
+                                                <div ng-show="(!citizenForm.mobile.$valid) && (citizenForm.mobile.$dirty || submitedCitizen)">
                                                     <div ng-message="required" ng-show="citizenForm.mobile.$error.required">
                                                         Required.</div>
                                                 </div>
                                             </div>
 
                                         </md-input-container>
+
                                         <md-input-container class="md-icon-float">
 
                                             <label>Address</label>
 
                                             <md-icon><i class="material-icons">home</i></md-icon>
-                                            <textarea required name="address" type="text" ng-model="citizen.address"></textarea>
+                                            <input required name="address" type="text" ng-model="citizen.address">
 
                                             <div ng-messages="citizenForm.address.$error">
-                                                <div ng-click="submitCitizen(citizenForm)" ng-show="(!citizenForm.address.$valid) && (citizenForm.address.$dirty || submitedCitizen)">
+                                                <div ng-show="(!citizenForm.address.$valid) && (citizenForm.address.$dirty || submitedCitizen)">
                                                     <div ng-message="required" ng-show="citizenForm.address.$error.required">
                                                         Required.</div>
                                                 </div>
@@ -169,16 +170,16 @@
                                             </md-input-container>
 
                                         <md-input-container class="md-icon-float">
-
                                             <label>Area</label>
 
-                                            <md-icon><i class="material-icons">home</i></md-icon>
-                                            <input required name="area" type="text" ng-model="suggestion.area"></input>
+                                            <md-icon><i class="material-icons">stars</i> </md-icon>
+                                            <input required name="area" type="text" ng-model="suggestion.area"/>
 
-                                            <div ng-messages="suggestionForm.area.$error">
-                                                <div ng-show="(!suggestionForm.area.$valid) && (suggestionForm.area.$dirty || submitedCitizen)">
-                                                    <div ng-message="required" ng-show="suggestionForm.area.$error.required">
+                                            <div ng-messages="suggestion.area.$error">
+                                                <div ng-show="(!suggestion.area.$valid) && (suggestion.area.$dirty || submitedSuggestion)">
+                                                    <div ng-message="required" ng-show="suggestion.area.$error.required">
                                                         Required.</div>
+
                                                 </div>
                                             </div>
 
@@ -191,8 +192,12 @@
                                                 <md-option ng-value="work" ng-repeat="work in works" value="{{work.function}}">{{work.function}}</md-option>
                                             </md-select>
 
-                                            <div class="errors" ng-messages="suggestionForm.work.$error" ng-if="myForm.$dirty || submitedSuggestion">
-                                                <div ng-message="required">Required</div>
+                                            <div ng-messages="suggestion.suggestion.$error">
+                                                <div ng-show="(!suggestion.suggestion.$valid) && (suggestion.suggestion.$dirty || submitedSuggestion)">
+                                                    <div ng-message="required" ng-show="suggestion.suggestion.$error.required">
+                                                        Required.</div>
+
+                                                </div>
                                             </div>
                                         </md-input-container>
 
@@ -209,6 +214,22 @@
 
                                                 </div>
                                             </div>
+
+                                        </md-input-container>
+
+                                        <md-input-container class="md-icon-float">
+                                                <label>Work Purpose</label>
+
+                                                <md-icon><i class="material-icons">stars</i> </md-icon>
+                                                <input required name="work_purpose" type="text" ng-model="suggestion.work_purpose"/>
+
+                                                <div ng-messages="suggestion.work_purpose.$error">
+                                                    <div ng-show="(!suggestion.work_purpose.$valid) && (suggestion.work_purpose.$dirty || submitedSuggestion)">
+                                                        <div ng-message="required" ng-show="suggestion.work_purpose.$error.required">
+                                                            Required.</div>
+
+                                                    </div>
+                                                </div>
 
                                         </md-input-container>
 
