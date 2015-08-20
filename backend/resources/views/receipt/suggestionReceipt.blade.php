@@ -17,17 +17,16 @@
     <h2>Citizen Participatory Budgeting Suggestion Receipt</h2>
 </div>
 <div align="left">
-    <img style="float: right" src='{{ $suggestion->logo }}' alt='my-image' width='120' height='120'>
+{{--    <img style="float: right" src='{{ $suggestion->logo }}' alt='my-image' width='120' height='120'>--}}
 
-    <h3>Receipt No.:  {{$suggestion->receipt_no}}</h3>
-    <h4>Date of Submission: {{
-        date('d-m-Y'); }} </h4>
+    <h3>Receipt No.:  {{$suggestion->id}}</h3>
+    <h4>Date of Submission:  </h4>
 </div>
 <div align="left">
-    <h4>Name of the citizen: {{$suggestion->citizen_name}} </h4>
-    <h4>Address: {{$suggestion->citizen_address }} </h4>
-    <h4>Zone: {{$suggestion->zone_name }} </h4>
-    <h4>Division: {{$suggestion->division_name }} </h4>
+    <h4>Name of the citizen: {{$user->name}} </h4>
+    <h4>Address: {{$user->address }} </h4>
+    <h4>Zone: {{$suggestion->zone_id }} </h4>
+    <h4>Division: {{$suggestion->division_id }} </h4>
 
 </div>
 <div>
@@ -48,16 +47,16 @@
         </tr>
         <tr>
             <td>
-               {{ $suggestion->work_description }}
+               {{ $suggestion->suggestion }}
             </td>
             <td>
-                {{ $suggestion->work_location }}
+                {{ $suggestion->area }}
             </td>
             <td>
-               {{  $suggestion->work_type }}
+               {{  $suggestion->city_function_id }}
             </td>
             <td>
-                {{ echo $suggestion->work_purpose }}
+                {{--{{ echo $suggestion->work_purpose }}--}}
             </td>
         </tr>
     </table>
