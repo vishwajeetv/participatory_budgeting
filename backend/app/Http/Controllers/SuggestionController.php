@@ -6,6 +6,7 @@ use App\User, App\Suggestion, App\Instance;
 use Request, DB, Log, Storage;
 use PDF;
 use App\Http\Requests\SaveSuggestionRequest;
+use App\Http\Requests\ShowSuggestionByUserRequest;
 
 
 class SuggestionController extends Controller {
@@ -17,7 +18,7 @@ class SuggestionController extends Controller {
 	 */
 	public function index()
     {
-        $instanceId = 1;
+        $instanceId = Request::input('instance_id');
 
         $suggestion = DB::table('suggestions')
             ->join('zones', 'suggestions.zone_division_id', '=', 'zones.id')
@@ -107,6 +108,27 @@ class SuggestionController extends Controller {
 		//
 	}
 
+    public function getShowByUser(ShowSuggestionByUserRequest $request)
+    {
+        $instanceId =$request->input('instance_id', null);
+        $userId = $request->input('user_id', null);
+
+        $suggestion = DB::table('suggestions')
+            ->join('zones', 'suggestions.zone_division_id', '=', 'zones.id')
+            ->join('users', 'suggestions.user_id', '=', 'users.id')
+            ->join('city_functions', 'suggestions.city_function_id', '=', 'city_functions.id')
+            ->join('instances', 'instances.id', '=', 'suggestions.instance_id')
+            ->join('cities', 'cities.id', '=', 'instances.city_id')
+            ->where('suggestions.instance_id', '=', $instanceId)
+            ->where('suggestions.user_id', '=', $userId)
+            ->select('cities.name as city_name', 'zones.name as zone_name',
+                'zones.division_name as division_name', 'users.name as citizen_name',
+                'suggestions.suggestion'
+                ,'city_functions.function as work_name')
+            ->get();
+        return $this->respond($suggestion,"Suggestions retrieved successfully",'Suggestions could not be retrieved',
+            $suggestion,"no suggestion");
+    }
 	/**
 	 * Show the form for editing the specified resource.
 	 *
