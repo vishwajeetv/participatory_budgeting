@@ -209,7 +209,7 @@
                                         </md-select>
                                         <div class="errors" ng-messages="suggestionForm.zone.$error"
                                              ng-if="suggestionForm.$dirty || submitedSuggestion">
-                                            <div ng-message="required">Required</div>
+                                            <div ng-message="required" ng-show="suggestionForm.zone.$error.required">Required</div>
                                         </div>
                                             <div class="errors" ng-show="suggestion.errors.zone_id">
                                                 <span ng-repeat="error in suggestion.errors.zone_id">
@@ -227,7 +227,7 @@
                                         </md-select>
                                         <div class="errors" ng-messages="suggestionForm.division.$error"
                                              ng-if="suggestionForm.$dirty || submitedSuggestion">
-                                            <div ng-message="required">Required</div>
+                                            <div ng-message="required" ng-show="suggestionForm.division.$error.required">Required</div>
                                         </div>
                                             <div class="errors" ng-show="suggestion.errors.division_id">
                                                 <span ng-repeat="error in suggestion.errors.division_id">
