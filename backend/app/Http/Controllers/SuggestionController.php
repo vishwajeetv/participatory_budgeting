@@ -50,7 +50,7 @@ class SuggestionController extends Controller {
 	 */
 	public function store(SaveSuggestionRequest $request)
 	{
-        $suggestionInput = Request::all();
+        $citizenInfo = Request::input('citizen');
 
         $suggestion = new Suggestion;
         $suggestion->instance_id = $request->input('instance_id', null);;
@@ -60,12 +60,27 @@ class SuggestionController extends Controller {
         $suggestion->area = $request->input('area', null);
         $suggestion->suggestion = $request->input('suggestion', null);
         $suggestion->work_purpose = $request->input('work_purpose', null);
+        $suggestion->status = 'saved';
+        $suggestion->name = $citizenInfo['name'];
+        $suggestion->email = $citizenInfo['email'];
+        $suggestion->mobile = $citizenInfo['mobile'];
+        $suggestion->address = $citizenInfo['address'];
+        $suggestionSaveSuccess = $suggestion->save();
+
+        return $this->respond($suggestion,'Suggestion saved successfully','could not save suggestion',$suggestion,'suggestion error');
+
+	}
+
+    public function postSubmitSuggestion()
+    {
+        $instance = Request::input('instance_id');
+        $suggestionId = Request::input('suggestion_id');
+        $suggestion = Suggestion::findOrFail($suggestionId);
         $suggestion->status = 'submitted';
         $suggestionSaveSuccess = $suggestion->save();
 
-        $instance = Instance::find($suggestion->instance_id);
-
         $user = User::find($suggestion->user_id);
+
         if (isset($suggestionSaveSuccess)) {
             $emailData = array(
                 'instance'=>$instance,
@@ -77,9 +92,10 @@ class SuggestionController extends Controller {
             $this->sendMail($emailData, 'emails.suggestion.submitSuggestion',
                 'Participatory Budgeting',$suggestion->id.'.pdf');
         }
-        return $this->respond($suggestion,'Suggestion saved successfully','could not save suggestion',$suggestion,'suggestion error');
+        return $this->respond($suggestionSaveSuccess,'Suggestion submitted successfully',
+            'could not submit suggestion',$suggestion,'suggestion error');
 
-	}
+    }
 
     public function generateReceipt( $user, $suggestion )
     {
