@@ -9,7 +9,7 @@
  */
 angular.module('frontendApp')
   .controller('SuggestionCtrl', function ($scope, $timeout, Restangular, $mdToast,
-                                          InstanceProvider, UserProvider, $location) {
+                                          InstanceProvider, UserProvider, $location, SuggestionProvider) {
 
         $scope.citizen = null;
         $scope.suggestion = null;
@@ -131,30 +131,22 @@ angular.module('frontendApp')
             };
 
             console.log(saveSuggestionData);
-            var saveSuggestion = Restangular.all('suggestion');
-            saveSuggestion.post(saveSuggestionData).then(function (response)
-            {
-                if(response.header.status == "success")
-                {
-                    console.log(response.header.message);
-                    $mdToast.show($mdToast.simple().content(response.header.message));
-                    //$scope.submitedFinal = true;
 
-                }
-                else
-                {
-                    console.log(response.header.message);
-                }
-            }, function (response) {
-                console.log('error');
-                if(response.status == 422)
-                {
-
-                }
-
-            });
-            return true;
-        }
+            SuggestionProvider.saveSuggestion(saveSuggestionData).
+                then(function(response)
+                    {
+                        console.log(response.header.message);
+                        $mdToast.show($mdToast.simple().content(response.header.message));
+                        $scope.submitedFinal = true;
+                        $scope.suggestion = response.body;
+                    },
+                    function (response) {
+                        if (response) {
+                           $scope.suggestion.errors = response;
+                            console.log(suggestion.errors);
+                        }
+                    });
+            };
 
         $scope.loadInstance = function () {
 
