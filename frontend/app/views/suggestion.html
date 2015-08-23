@@ -91,8 +91,13 @@
                                                     <div ng-message="email" ng-show="citizenForm.email.$error.email">
                                                         Invalid Email ID.</div>
                                                 </div>
-                                            </div>
 
+                                            </div>
+                                            <div class="errors" ng-show="citizen.errors.email">
+                                                <span ng-repeat="error in citizen.errors.email">
+                                                    {{error}}
+                                                </span>
+                                            </div>
                                         </md-input-container>
 
 
@@ -107,6 +112,11 @@
                                                     <div ng-message="required" ng-show="citizenForm.name.$error.required">
                                                         Required.</div>
                                                 </div>
+                                            </div>
+                                            <div class="errors" ng-show="citizen.errors.name">
+                                                <span ng-repeat="error in citizen.errors.name">
+                                                    {{error}}
+                                                </span>
                                             </div>
                                         </md-input-container>
 
@@ -123,6 +133,11 @@
                                                         Required.</div>
                                                 </div>
                                             </div>
+                                            <div class="errors" ng-show="citizen.errors.phone">
+                                                <span ng-repeat="error in citizen.errors.phone">
+                                                    {{error}}
+                                                </span>
+                                            </div>
 
                                         </md-input-container>
 
@@ -138,6 +153,11 @@
                                                     <div ng-message="required" ng-show="citizenForm.address.$error.required">
                                                         Required.</div>
                                                 </div>
+                                            </div>
+                                            <div class="errors" ng-show="citizen.errors.address">
+                                                <span ng-repeat="error in citizen.errors.address">
+                                                    {{error}}
+                                                </span>
                                             </div>
 
                                         </md-input-container>
@@ -187,10 +207,16 @@
                                                 value="{{zone.name}}"  >{{zone.name}}</md-option>
 
                                         </md-select>
-                                        <div class="errors" ng-messages="suggestionForm.zone.$error" ng-if="myForm.$dirty || submitedSuggestion">
+                                        <div class="errors" ng-messages="suggestionForm.zone.$error"
+                                             ng-if="suggestionForm.$dirty || submitedSuggestion">
                                             <div ng-message="required">Required</div>
                                         </div>
-                                            </md-input-container>
+                                            <div class="errors" ng-show="suggestion.errors.zone_id">
+                                                <span ng-repeat="error in suggestion.errors.zone_id">
+                                                    {{error}}
+                                                </span>
+                                            </div>
+                                        </md-input-container>
 
 
                                         <md-input-container>
@@ -199,10 +225,16 @@
                                             <md-option ng-value="division" ng-repeat="division in zones |  filter:suggestion.zone"
                                                       value="{{division.division_name}}" >{{division.division_name}}</md-option>
                                         </md-select>
-                                        <div class="errors" ng-messages="suggestionForm.division.$error" ng-if="myForm.$dirty || submitedSuggestion">
+                                        <div class="errors" ng-messages="suggestionForm.division.$error"
+                                             ng-if="suggestionForm.$dirty || submitedSuggestion">
                                             <div ng-message="required">Required</div>
                                         </div>
-                                            </md-input-container>
+                                            <div class="errors" ng-show="suggestion.errors.division_id">
+                                                <span ng-repeat="error in suggestion.errors.division_id">
+                                                    {{error}}
+                                                </span>
+                                            </div>
+                                        </md-input-container>
 
                                         <md-input-container class="md-icon-float">
                                             <label>Area</label>
@@ -211,11 +243,17 @@
                                             <input required name="area" type="text" ng-model="suggestion.area"/>
 
                                             <div ng-messages="suggestion.area.$error">
-                                                <div ng-show="(!suggestion.area.$valid) && (suggestion.area.$dirty || submitedSuggestion)">
-                                                    <div ng-message="required" ng-show="suggestion.area.$error.required">
+                                                <div ng-show="(!suggestionForm.area.$valid) && (suggestionForm.area.$dirty ||
+                                                 submitedSuggestion)">
+                                                    <div ng-message="required" ng-show="suggestionForm.area.$error.required">
                                                         Required.</div>
 
                                                 </div>
+                                            </div>
+                                            <div class="errors" ng-show="suggestion.errors.area">
+                                                <span ng-repeat="error in user.errors.area">
+                                                    {{error}}
+                                                </span>
                                             </div>
 
                                         </md-input-container>
@@ -228,11 +266,16 @@
                                             </md-select>
 
                                             <div ng-messages="suggestion.suggestion.$error">
-                                                <div ng-show="(!suggestion.suggestion.$valid) && (suggestion.suggestion.$dirty || submitedSuggestion)">
-                                                    <div ng-message="required" ng-show="suggestion.suggestion.$error.required">
+                                                <div ng-show="(!suggestionForm.suggestion.$valid) && (suggestionForm.suggestion.$dirty || submitedSuggestion)">
+                                                    <div ng-message="required" ng-show="suggestionForm.suggestion.$error.required">
                                                         Required.</div>
 
                                                 </div>
+                                            </div>
+                                            <div class="errors" ng-show="suggestion.errors.work_id">
+                                                <span ng-repeat="error in suggestion.errors.work_id">
+                                                    {{error}}
+                                                </span>
                                             </div>
                                         </md-input-container>
 
@@ -243,11 +286,16 @@
                                             <input required name="suggestion" type="text" ng-model="suggestion.suggestion"/>
 
                                             <div ng-messages="suggestion.suggestion.$error">
-                                                <div ng-show="(!suggestion.suggestion.$valid) && (suggestion.suggestion.$dirty || submitedSuggestion)">
-                                                    <div ng-message="required" ng-show="suggestion.suggestion.$error.required">
+                                                <div ng-show="(!suggestionForm.suggestion.$valid) && (suggestionForm.suggestion.$dirty || submitedSuggestion)">
+                                                    <div ng-message="required" ng-show="suggestionForm.suggestion.$error.required">
                                                         Required.</div>
 
                                                 </div>
+                                            </div>
+                                            <div class="errors" ng-show="suggestion.errors.suggestion">
+                                                <span ng-repeat="error in suggestion.errors.suggestion">
+                                                    {{error}}
+                                                </span>
                                             </div>
 
                                         </md-input-container>
@@ -259,12 +307,17 @@
                                                 <input required name="work_purpose" type="text" ng-model="suggestion.work_purpose"/>
 
                                                 <div ng-messages="suggestion.work_purpose.$error">
-                                                    <div ng-show="(!suggestion.work_purpose.$valid) && (suggestion.work_purpose.$dirty || submitedSuggestion)">
-                                                        <div ng-message="required" ng-show="suggestion.work_purpose.$error.required">
+                                                    <div ng-show="(!suggestionForm.work_purpose.$valid) && (suggestionForm.work_purpose.$dirty || submitedSuggestion)">
+                                                        <div ng-message="required" ng-show="suggestionForm.work_purpose.$error.required">
                                                             Required.</div>
 
                                                     </div>
                                                 </div>
+                                            <div class="errors" ng-show="suggestion.errors.work_purpose">
+                                                <span ng-repeat="error in suggestion.errors.work_purpose">
+                                                    {{error}}
+                                                </span>
+                                            </div>
 
                                         </md-input-container>
 
