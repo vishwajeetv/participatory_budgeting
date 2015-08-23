@@ -46,6 +46,7 @@ angular.module('frontendApp')
                     {
                         $scope.submitedCitizen = true;
                         UserProvider.setUser(response.body);
+                        $scope.citizen = response.body;
                         $scope.nextTab(1);
                         return true;
 
@@ -103,7 +104,36 @@ angular.module('frontendApp')
 
             if(suggestionForm.$valid == true)
             {
+                var suggestion = $scope.suggestion;
 
+                var saveSuggestionData = {
+                    'citizen' : $scope.citizen,
+                    'instance_id' : InstanceProvider.getInstanceId(),
+                    'user_id' : UserProvider.getUserId(),
+                    'work_id' : suggestionForm.work.$modelValue.id,
+                    'division_id' : suggestionForm.division.$modelValue.id,
+                    'zone_id' : suggestionForm.zone.$modelValue.id,
+                    'area' : suggestionForm.area.$modelValue,
+                    'suggestion' : suggestionForm.suggestion.$modelValue,
+                    'work_purpose' : suggestionForm.work_purpose.$modelValue
+                };
+
+                console.log(saveSuggestionData);
+
+                SuggestionProvider.saveSuggestion(saveSuggestionData).
+                    then(function(response)
+                    {
+                        console.log(response.header.message);
+                        $mdToast.show($mdToast.simple().content(response.header.message));
+                        $scope.submitSuggestion = true;
+                        $scope.suggestion = response.body;
+                    },
+                    function (response) {
+                        if (response) {
+                            $scope.suggestion.errors = response;
+                            console.log(suggestion.errors);
+                        }
+                    });
                 $scope.nextTab(2);
                 return true;
             }
@@ -116,37 +146,8 @@ angular.module('frontendApp')
         $scope.submitFinal = function(citizenForm, suggestionForm)
         {
 
-            var suggestion = $scope.suggestion;
 
-            var saveSuggestionData = {
-
-                    'instance_id' : InstanceProvider.getInstanceId(),
-                    'user_id' : UserProvider.getUserId(),
-                    'work_id' : suggestionForm.work.$modelValue.id,
-                    'division_id' : suggestionForm.division.$modelValue.id,
-                    'zone_id' : suggestionForm.zone.$modelValue.id,
-                    'area' : suggestionForm.area.$modelValue,
-                    'suggestion' : suggestionForm.suggestion.$modelValue,
-                    'work_purpose' : suggestionForm.work_purpose.$modelValue
-            };
-
-            console.log(saveSuggestionData);
-
-            SuggestionProvider.saveSuggestion(saveSuggestionData).
-                then(function(response)
-                    {
-                        console.log(response.header.message);
-                        $mdToast.show($mdToast.simple().content(response.header.message));
-                        $scope.submitedFinal = true;
-                        $scope.suggestion = response.body;
-                    },
-                    function (response) {
-                        if (response) {
-                           $scope.suggestion.errors = response;
-                            console.log(suggestion.errors);
-                        }
-                    });
-            };
+        };
 
         $scope.loadInstance = function () {
 
