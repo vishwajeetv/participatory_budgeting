@@ -50,19 +50,17 @@ class SuggestionController extends Controller {
 	 */
 	public function store(SaveSuggestionRequest $request)
 	{
-	    $citizenInput = Request::input('citizen');
-
         $suggestionInput = Request::all();
 
         $suggestion = new Suggestion;
-        $suggestion->instance_id = $suggestionInput['instance_id'];
-        $suggestion->user_id = $suggestionInput['user_id'];
-        $suggestion->city_function_id = $suggestionInput['work_id'];
-        $suggestion->zone_division_id = $suggestionInput['division_id'];
-        $suggestion->area = $suggestionInput['area'];
-        $suggestion->suggestion = $suggestionInput['suggestion'];
-        $suggestion->work_purpose = $suggestionInput['work_purpose'];
-        $suggestion->status = 'citizen_submitted';
+        $suggestion->instance_id = $request->input('instance_id', null);;
+        $suggestion->user_id = $request->input('user_id', null);
+        $suggestion->city_function_id = $request->input('work_id', null);
+        $suggestion->zone_division_id = $request->input('division_id', null);
+        $suggestion->area = $request->input('area', null);
+        $suggestion->suggestion = $request->input('suggestion', null);
+        $suggestion->work_purpose = $request->input('work_purpose', null);
+        $suggestion->status = 'submitted';
         $suggestionSaveSuccess = $suggestion->save();
 
         $instance = Instance::find($suggestion->instance_id);
