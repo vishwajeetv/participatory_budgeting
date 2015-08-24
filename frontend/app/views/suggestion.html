@@ -51,6 +51,8 @@
                         <p ng-show="instanceError == 'after'">
                             Psst! Participatory Budgeting ended on {{instance.end_time | date:'mediumDate'}}
                         </p>
+                        <md-progress-linear class="md-hue-1" md-mode="determinate" ng-value="progress"></md-progress-linear>
+                        <br>
                         <md-tabs md-selected="selectedIndex" md-dynamic-height md-border-bottom ng-hide="instanceError">
                             <md-tab label="Lets' Begin!" ng-disabled="checkDisabled(selectedIndex)">
                                 <md-content class="md-padding">
@@ -65,7 +67,7 @@
 
                                     </md-list>
 
-                                    <md-button class="md-raised md-accent md-hue-4" ng-click="nextTab(0)"
+                                    <md-button class="md-raised md-accent md-hue-4" ng-click="begin()"
                                                aria-label="Begin">
                                         Begin!
                                     </md-button>
