@@ -39,6 +39,10 @@ angular
         templateUrl: 'views/suggestion.html',
         controller: 'SuggestionCtrl'
       })
+        .when('/citizen/suggestionlist', {
+            templateUrl: 'views/suggestionlist.html',
+            controller: 'SuggestionListCtrl'
+        })
         .when('/admin', {
             templateUrl: 'views/admin.html',
             controller: 'AdminCtrl'
