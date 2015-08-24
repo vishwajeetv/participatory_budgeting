@@ -127,6 +127,8 @@ angular.module('frontendApp')
                         $mdToast.show($mdToast.simple().content(response.header.message));
                         $scope.submitSuggestion = true;
                         $scope.suggestion = response.body;
+                        $scope.nextTab(2);
+                        return true;
                     },
                     function (response) {
                         if (response) {
@@ -134,8 +136,8 @@ angular.module('frontendApp')
                             console.log(suggestion.errors);
                         }
                     });
-                $scope.nextTab(2);
-                return true;
+
+
             }
             else
             {
@@ -143,9 +145,22 @@ angular.module('frontendApp')
             }
         }
 
-        $scope.submitFinal = function(citizenForm, suggestionForm)
+        $scope.submitFinal = function()
         {
-
+            SuggestionProvider.submitSuggestion($scope.citizen.id, InstanceProvider.getInstanceId()).
+                then(function(response)
+                {
+                    console.log(response.header.message);
+                    $mdToast.show($mdToast.simple().content(response.header.message));
+                    $scope.submitSuggestion = true;
+                    return true;
+                },
+                function (response) {
+                    if (response) {
+                        $scope.suggestion.errors = response;
+                        console.log(suggestion.errors);
+                    }
+                });
 
         };
 
