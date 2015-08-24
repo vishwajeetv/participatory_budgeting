@@ -153,6 +153,10 @@ angular.module('frontendApp')
                     console.log(response.header.message);
                     $mdToast.show($mdToast.simple().content(response.header.message));
                     $scope.submitSuggestion = true;
+                    $scope.progress = parseInt($scope.progress) + 25;
+                    $scope.disabledFirst = true;
+                    $scope.disabledSecond = true;
+                    $scope.disabledThird = true;
                     return true;
                 },
                 function (response) {
@@ -202,6 +206,11 @@ angular.module('frontendApp')
 
         }
 
+        $scope.begin= function()
+        {
+            $scope.nextTab(0);
+        }
+
         $scope.instanceError = null;
         $scope.loadZones = function() {
 
@@ -230,11 +239,13 @@ angular.module('frontendApp')
             });
         };
 
+        $scope.progress = 0;
         $scope.previousTab = function(selectedIndex)
         {
             console.log(selectedIndex);
             if(selectedIndex > 0)
             {
+                $scope.progress = $scope.progress - 25;
                 $scope.selectedIndex = selectedIndex - 1;
             }
         }
@@ -244,6 +255,8 @@ angular.module('frontendApp')
             console.log(selectedIndex);
             if(selectedIndex < 3)
             {
+                console.log($scope.progress);
+                $scope.progress = parseInt($scope.progress) + 25;
                 $scope.selectedIndex = selectedIndex + 1;
             }
 
