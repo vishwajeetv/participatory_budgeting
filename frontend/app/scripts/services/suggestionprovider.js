@@ -51,4 +51,28 @@ angular.module('frontendApp')
             return deferred.promise;
 
         }
+
+        this.submitSuggestion = function(suggestionId, instanceId){
+
+            var url = SERVER_URL + 'suggestion/submit-suggestion';
+            var deferred = $q.defer();
+            var suggestionData = {
+                'instance_id' : instanceId,
+                'suggestion_id' : suggestionId
+            }
+            $http.post(url, suggestionData).
+                success(function (response, status) {
+                    if(response.header.status == 'success')
+                        deferred.resolve(response);
+                    else
+                        deferred.reject(response);
+                }).
+                error(function (data, status) {
+                    console.log(data);
+                    deferred.reject(data);
+                    console.log('could not store suggestion');
+                });
+            return deferred.promise;
+
+        }
   });
