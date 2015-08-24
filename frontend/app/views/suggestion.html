@@ -80,8 +80,11 @@
 
                                         <md-input-container class="md-icon-float">
                                             <label>Email</label>
-
-                                            <md-icon><i class="material-icons">email</i></md-icon>
+                                            <md-tooltip md-direction="right">
+                                                e.g. abc@xyz.com
+                                            </md-tooltip>
+                                            <md-icon><i class="material-icons">email</i>
+                                            </md-icon>
                                             <input required name="email" type="email" ng-model="citizen.email">
 
                                             <div ng-messages="citizenForm.email.$error">
@@ -105,6 +108,9 @@
                                             <!-- Use floating label instead of placeholder -->
                                             <label>Name</label>
                                             <md-icon><i class="material-icons">face</i></md-icon>
+                                            <md-tooltip md-direction="right">
+                                                e.g. John Doe
+                                            </md-tooltip>
                                             <input required name="name" type="text" ng-model="citizen.name">
 
                                             <div ng-messages="citizenForm.name.$error">
@@ -125,6 +131,9 @@
                                             <label>Mobile</label>
 
                                             <md-icon><i class="material-icons">phone</i></md-icon>
+                                            <md-tooltip md-direction="right">
+                                                e.g. 9922657745
+                                            </md-tooltip>
                                             <input required name="mobile" type="text" ng-model="citizen.mobile">
 
                                             <div ng-messages="citizenForm.mobile.$error">
@@ -146,6 +155,9 @@
                                             <label>Address</label>
 
                                             <md-icon><i class="material-icons">home</i></md-icon>
+                                            <md-tooltip md-direction="right">
+                                                e.g. B-45, Shanti Nivas, Kasba Peth, Pune 411008
+                                            </md-tooltip>
                                             <input required name="address" type="text" ng-model="citizen.address">
 
                                             <div ng-messages="citizenForm.address.$error">
@@ -201,7 +213,9 @@
                                         <div class="md-body-2"><i class="material-icons">place</i> Location</div>
                                         <md-input-container>
                                             <label>Zone</label>
-
+                                            <md-tooltip md-direction="right">
+                                                Select your zone from list.
+                                            </md-tooltip>
                                             <md-select name="zone" ng-model="suggestion.zone" md-on-open="loadZones()" required>
                                             <md-option ng-value="zone" ng-repeat="zone in zones"
                                                 value="{{zone.name}}"  >{{zone.name}}</md-option>
@@ -221,6 +235,9 @@
 
                                         <md-input-container>
                                             <label>Division</label>
+                                            <md-tooltip md-direction="right">
+                                              Select your division from list.
+                                            </md-tooltip>
                                             <md-select name="division" ng-model="suggestion.division" required>
                                             <md-option ng-value="division" ng-repeat="division in zones |  filter:suggestion.zone"
                                                       value="{{division.division_name}}" >{{division.division_name}}</md-option>
@@ -240,6 +257,9 @@
                                             <label>Area</label>
 
                                             <md-icon><i class="material-icons">location_searching</i> </md-icon>
+                                            <md-tooltip md-direction="right">
+                                                e.g. Kasba Peth
+                                            </md-tooltip>
                                             <input required name="area" type="text" ng-model="suggestion.area"/>
 
                                             <div ng-messages="suggestion.area.$error">
@@ -258,9 +278,12 @@
 
                                         </md-input-container>
 
-                                        <div class="md-body-2"><i class="material-icons">build</i> Work</div>
+                                        <div class="md-body-2"><i class="material-icons">build</i> Work Type</div>
                                         <md-input-container>
                                             <label>Work</label>
+                                            <md-tooltip md-direction="right">
+                                              Select work type from list.
+                                            </md-tooltip>
                                             <md-select name="work" ng-model="suggestion.work" md-on-open="loadWorks()" required>
                                                 <md-option ng-value="work" ng-repeat="work in works" value="{{work.function}}">{{work.function}}</md-option>
                                             </md-select>
@@ -283,7 +306,10 @@
                                             <label>Suggestion</label>
 
                                             <md-icon><i class="material-icons">stars</i> </md-icon>
-                                            <input required name="suggestion" type="text" ng-model="suggestion.suggestion"/>
+                                            <md-tooltip md-direction="right">
+                                                Input detailed suggestion.
+                                            </md-tooltip>
+                                            <input required name="suggestion" type="text" ng-model="suggestion.suggestion"></input>
 
                                             <div ng-messages="suggestion.suggestion.$error">
                                                 <div ng-show="(!suggestionForm.suggestion.$valid) && (suggestionForm.suggestion.$dirty || submitedSuggestion)">
@@ -302,7 +328,9 @@
 
                                         <md-input-container class="md-icon-float">
                                                 <label>Work Purpose</label>
-
+                                            <md-tooltip md-direction="right">
+                                                e.g. For the better future.
+                                            </md-tooltip>
                                                 <md-icon><i class="material-icons">thumb_up</i> </md-icon>
                                                 <input required name="work_purpose" type="text" ng-model="suggestion.work_purpose"/>
 
