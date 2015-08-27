@@ -1,0 +1,15 @@
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+        <!--<md-toolbar class="md-hue-1">-->
+        <!--<h1 class="md-toolbar-tools" align="center center">Menu</h1>-->
+        <!--</md-toolbar>-->
+
+        <md-button ng-click="close()"  ng-class="activeClass('new_suggestion')" show-gt-md>
+            <md-icon><i class="material-icons">note_add</i> </md-icon>New Suggestion
+        </md-button>
+
+
+
+        <md-button ng-click="close()" ng-class="activeClass('suggestion_list')" show-gt-md>
+            <md-icon><i class="material-icons">view_list</i> </md-icon>My Suggestions
+        </md-button>
+    </md-sidenav>
