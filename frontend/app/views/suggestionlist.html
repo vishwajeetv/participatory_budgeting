@@ -14,30 +14,10 @@
     </md-toolbar>
 </md-content>
 
-<div layout="row">
-    <div flex="25"><br>
-        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-            <!--<md-toolbar class="md-hue-1">-->
-            <!--<h1 class="md-toolbar-tools" align="center center">Menu</h1>-->
-            <!--</md-toolbar>-->
-
-            <md-button ng-click="close()" class="nd-primary md-hue-1 md-whiteframe-z1" show-gt-md>
-                <md-icon><i class="material-icons">note_add</i> </md-icon>New Suggestion
-            </md-button>
-
-
-
-            <md-button ng-click="close()" class="md-warn" show-gt-md>
-                <md-icon><i class="material-icons">view_list</i> </md-icon>My Suggestions
-            </md-button>
-
-            <md-button ng-click="close()" class="md-primary md-hue-1  md-whiteframe-z1" show-gt-md>
-                <md-icon><i class="material-icons">rate_review</i> </md-icon>The Process
-            </md-button>
-
-        </md-sidenav>
-    </div>
-    <div flex="60">
+<md-content>
+<div layout="row" layout-wrap>
+    <menu active="suggestion_list"></menu>
+    <div flex="60" layout-align="right">
         <div layout="column"  layout-margin layout-fill layout-align="center center" layout-wrap>
 
             <div flex>
@@ -109,5 +89,6 @@
         </div>
 
     </div>
-    <div flex="20"></div>
+    <div flex="10"></div>
 </div>
+</md-content>

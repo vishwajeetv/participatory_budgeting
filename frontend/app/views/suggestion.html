@@ -16,30 +16,9 @@
 
 <md-content>
 
-    <div layout="row" layout-wrap  layout-align="center">
-        <div flex="10"><br>
-            <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-                <!--<md-toolbar class="md-hue-1">-->
-                    <!--<h1 class="md-toolbar-tools" align="center center">Menu</h1>-->
-                <!--</md-toolbar>-->
-
-                    <md-button ng-click="close()" class="md-warn" show-gt-md>
-                       <md-icon><i class="material-icons">note_add</i> </md-icon>New Suggestion
-                    </md-button>
-
-
-
-                    <md-button ng-click="close()" class="md-primary md-hue-1  md-whiteframe-z1" show-gt-md>
-                        <md-icon><i class="material-icons">view_list</i> </md-icon>My Suggestions
-                    </md-button>
-
-                <md-button ng-click="close()" class="md-primary md-hue-1  md-whiteframe-z1" show-gt-md>
-                    <md-icon><i class="material-icons">rate_review</i> </md-icon>The Process
-                </md-button>
-
-            </md-sidenav>
-        </div>
-        <div flex="20"></div>
+    <div layout="row"  layout-align="center">
+        <menu active="new_suggestion"></menu>
+     <div flex="5></div>flex="20"></div>
         <div flex="40">
             <md-card>
                 <md-card-content>
@@ -433,7 +412,7 @@
                 </md-card-content>
             </md-card>
         </div>
-        <div flex="30">
+      <div flex="30">
         </div>
     </div>
 </md-content>
