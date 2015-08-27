@@ -2,7 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\User, App\Suggestion, App\Instance;
+use App\User, App\Suggestion, App\Instance, App\City;
 use Request, DB, Log, Storage;
 use PDF;
 use App\Http\Requests\SaveSuggestionRequest;
@@ -66,7 +66,6 @@ class SuggestionController extends Controller {
         $suggestion->mobile = $citizenInfo['mobile'];
         $suggestion->address = $citizenInfo['address'];
         $suggestionSaveSuccess = $suggestion->save();
-
         return $this->respond($suggestion,'Suggestion saved successfully','could not save suggestion',$suggestion,'suggestion error');
 
 	}
@@ -82,13 +81,22 @@ class SuggestionController extends Controller {
         $user = User::find($suggestion->user_id);
 
         if (isset($suggestionSaveSuccess)) {
+
+//            $suggestion = Suggestion::where('id',$suggestionId)->firstOrFail();
+            $suggestion = Suggestion::find($suggestionId);
+
+            $instance = $suggestion->instance;
+            $city_function = $suggestion->city_function;
+            $zone = $suggestion->zone;
+
             $emailData = array(
                 'instance'=>$instance,
                 'suggestion'=>$suggestion,
-                'user'=>$user,
-                'email'=>$user->email
+                'zone' => $zone,
+                'city_function' => $city_function,
+                'email'=> $suggestion->email
             );
-            $this->generateReceipt($user, $suggestion);
+            $this->generateReceipt($emailData);
             $this->sendMail($emailData, 'emails.suggestion.submitSuggestion',
                 'Participatory Budgeting',$suggestion->id.'.pdf');
         }
@@ -97,17 +105,10 @@ class SuggestionController extends Controller {
 
     }
 
-    public function generateReceipt( $user, $suggestion )
+    public function generateReceipt( $receiptData )
     {
-        $instance = Instance::find($suggestion->instance_id);
-
-        $receiptData = array(
-          'instance'=>$instance,
-            'suggestion'=>$suggestion,
-            'user'=>$user
-        );
         $pdf = PDF::loadView('receipt.suggestionReceipt', $receiptData);
-        Storage::put($suggestion->id.'.pdf', $pdf->output());
+        Storage::put($receiptData['suggestion']->id.'.pdf', $pdf->output());
         return $pdf->getDomPDF();
     }
 
