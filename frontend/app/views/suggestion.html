@@ -25,12 +25,14 @@
                     <md-content class="md-padding">
                         <p ng-show="instanceError == 'before'">
                             Participatory Budgeting will be started from {{instance.start_time | date:'mediumDate'}}
+
                         </p>
 
                         <p ng-show="instanceError == 'after'">
                             Psst! Participatory Budgeting ended on {{instance.end_time | date:'mediumDate'}}
                         </p>
-                        <md-progress-linear class="md-hue-1" md-mode="determinate" ng-value="progress"></md-progress-linear>
+                        <md-progress-linear class="md-hue-1" ng-hide="instanceError" md-mode="determinate" ng-value="progress"></md-progress-linear>
+
                         <br>
                         <md-tabs md-selected="selectedIndex" md-dynamic-height md-border-bottom ng-hide="instanceError">
                             <md-tab label="Lets' Begin!" ng-disabled="checkDisabled(selectedIndex)">
