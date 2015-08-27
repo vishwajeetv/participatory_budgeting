@@ -14,7 +14,7 @@
 
 </head>
 <body>
-Dear {{ $user->name }},<br><br>
+Dear {{ $suggestion->name }},<br><br>
 
 Thank you for your suggestion <br>
 
@@ -27,9 +27,10 @@ Thank you for your suggestion <br>
     <h4>Date of Submission:  {{$suggestion->updated_at}}</h4>
 </div>
 <div align="left">
-    <h4>Name of the citizen: {{$user->name}} </h4>
-    <h4>Address: {{$user->address }} </h4>
-    <h4>Division: {{$suggestion->zone_division_id }} </h4>
+    <h4>Name of the citizen: {{ $suggestion->name}} </h4>
+    <h4>Address: {{$suggestion->address }} </h4>
+    <h4>Zone: {{$zone->name }} </h4>
+    <h4>Division: {{$zone->division_name }} </h4>
 
 </div>
 <div>
@@ -56,7 +57,7 @@ Thank you for your suggestion <br>
                 {{ $suggestion->area }}
             </td>
             <td>
-                {{  $suggestion->city_function_id }}
+                {{  $city_function->function }}
             </td>
             <td>
                 {{  $suggestion->work_purpose }}
@@ -64,6 +65,7 @@ Thank you for your suggestion <br>
         </tr>
     </table>
 </div>
+<br>
 Notes:
 <ol>
     <li>
