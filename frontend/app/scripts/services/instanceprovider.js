@@ -24,4 +24,28 @@ angular.module('frontendApp')
       {
         return sessionStorage.instance_id;
       }
+
+        this.checkInstanceDates = function (instance) {
+
+
+            var start_time = instance.start_time;
+
+            var end_time = (instance.end_time);
+
+            var current_time = new Date();
+
+            if (current_time < start_time) {
+                return 'before'
+            }
+            else if( current_time > end_time )
+            {
+                return 'after'
+            }
+            else
+            {
+                return null
+            }
+
+
+        }
   });
