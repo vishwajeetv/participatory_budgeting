@@ -1,6 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\City;
 
 class Suggestion extends Model {
 
@@ -22,10 +23,19 @@ class Suggestion extends Model {
         'zone_division_id','city_function_id','area','status', 'work_purpose',
     'name','email','mobile','address'];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
 
+    public function city_function()
+    {
+        return $this->hasOne('App\City_function','id','city_function_id');
+    }
+
+    public function zone()
+    {
+        return $this->hasOne('App\Zone','id','zone_division_id');
+    }
+
+    public function instance()
+    {
+        return $this->hasOne('App\Instance', 'id');
+    }
 }
