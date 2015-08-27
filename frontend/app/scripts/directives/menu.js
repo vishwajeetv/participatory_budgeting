@@ -9,7 +9,7 @@
 angular.module('frontendApp')
   .directive('menu', function () {
     return {
-      templateUrl: 'views/menu.html',
+      templateUrl: 'views/components/menu.html',
       restrict: 'E',
       scope:
       {
