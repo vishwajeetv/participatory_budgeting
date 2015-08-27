@@ -8,24 +8,24 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('SuggestionListCtrl', function ( $scope , InstanceProvider , UserProvider , Restangular) {
+  .controller('SuggestionListCtrl', function ( $scope , InstanceProvider , UserProvider , Restangular , DateTime) {
 
       $scope.loadInstance = function () {
 
         var getInstance = Restangular.one('instance');
         getInstance.get().then(function (response) {
           $scope.instance = response.body;
-          $scope.instance.start_time = convertDateTime($scope.instance.start_time);
+          $scope.instance.start_time = DateTime.convertDateTime($scope.instance.start_time);
           InstanceProvider.setInstance(response.body);
-          $scope.instance.end_time = convertDateTime($scope.instance.end_time);
-          $scope.checkInstanceDates();
+          $scope.instance.end_time = DateTime.convertDateTime($scope.instance.end_time);
+          $scope.instanceError = InstanceProvider.checkInstanceDates($scope.instance);
         }, function () {
           console.log('error');
 
         });
       };
 
-      $scope.name = UserProvider.getUser().name;
+        $scope.name = UserProvider.getUser().name;
 
       $scope.loadUser= function(){
 

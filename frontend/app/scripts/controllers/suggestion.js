@@ -9,7 +9,7 @@
  */
 angular.module('frontendApp')
   .controller('SuggestionCtrl', function ($scope, $timeout, Restangular, $mdToast,
-                                          InstanceProvider, UserProvider, $location, SuggestionProvider) {
+                                          InstanceProvider, UserProvider, $location, SuggestionProvider, DateTime) {
 
         $scope.citizen = null;
         $scope.suggestion = null;
@@ -173,38 +173,15 @@ angular.module('frontendApp')
             var getInstance = Restangular.one('instance');
             getInstance.get().then(function (response) {
                 $scope.instance = response.body;
-                $scope.instance.start_time = convertDateTime($scope.instance.start_time);
+                $scope.instance.start_time = DateTime.convertDateTime($scope.instance.start_time);
                 InstanceProvider.setInstance(response.body);
-                $scope.instance.end_time = convertDateTime($scope.instance.end_time);
-                $scope.checkInstanceDates();
+                $scope.instance.end_time = DateTime.convertDateTime($scope.instance.end_time);
+                $scope.instanceError = InstanceProvider.checkInstanceDates($scope.instance);
             }, function () {
                 console.log('error');
 
             });
         };
-
-        function convertDateTime(dateTime) {
-
-            var t = dateTime.split(/[- :]/);
-            var javaScriptDate = new Date(t[0], t[1] - 1, t[2], t[3], t[4], t[5]);
-            return javaScriptDate;
-        }
-
-        $scope.checkInstanceDates = function () {
-
-
-            var start_time = $scope.instance.start_time;
-
-            var end_time = ($scope.instance.end_time);
-
-            var current_time = new Date();
-
-            if (current_time < start_time) {
-                $scope.instanceError = "before";
-            }
-
-
-        }
 
         $scope.begin= function()
         {
