@@ -133,7 +133,6 @@ angular.module('frontendApp')
                     function (response) {
                         if (response) {
                             $scope.suggestion.errors = response;
-                            console.log(suggestion.errors);
                         }
                     });
 
@@ -147,7 +146,7 @@ angular.module('frontendApp')
 
         $scope.submitFinal = function()
         {
-            SuggestionProvider.submitSuggestion($scope.citizen.id, InstanceProvider.getInstanceId()).
+            SuggestionProvider.submitSuggestion($scope.suggestion.id, InstanceProvider.getInstanceId()).
                 then(function(response)
                 {
                     console.log(response.header.message);
@@ -162,7 +161,6 @@ angular.module('frontendApp')
                 function (response) {
                     if (response) {
                         $scope.suggestion.errors = response;
-                        console.log(suggestion.errors);
                     }
                 });
 
