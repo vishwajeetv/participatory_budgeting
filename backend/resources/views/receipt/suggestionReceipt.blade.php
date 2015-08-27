@@ -1,32 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Participatory Budgeting Suggestion Receipt</title>
-    <style>
-        body
-        {
-            font-family: "Helvetica", "Arial", sans-serif;
-        }
-    </style>
-
-
-</head>
-<body>
 <div align="center">
     <h2>Citizen Participatory Budgeting Suggestion Receipt</h2>
 </div>
 <div align="left">
-{{--    <img style="float: right" src='{{ $suggestion->logo }}' alt='my-image' width='120' height='120'>--}}
-
     <h3>Receipt No.:  {{$suggestion->id}}</h3>
-    <h4>Date of Submission:  </h4>
+    <h4>Date of Submission:  {{$suggestion->updated_at}}</h4>
 </div>
 <div align="left">
-    <h4>Name of the citizen: {{$user->name}} </h4>
-    <h4>Address: {{$user->address }} </h4>
-    <h4>Zone: {{$suggestion->zone_id }} </h4>
-    <h4>Division: {{$suggestion->division_id }} </h4>
+    <h4>Name of the citizen: {{ $suggestion->name}} </h4>
+    <h4>Address: {{$suggestion->address }} </h4>
+    <h4>Zone: {{$zone->name }} </h4>
+    <h4>Division: {{$zone->division_name }} </h4>
 
 </div>
 <div>
@@ -47,20 +30,21 @@
         </tr>
         <tr>
             <td>
-               {{ $suggestion->suggestion }}
+                {{ $suggestion->suggestion }}
             </td>
             <td>
                 {{ $suggestion->area }}
             </td>
             <td>
-               {{  $suggestion->city_function_id }}
+                {{  $city_function->function }}
             </td>
             <td>
-                {{--{{ echo $suggestion->work_purpose }}--}}
+                {{  $suggestion->work_purpose }}
             </td>
         </tr>
     </table>
 </div>
+<br>
 Notes:
 <ol>
     <li>
@@ -73,6 +57,4 @@ Notes:
         The Receipt No. given on the form is a unique code that applies to a single suggestion that is submitted online.
     </li>
 </ol>
-
-</body>
-</html>
+<br>
