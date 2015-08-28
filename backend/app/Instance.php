@@ -18,7 +18,7 @@ class Instance extends Model {
      *
      * @var array
      */
-    protected $fillable = ['id','name', 'city_id'];
+    protected $fillable = ['id','name', 'city_id', 'receipt_prefix'];
 
     /**
      * The attributes excluded from the model's JSON form.
