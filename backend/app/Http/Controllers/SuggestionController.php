@@ -72,18 +72,13 @@ class SuggestionController extends Controller {
 
     public function postSubmitSuggestion()
     {
-        $instance = Request::input('instance_id');
         $suggestionId = Request::input('suggestion_id');
         $suggestion = Suggestion::findOrFail($suggestionId);
         $suggestion->status = 'submitted';
+        $suggestion->receipt_number = $this->generateReceiptNumber( $suggestion );
         $suggestionSaveSuccess = $suggestion->save();
 
-        $user = User::find($suggestion->user_id);
-
         if (isset($suggestionSaveSuccess)) {
-
-//            $suggestion = Suggestion::where('id',$suggestionId)->firstOrFail();
-            $suggestion = Suggestion::find($suggestionId);
 
             $instance = $suggestion->instance;
             $city_function = $suggestion->city_function;
@@ -103,6 +98,13 @@ class SuggestionController extends Controller {
         return $this->respond($suggestionSaveSuccess,'Suggestion submitted successfully',
             'could not submit suggestion',$suggestion,'suggestion error');
 
+    }
+
+    public function generateReceiptNumber( $suggestion )
+    {
+        $paddedString = str_pad($suggestion->id, 6, '0', STR_PAD_LEFT);
+        $instancePrefix = $suggestion->instance['receipt_prefix'];
+        return $instancePrefix.$paddedString;
     }
 
     public function generateReceipt( $receiptData )
