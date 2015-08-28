@@ -36,6 +36,6 @@ class Suggestion extends Model {
 
     public function instance()
     {
-        return $this->hasOne('App\Instance', 'id');
+        return $this->hasOne('App\Instance', 'id','instance_id');
     }
 }
