@@ -20,9 +20,10 @@ Route::post('user/login', 'UserController@login');
 Route::get('city/works', 'CityController@getWorks');
 
 Route::resource('user', 'UserController');
+Route::controller('user', 'UserController');
+
 Route::resource('city', 'CityController');
 
-Route::controller('suggestion', 'SuggestionController');
 Route::resource('suggestion', 'SuggestionController');
 Route::controller('suggestion', 'SuggestionController');
 Route::resource('instance', 'InstanceController');
