@@ -98,6 +98,8 @@ angular.module('frontendApp')
                 return false;
             }
         };
+
+        $scope.suggestionId = null;
         $scope.submitSuggestion = function(suggestionForm)
         {
             $scope.submitedSuggestion = true;
@@ -125,8 +127,8 @@ angular.module('frontendApp')
                     {
                         console.log(response.header.message);
                         $mdToast.show($mdToast.simple().content(response.header.message));
-                        $scope.submitSuggestion = true;
-                        $scope.suggestion = response.body;
+                        $scope.submitedSuggestion = true;
+                        $scope.suggestionId = response.body.id;
                         $scope.nextTab(2);
                         return true;
                     },
@@ -146,12 +148,12 @@ angular.module('frontendApp')
 
         $scope.submitFinal = function()
         {
-            SuggestionProvider.submitSuggestion($scope.suggestion.id, InstanceProvider.getInstanceId()).
+            SuggestionProvider.submitSuggestion($scope.suggestionId, InstanceProvider.getInstanceId()).
                 then(function(response)
                 {
                     console.log(response.header.message);
                     $mdToast.show($mdToast.simple().content(response.header.message));
-                    $scope.submitSuggestion = true;
+                    $scope.submitedFinal = true;
                     $scope.progress = parseInt($scope.progress) + 25;
                     $scope.disabledFirst = true;
                     $scope.disabledSecond = true;
