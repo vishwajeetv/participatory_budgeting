@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Old_suggestion;
 use App\User, App\Suggestion, App\Instance, App\City;
 use Request, DB, Log, Storage;
 use PDF;
@@ -146,6 +147,30 @@ class SuggestionController extends Controller {
         return $this->respond($suggestion,"Suggestions retrieved successfully",'Suggestions could not be retrieved',
             $suggestion,"no suggestion");
     }
+
+    public function postSendOldSuggestionEmail()
+    {
+       $oldSuggestions = Old_suggestion::all();
+
+        foreach($oldSuggestions as $oldSuggestion)
+        {
+            $emailData = array(
+                'suggestion' => $oldSuggestion,
+                'email' => $oldSuggestion->email
+            );
+
+            $this->sendMail($emailData, 'emails.suggestion.oldSuggestionReceipt',
+                'Participatory Budgeting');
+            $oldSuggestion->email_sent = 1;
+            $oldSuggestion->save();
+
+        }
+
+        return $this->respond($emailData,'Suggestion submitted successfully',
+            'could not submit suggestion',$emailData,'suggestion error');
+
+    }
+
 	/**
 	 * Show the form for editing the specified resource.
 	 *
