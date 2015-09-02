@@ -13,7 +13,7 @@ abstract class Controller extends BaseController
 {
     use DispatchesJobs, ValidatesRequests;
 
-    public function sendMail($emailData, $template, $subject, $attachment)
+    public function sendMail($emailData, $template, $subject, $attachment = null )
     {
 
             Mail::send($template,
