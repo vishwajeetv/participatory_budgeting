@@ -40,7 +40,7 @@ class UserController extends Controller {
 		return $this->respond($user,'User saved successfully','could not save user',$user,'user error');
 	}
 
-	public function signup(Requests\SignUpRequest $request)
+	public function postSignup(Requests\SignUpRequest $request)
 	{
 		$input = Request::all();
 		$user = new User;
