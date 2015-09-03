@@ -13,7 +13,7 @@ angular.module('frontendApp')
         restrict: 'E',
         scope:
         {
-
+          
         },
         controller : function ($scope , UserProvider, $location) {
 
