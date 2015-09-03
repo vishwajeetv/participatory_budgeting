@@ -8,7 +8,8 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-    .controller('AuthenticationCtrl', function ($scope, Restangular, $location, $mdToast, $rootScope, UserProvider) {
+    .controller('AuthenticationCtrl', function ($scope, Restangular, $location, $mdToast, $rootScope, UserProvider,
+    InstanceProvider) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -16,6 +17,7 @@ angular.module('frontendApp')
     ];
 
         $scope.submitedLogin = false;
+        $scope.submitedRegistration = false;
 
         $scope.login = function (loginForm) {
 
@@ -61,18 +63,42 @@ angular.module('frontendApp')
 
         }
 
-        $scope.signup = function (signupForm) {
+        $scope.register = function (registrationForm) {
 
             $scope.submitedSignup = true;
 
-            if(signupForm.$valid)
+            if(registrationForm.$valid)
             {
                 $scope.loggedIn = true;
                 var signUpData = {
-                    "email" : $scope.user.email,
-                    "password": $scope.user.password,
-                    'role' : 'citizen'
+                    "email" : $scope.new_user.email,
+                    "password": $scope.new_user.password,
+                    'confirm_password' : $scope.new_user.confirm_password,
+                    'role' : 'citizen',
+                    'instance_id' : InstanceProvider.getInstanceId()
                 };
+
+                var registerUser = Restangular.all('user/signup');
+                registerUser.post(signUpData).then(function (response)
+                {
+                    if(response.header.status == "success")
+                    {
+                        $rootScope.authenticated = true;
+                        sessionStorage.authenticated = true;
+                        UserProvider.setUser(response.body);
+                        $mdToast.show($mdToast.simple().content(response.header.message));
+                        console.log(response.header.message);
+                        $scope.redirectToRole();
+                    }
+                    else
+                    {
+                        console.log(response.header.message);
+                        $scope.invalidCredentials = true;
+                    }
+                }, function () {
+                    console.log('error');
+
+                });
                 console.log(signUpData);
                 return true;
             }
