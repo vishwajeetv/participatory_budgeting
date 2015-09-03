@@ -16,7 +16,7 @@ angular.module('frontendApp')
         $scope.loadSuggestions = function () {
             console.log("In load suggestions");
             $scope.suggestions = [];
-            var getSuggestions = Restangular.one('suggestion');
+            var getSuggestions = Restangular.one('suggestion/?instance_id=1');
             getSuggestions.get().then(function (response) {
                 $scope.suggestions = response.body;
 
