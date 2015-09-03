@@ -10,7 +10,7 @@
             <input required name="email" type="text" ng-model="search.zone_division_id">
         </md-input-container>
         <md-content>
-            <div ng-repeat="suggestion in suggestions | filter: search">
+            <div ng-repeat="suggestion in suggestions track by $index">
 
                 <md-card>
                     <md-card-content>
