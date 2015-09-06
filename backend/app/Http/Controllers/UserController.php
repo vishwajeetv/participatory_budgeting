@@ -45,6 +45,7 @@ class UserController extends Controller {
 		$input = Request::all();
 		$user = new User;
 		$user->email = $input['email'];
+		$user->name = $input['name'];
 		$user->password = md5( $input['password'] );
 		$user->role = $input['role'];
 		$user->instance_id = $input['instance_id'];

@@ -23,6 +23,7 @@ class SignUpRequest extends Request {
 	{
         return [
             'email' => 'required|unique:users',
+            'name' => 'required',
             'password' => 'required',
             'role' => 'required'
         ];
