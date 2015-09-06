@@ -48,7 +48,8 @@ angular.module('frontendApp')
                         console.log(response.header.message);
                         $scope.invalidCredentials = true;
                     }
-                }, function () {
+                }, function (response) {
+                    $scope.user.errors = response;
                     console.log('error');
 
                 });
@@ -69,19 +70,17 @@ angular.module('frontendApp')
 
             if(registrationForm.$valid)
             {
+
                 $scope.loggedIn = true;
-                var signUpData = {
+                var registrationData = {
                     "email" : $scope.new_user.email,
                     "password": $scope.new_user.password,
-                    'confirm_password' : $scope.new_user.confirm_password,
                     'role' : 'citizen',
                     'instance_id' : InstanceProvider.getInstanceId()
                 };
 
-                var registerUser = Restangular.all('user/signup');
-                registerUser.post(signUpData).then(function (response)
-                {
-                    if(response.header.status == "success")
+                UserProvider.register(registrationData).
+                    then(function(response)
                     {
                         $rootScope.authenticated = true;
                         sessionStorage.authenticated = true;
@@ -89,17 +88,13 @@ angular.module('frontendApp')
                         $mdToast.show($mdToast.simple().content(response.header.message));
                         console.log(response.header.message);
                         $scope.redirectToRole();
-                    }
-                    else
-                    {
-                        console.log(response.header.message);
-                        $scope.invalidCredentials = true;
-                    }
-                }, function () {
-                    console.log('error');
+                    },
+                    function (response) {
+                        if (response) {
+                            $scope.new_user.errors = response;
+                        }
+                    });
 
-                });
-                console.log(signUpData);
                 return true;
             }
             else
