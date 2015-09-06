@@ -74,9 +74,9 @@ angular.module('frontendApp')
 
         $scope.instructions =
             [
-                {'instruction': 'Wow good'},
-                {'instruction': 'Wow great'},
-                {'instruction': 'Wow awesome'}
+                {'instruction': 'First instruction'},
+                {'instruction': 'Second instruction'},
+                {'instruction': 'Third instruction'}
             ];
 
         $scope.checkDisabled = function(selectedIndex)
