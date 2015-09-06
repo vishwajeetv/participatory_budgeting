@@ -29,7 +29,9 @@ class SuggestionController extends Controller {
             ->join('cities', 'cities.id', '=', 'instances.city_id')
             ->where('suggestions.instance_id', '=', $instanceId)
             ->select('cities.name as city_name', 'zones.name as zone_name',
-                'zones.division_name as division_name', 'users.name as citizen_name', 'suggestions.suggestion', 'city_functions.function as work_name')
+                'zones.division_name as division_name', 'users.name as citizen_name', 'suggestions.suggestion',
+                'suggestions.work_purpose','suggestions.mode',
+                'city_functions.function as work_name')
             ->get();
         return $this->respond($suggestion,"Suggestions retrieved successfully",'Suggestions could not be retrieved',$suggestion,"no suggestion");
 	}
@@ -66,6 +68,7 @@ class SuggestionController extends Controller {
         $suggestion->email = $citizenInfo['email'];
         $suggestion->mobile = $citizenInfo['mobile'];
         $suggestion->address = $citizenInfo['address'];
+        $suggestion->mode = $request->input('mode',null);
         $suggestionSaveSuccess = $suggestion->save();
         return $this->respond($suggestion,'Suggestion saved successfully','could not save suggestion',$suggestion,'suggestion error');
 
