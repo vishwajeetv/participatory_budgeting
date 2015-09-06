@@ -16,7 +16,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-        'ngMaterial', 'restangular'
+        'ngMaterial', 'restangular','data-table'
   ])
     .config(function (RestangularProvider, SERVER_URL) {
         RestangularProvider.setBaseUrl(SERVER_URL);
@@ -47,8 +47,8 @@ angular
             templateUrl: 'views/admin/new_suggestion.html',
             controller: 'AdminCtrl'
         })
-        .when('/admin/list', {
-            templateUrl: 'views/admin.html',
+        .when('/admin/suggestionlist', {
+            templateUrl: 'views/admin/suggestion_list.html',
             controller: 'AdminCtrl'
         })
 
