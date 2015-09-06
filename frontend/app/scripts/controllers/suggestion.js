@@ -117,7 +117,8 @@ angular.module('frontendApp')
                     'zone_id' : suggestionForm.zone.$modelValue.id,
                     'area' : suggestionForm.area.$modelValue,
                     'suggestion' : suggestionForm.suggestion.$modelValue,
-                    'work_purpose' : suggestionForm.work_purpose.$modelValue
+                    'work_purpose' : suggestionForm.work_purpose.$modelValue,
+                    'mode' : 'ONLINE'
                 };
 
                 console.log(saveSuggestionData);
@@ -238,8 +239,6 @@ angular.module('frontendApp')
             }
 
         }
-
-        $scope.name = UserProvider.getUser().name;
 
         $scope.loadUser= function(){
 
