@@ -5,6 +5,7 @@
     "angular": "^1.4.*",
     "angular-animate": "^1.4.*",
     "angular-cookies": "^1.4.*",
+    "angular-data-table": "~0.3.14",
     "angular-material": "*",
     "angular-resource": "^1.4.*",
     "angular-route": "^1.4.*",
