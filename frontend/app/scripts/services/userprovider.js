@@ -32,6 +32,30 @@ angular.module('frontendApp')
         }
       }
 
+        this.login = function()
+        {
+
+        }
+
+        this.register = function(user)
+        {
+           var url = SERVER_URL + 'user/signup';
+            var deferred = $q.defer();
+
+            $http.post(url, user).
+                success(function (response, status) {
+                    if(response.header.status == 'success')
+                        deferred.resolve(response);
+                    else
+                        deferred.reject(response);
+                }).
+                error(function (data, status) {
+                    console.log(data);
+                    deferred.reject(data);
+                    console.log('could not create user');
+                });
+            return deferred.promise;
+        }
         this.getUserById = function (id) {
             var url = SERVER_URL + 'user/' + id;
             var deferred = $q.defer();
