@@ -74,6 +74,7 @@ angular.module('frontendApp')
                 $scope.loggedIn = true;
                 var registrationData = {
                     "email" : $scope.new_user.email,
+                    "name" : $scope.new_user.name,
                     "password": $scope.new_user.password,
                     'role' : 'citizen',
                     'instance_id' : InstanceProvider.getInstanceId()
