@@ -22,7 +22,10 @@ class SaveSuggestionRequest extends Request {
 	public function rules()
 	{
         return [
-
+			'citizen.email' => 'email | required',
+			'citizen.name' => 'required',
+			'citizen.mobile' => 'required',
+			'citizen.address' => 'required',
             'work_id' => 'required',
             'division_id' => 'required',
             'area' => 'required',
