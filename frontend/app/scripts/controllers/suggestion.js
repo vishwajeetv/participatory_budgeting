@@ -25,6 +25,7 @@ angular.module('frontendApp')
 
         $scope.submitCitizen = function(citizenForm)
         {
+            $scope.submitedCitizen = true;
 
             if(citizenForm.$valid == true)
             {
