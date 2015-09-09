@@ -25,7 +25,8 @@ class SignUpRequest extends Request {
             'email' => 'required|unique:users',
             'name' => 'required',
             'password' => 'required',
-            'role' => 'required'
+            'role' => 'required',
+			'instance_id' => 'required'
         ];
 	}
 
