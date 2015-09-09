@@ -1,10 +1,9 @@
 {
-  "name": "frontend",
-  "version": "0.0.0",
-  "dependencies": {},
-  "repository": {},
+  "name": "frontendApp",
+  "private": true,
   "devDependencies": {
     "grunt": "^0.4.5",
+    "grunt-angular-templates": "^0.5.7",
     "grunt-autoprefixer": "^2.0.0",
     "grunt-concurrent": "^1.0.0",
     "grunt-contrib-clean": "^0.6.0",
@@ -24,14 +23,11 @@
     "grunt-svgmin": "^2.0.0",
     "grunt-usemin": "^3.0.0",
     "grunt-wiredep": "^2.0.0",
+    "jit-grunt": "^0.9.1",
     "jshint-stylish": "^1.0.0",
-    "load-grunt-tasks": "^3.1.0",
     "time-grunt": "^1.0.0"
   },
   "engines": {
     "node": ">=0.10.0"
-  },
-  "scripts": {
-    "test": "grunt test"
   }
 }
