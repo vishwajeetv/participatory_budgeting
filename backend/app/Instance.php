@@ -20,11 +20,10 @@ class Instance extends Model {
      */
     protected $fillable = ['id','name', 'city_id', 'receipt_prefix'];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
+    public function city()
+    {
+        return $this->hasOne('App\City','id','city_id');
+    }
 
 
 }

@@ -19,7 +19,9 @@ class InstanceController extends Controller
         $instanceId = 1;
 
         $instance = Instance::find($instanceId);
-        return $this->respond($instance, 'Instances retrieved successfully', 'Instances can not be retrieved', $instance, null);
+        $city = $instance->city;
+        array_merge( (array)$instance,(array)$city);
+        return $this->respond($instance, 'Instances retrieved successfully', 'Instances can not be retrieved',$instance , null);
     }
 
     /**
