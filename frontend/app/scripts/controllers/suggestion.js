@@ -260,6 +260,10 @@ angular.module('frontendApp')
             });
         }
 
+        if( !(sessionStorage.authenticated))
+        {
+            $location.path('/');
+        }
         $scope.logout = function(){
             UserProvider.logout();
             $location.path('/');

@@ -134,6 +134,11 @@ angular.module('frontendApp')
 
         };
 
+        if(sessionStorage.authenticated == true)
+        {
+            $scope.redirectToRole();
+        }
+
         function init()
         {
             $scope.loadInstance();

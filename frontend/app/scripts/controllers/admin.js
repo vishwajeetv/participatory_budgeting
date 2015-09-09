@@ -8,7 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-    .controller('AdminCtrl', function ($scope, $timeout, Restangular, $mdToast, $rootScope, InstanceProvider, UserProvider, SuggestionProvider ) {
+    .controller('AdminCtrl', function ($scope, $timeout, $location, Restangular, $mdToast, $rootScope, InstanceProvider, UserProvider, SuggestionProvider ) {
 
         var init = function () {
             $scope.loadSuggestions();
@@ -41,6 +41,11 @@ angular.module('frontendApp')
                 name: "Company"
             }]
         };
+
+        if( !(sessionStorage.authenticated))
+        {
+            $location.path('/');
+        }
 
         $scope.saveSuggestion = function(suggestionForm)
         {

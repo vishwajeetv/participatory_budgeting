@@ -21,6 +21,7 @@ angular.module('frontendApp')
             delete sessionStorage.user_id ;
             delete sessionStorage.user_name ;
             delete sessionStorage.role ;
+            delete sessionStorage.authenticated;
         }
 
       this.getUser = function()
