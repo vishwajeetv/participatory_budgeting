@@ -66,7 +66,7 @@ angular.module('frontendApp')
 
         $scope.register = function (registrationForm) {
 
-            $scope.submitedSignup = true;
+            $scope.submitedRegistration = true;
 
             if(registrationForm.$valid)
             {

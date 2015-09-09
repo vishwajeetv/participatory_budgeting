@@ -2,15 +2,15 @@
 <md-content>
     <md-toolbar>
         <h2 class="md-toolbar-tools">
-            <span flex="75"> Participatory Budgeting  | <small>{{city_name}} Municipal Corporation</small>  </span>
+            <span flex="75"> Participatory Budgeting  | <small>Pune Municipal Corporation</small>  </span>
         </h2>
 
     </md-toolbar>
 </md-content>
 
-<md-content>
+<md-content">
 
-    <div layout="column" layout-wrap layout-align="center center">
+    <div layout="column" layout-wrap hide-sm layout-align="center center">
         <p class="md-display-1">
             Let's make our city awesome again, through citizen participation!
         </p>
@@ -19,11 +19,11 @@
     </div>
 
 
-    <div layout="row" layout-wrap layout-align="center center">
-        <div flex="15">
+    <div layout="row"  layout-sm="column" layout-wrap layout-align="center center">
+        <div flex="15" hide-sm>
 
         </div>
-        <div flex="30">
+        <div flex-sm=50 flex="30">
 
             <md-card layout-align="center center">
                 <md-toolbar class="md-accent">
@@ -44,11 +44,12 @@
                             <input required name="name" type="text" ng-model="new_user.name">
 
                             <div ng-messages="registrationForm.name.$error">
-                                <div ng-show="(!new_user.name.$valid) && new_user.name.$dirty || submitedCitizen">
+                                <div ng-show="(!new_user.name.$valid) && (new_user.name.$dirty || submitedRegistration)">
                                     <div ng-message="required" ng-show="registrationForm.name.$error.required">
                                         Required.</div>
                                 </div>
                             </div>
+
                             <div class="errors" ng-show="new_user.errors.name">
                                                 <span ng-repeat="error in new_user.errors.name">
                                                     {{error}}
@@ -63,19 +64,24 @@
                             <md-tooltip md-direction="right">
                                 e.g. abc@gmail.com
                             </md-tooltip>
-                            <input required name="name" type="text" ng-model="new_user.email">
+                            <input required name="email" type="email" ng-model="new_user.email">
+
+                            <div ng-messages="registrationForm.email.$error">
+                                <div ng-show="(!new_user.email.$valid) && (new_user.email.$dirty || submitedRegistration)">
+                                    <div ng-message="required" ng-show="registrationForm.email.$error.required">
+                                        Required.</div>
+                                    <div ng-message="email" ng-show="registrationForm.email.$error.email">
+                                            Invalid Email ID.</div>
+                                        </div>
+                                    </div>
+
 
                             <div class="errors" ng-show="new_user.errors.email">
                                                 <span ng-repeat="error in new_user.errors.email">
                                                     {{error}}
                                                 </span>
                             </div>
-                            <div ng-messages="registrationForm.email.$error">
-                                <div ng-show="(!new_user.email.$valid) && new_user.email.$dirty || submitedCitizen">
-                                    <div ng-message="required" ng-show="registrationForm.email.$error.required">
-                                        Required.</div>
-                                </div>
-                            </div>
+
 
                         </md-input-container>
 
@@ -89,7 +95,7 @@
                             <input required name="password" type="password" ng-model="new_user.password">
 
                             <div ng-messages="registrationForm.email.$error">
-                                <div ng-show="(!new_user.password.$valid) && new_user.password.$dirty || submitedCitizen">
+                                <div ng-show="(!new_user.password.$valid) && (new_user.password.$dirty || submitedRegistration)">
                                     <div ng-message="required" ng-show="registrationForm.password.$error.required">
                                         Required.</div>
                                 </div>
@@ -109,8 +115,8 @@
             </md-card>
 
         </div>
-        <div flex="10"></div>
-        <div flex="30">
+        <div hide-sm flex="10"></div>
+        <div flex-sm="50" flex="30">
             <md-card layout-align="center center">
                 <md-toolbar class="md-primary">
                     <div class="md-toolbar-tools">
@@ -155,7 +161,7 @@
             </md-card>
 
         </div>
-        <div flex="15"></div>
+        <div hide-sm flex="15"></div>
 
 
     </div>
