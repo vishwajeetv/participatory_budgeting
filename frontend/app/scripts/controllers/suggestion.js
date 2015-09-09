@@ -9,7 +9,7 @@
  */
 angular.module('frontendApp')
   .controller('SuggestionCtrl', function ($scope, $timeout, Restangular, $mdToast,
-                                          InstanceProvider, UserProvider, $location, SuggestionProvider, DateTime) {
+                                          InstanceProvider, UserProvider, $location, SuggestionProvider, DateTime, $filter) {
 
         $scope.citizen = null;
         $scope.suggestion = null;
@@ -127,7 +127,6 @@ angular.module('frontendApp')
                     then(function(response)
                     {
                         console.log(response.header.message);
-                        $mdToast.show($mdToast.simple().content(response.header.message));
                         $scope.submitedSuggestion = true;
                         $scope.suggestionId = response.body.id;
                         $scope.nextTab(2);
@@ -187,6 +186,16 @@ angular.module('frontendApp')
         $scope.begin= function()
         {
             $scope.nextTab(0);
+        }
+
+        $scope.showAreas = function()
+        {
+            $scope.selectedZones = $filter('filter')($scope.zones,
+                {
+                   division_id: $scope.suggestion.zone.division_id
+                }
+
+            )
         }
 
         $scope.instanceError = null;
