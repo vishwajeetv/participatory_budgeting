@@ -9,7 +9,7 @@
  */
 angular.module('frontendApp')
     .controller('AuthenticationCtrl', function ($scope, Restangular, $location, $mdToast, $rootScope, UserProvider,
-    InstanceProvider) {
+    InstanceProvider , DateTime) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -79,6 +79,7 @@ angular.module('frontendApp')
                     'role' : 'citizen',
                     'instance_id' : InstanceProvider.getInstanceId()
                 };
+                console.log(registrationData);
 
                 UserProvider.register(registrationData).
                     then(function(response)
@@ -105,6 +106,22 @@ angular.module('frontendApp')
 
         };
 
+        $scope.loadInstance = function () {
+
+            var getInstance = Restangular.one('instance');
+            getInstance.get().then(function (response) {
+                $scope.instance = response.body;
+                $scope.city_name = response.body.city.name;
+                $scope.instance.start_time = DateTime.convertDateTime($scope.instance.start_time);
+                InstanceProvider.setInstance(response.body);
+                $scope.instance.end_time = DateTime.convertDateTime($scope.instance.end_time);
+                $scope.instanceError = InstanceProvider.checkInstanceDates($scope.instance);
+            }, function () {
+                console.log('error');
+
+            });
+        };
+
         $scope.redirectToRole = function() {
             var user = UserProvider.getUser();
             console.log(user.role);
@@ -116,4 +133,11 @@ angular.module('frontendApp')
             }
 
         };
+
+        function init()
+        {
+            $scope.loadInstance();
+        }
+
+        init();
   });
