@@ -5,7 +5,7 @@
 
     <div layout="row"  layout-align="center">
         <menu active="new_suggestion"></menu>
-     <div flex="5></div>flex="20"></div>
+     <div flex="5></div>
         <div flex="40">
             <md-card>
                 <md-card-content>
@@ -24,7 +24,7 @@
                         <md-tabs md-selected="selectedIndex" md-dynamic-height md-border-bottom ng-hide="instanceError">
                             <md-tab label="Lets' Begin!" ng-disabled="checkDisabled(selectedIndex)">
                                 <md-content class="md-padding">
-                                    <div class="md-headline">Let's Begin!</div>
+                                    <div class="md-headline" tabindex="1">Let's Begin!</div>
                                     <br>
 
                                     <md-list>
@@ -128,7 +128,7 @@
                                             <md-tooltip md-direction="right">
                                                 e.g. B-45, Shanti Nivas, Kasba Peth, Pune 411008
                                             </md-tooltip>
-                                            <input required name="address" type="text" ng-model="citizen.address">
+                                            <input ng-enter="submitCitizen(citizenForm)" required name="address" type="text" ng-model="citizen.address">
 
                                             <div ng-messages="citizenForm.address.$error">
                                                 <div ng-show="(!citizenForm.address.$valid) && (citizenForm.address.$dirty || submitedCitizen)">
@@ -148,7 +148,7 @@
                                         <div layout="row" layout-wrap>
                                             <div flex="20">
                                                 <md-input-container>
-                                                    <md-button ng-click="previousTab(1)" class="md-fab md-primary"
+                                                    <md-button tabindex="3" ng-click="previousTab(1)" class="md-fab md-primary"
                                                                aria-label="Use Android">
                                                         <md-icon><i class="material-icons">navigate_before</i> </md-icon>
                                                     </md-button>
@@ -161,7 +161,7 @@
 
                                             <div flex="20">
                                                 <md-input-container>
-                                                    <md-button ng-click="submitCitizen(citizenForm)" class="md-fab md-primary" aria-label="Use Android">
+                                                    <md-button type=submit tabindex="2" ng-click="submitCitizen(citizenForm)" class="md-fab md-primary" aria-label="Use Android">
 
                                                         <md-icon><i class="material-icons">navigate_next</i> </md-icon>
                                                     </md-button>
@@ -208,7 +208,7 @@
                                             <md-tooltip md-direction="right">
                                               Select your division from list.
                                             </md-tooltip>
-                                            <md-select name="division" ng-model="suggestion.division" required>
+                                            <md-select ng-change="showAreas()" name="division" ng-model="suggestion.division" required>
                                             <md-option ng-value="division" ng-repeat="division in zones |  filter:suggestion.zone"
                                                       value="{{division.division_name}}" >{{division.division_name}}</md-option>
                                         </md-select>
@@ -222,6 +222,15 @@
                                                 </span>
                                             </div>
                                         </md-input-container>
+
+
+                                        <md-input-container>
+                                            <div class="md-body-2"> Areas</div>
+                                            <div ng-repeat="zone in selectedZones">
+                                                {{zone.areas}}
+                                            </div>
+                                        </md-input-container>
+
 
                                         <md-input-container class="md-icon-float">
                                             <label>Area</label>
@@ -302,7 +311,7 @@
                                                 e.g. For the better future.
                                             </md-tooltip>
                                                 <md-icon><i class="material-icons">thumb_up</i> </md-icon>
-                                                <input required name="work_purpose" type="text" ng-model="suggestion.work_purpose"/>
+                                                <input ng-enter="submitSuggestion(suggestionForm)" required name="work_purpose" type="text" ng-model="suggestion.work_purpose"/>
 
                                                 <div ng-messages="suggestion.work_purpose.$error">
                                                     <div ng-show="(!suggestionForm.work_purpose.$valid) && (suggestionForm.work_purpose.$dirty || submitedSuggestion)">
@@ -324,7 +333,7 @@
 
                                             <div flex="20">
                                                 <md-input-container>
-                                                    <md-button ng-click="previousTab(selectedIndex)" class="md-fab md-primary" aria-label="Use Android">
+                                                    <md-button tabindex="5" ng-click="previousTab(selectedIndex)" class="md-fab md-primary" aria-label="Use Android">
                                                         <md-icon
                                                                 md-svg-src="images/icons/ic_navigate_before_24px.svg"></md-icon>
                                                     </md-button>
@@ -337,7 +346,7 @@
 
                                             <div flex="20">
                                                 <md-input-container>
-                                                    <md-button ng-click="submitSuggestion(suggestionForm)" aria-label="submit suggestion" class="md-fab md-primary">
+                                                    <md-button tabindex="4" ng-click="submitSuggestion(suggestionForm)" aria-label="submit suggestion" class="md-fab md-primary">
                                                         <md-icon
                                                                 md-svg-src="images/icons/ic_navigate_next_24px.svg"></md-icon>
                                                     </md-button>
@@ -363,7 +372,7 @@
                                         <div layout="row" layout-wrap>
                                             <div flex="20">
                                                 <md-input-container>
-                                                    <md-button ng-click="previousTab(selectedIndex)" class="md-fab md-primary" aria-label="Use Android">
+                                                    <md-button tabindex="7" ng-click="previousTab(selectedIndex)" class="md-fab md-primary" aria-label="Use Android">
                                                         <md-icon
                                                                 md-svg-src="images/icons/ic_navigate_before_24px.svg"></md-icon>
                                                     </md-button>
@@ -376,7 +385,7 @@
 
                                             <div flex="20">
                                                 <md-input-container>
-                                                    <md-button ng-click="submitFinal(citizenForm, suggestionForm)"
+                                                    <md-button  tabindex="6" ng-click="submitFinal(citizenForm, suggestionForm)"
                                                                class="md-fab md-accent" aria-label="Final submit">
                                                         <md-icon
                                                                 md-svg-src="images/icons/ic_done_all_24px.svg"></md-icon>
