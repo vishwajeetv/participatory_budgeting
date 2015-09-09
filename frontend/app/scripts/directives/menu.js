@@ -15,8 +15,16 @@ angular.module('frontendApp')
       {
         active : '@'
       },
-      controller : function ($scope) {
+      controller : function ($scope, $location, $route) {
 
+        $scope.navigate = function(path)
+        {
+          if($location.path() == path)
+          {
+            $route.reload();
+          }
+          $location.path(path);
+        };
         $scope.activeClass = function(classToCheck)
         {
           if($scope.active == classToCheck )
