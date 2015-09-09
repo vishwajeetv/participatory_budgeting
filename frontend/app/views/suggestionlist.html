@@ -1,82 +1,32 @@
-
-
-
 <header></header>
-<md-content>
-<div layout="row" layout-wrap>
-    <menu active="suggestion_list"></menu>
-    <div flex="60" layout-align="right">
-        <div layout="column"  layout-margin layout-fill layout-align="center center" layout-wrap>
-
-            <div flex>
-                <md-card>
-                    <md-card-content>
-                        <h2 class="md-title">Paracosm</h2>
-                        <p>
-                            The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-                            two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-                        </p>
-                    </md-card-content>
-                    <div class="md-actions" layout="row" layout-align="end center">
-                        <md-button>Action 1</md-button>
-                        <md-button>Action 2</md-button>
-                    </div>
-                </md-card>
-            </div>
-            <div flex>
-                <md-card>
-                    <md-card-content>
-                        <h2 class="md-title">Paracosm</h2>
-                        <p>
-                            The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-                            two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-                        </p>
-                    </md-card-content>
-                    <div class="md-actions" layout="row" layout-align="end center">
-                        <md-button>Action 1</md-button>
-                        <md-button>Action 2</md-button>
-                    </div>
-                </md-card>
-            </div>
-
-            <div flex>
-                <md-card>
-                    <md-card-content>
-                        <h2 class="md-title">Paracosm</h2>
-                        <p>
-                            The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-                            two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-                        </p>
-                    </md-card-content>
-                    <div class="md-actions" layout="row" layout-align="end center">
-                        <md-button>Action 1</md-button>
-                        <md-button>Action 2</md-button>
-                    </div>
-                </md-card>
+<div layout="column" layout-wrap layout-align="center center">
+    <p class="md-display-1">
+        You're awesome! Let's build a better future, together!
+    </p>
 
 
-            </div>
+</div>
+<div layout="row">
+    <div flex="30">
+        <menu active="suggestion_list"></menu>
+    </div>
+    <div flex="55">
+                    <dtable options="options" rows="suggestions" class="material">
+                        <column name="Zone Name">
+                            {{$row.zone_name}}
+                        </column>
+                        <column name="Division Name">
+                            {{$row.division_name}}
+                        </column>
+                        <column name="Suggestion" width="400" flex-gorw="3">
+                            {{$row.suggestion}}
+                        </column>
+                        <column name="Work Purpose" width="400" flex-gorw="3">
+                            {{$row.work_purpose}}
+                        </column>
 
-            <div flex>
-                <md-card>
-                    <md-card-content>
-                        <h2 class="md-title">Paracosm</h2>
-                        <p>
-                            The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-                            two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-                        </p>
-                    </md-card-content>
-                    <div class="md-actions" layout="row" layout-align="end center">
-                        <md-button>Action 1</md-button>
-                        <md-button>Action 2</md-button>
-                    </div>
-                </md-card>
-
-
-            </div>
-        </div>
+                    </dtable>
 
     </div>
-    <div flex="10"></div>
+    <div flex="5"></div>
 </div>
-</md-content>
