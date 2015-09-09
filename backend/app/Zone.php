@@ -18,7 +18,7 @@ class Zone extends Model {
      *
      * @var array
      */
-    protected $fillable = ['id','name','division_id','division_name'];
+    protected $fillable = ['id','name','division_id','division_name','areas'];
 
     /**
      * The attributes excluded from the model's JSON form.
