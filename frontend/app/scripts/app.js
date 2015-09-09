@@ -10,13 +10,10 @@
  */
 angular
   .module('frontendApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch',
-        'ngMaterial', 'restangular','data-table'
+, 'restangular', 'ngRoute','ngAnimate',
+        'ngSanitize',
+        'ngTouch',
+        'ngMaterial'
   ])
     .config(function (RestangularProvider, SERVER_URL) {
         RestangularProvider.setBaseUrl(SERVER_URL);
