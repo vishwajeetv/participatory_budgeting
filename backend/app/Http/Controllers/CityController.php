@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\City, App\Instance, App\Zone;
 use Config;
-
+use DB;
+use Input;
+use Log;
 class CityController extends Controller {
 
 	/**
@@ -22,13 +24,37 @@ class CityController extends Controller {
 
         if(isset($city->id))
         {
-            $zones = Zone::where('city_id','=',$city->id)->get();
+            $zones = DB::table('zones')->distinct()->groupBy('zone_id')->get();
             return $this->respond('$zones','Zones found','Zones couldnt be found',$zones,'no zone');
         }
-        return $this->respond(null,'City found','Can not find city for this instance',null,'No city');
+        return $this->respond($city,'City found','Can not find zone for this instance',$city,'No city');
 
     }
 
+	public function getShowZones()
+	{
+        $instance = 1;//TODO find a logic to get instance ID
+        $city = Instance::find($instance)->first();
+
+        if(isset($city->id))
+        {
+            $zones = DB::table('zones')->distinct()->groupBy('zone_id')->get();
+            return $this->respond('$zones','Zones found','Zones couldnt be found',$zones,'no zone');
+        }
+        return $this->respond($city,'City found','Can not find zone for this instance',$city,'No city');
+
+    }
+
+
+	public function getShowDivisions()
+	{
+		$zone_id = Input::get('zone_id');
+        Log::info($zone_id);
+		$zones = Zone::where('zone_id','=',$zone_id)->get();
+
+        return $this->respond($zones,'Zones found','Zones couldnt be found',$zones,'no zone');
+
+    }
     public function getWorks()
     {
         $instance = 1;
