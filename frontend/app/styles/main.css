@@ -50,3 +50,8 @@ body {
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
+
+.md-tab.md-disabled
+{
+    opacity: 1;
+}

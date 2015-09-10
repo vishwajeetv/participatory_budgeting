@@ -6,7 +6,7 @@
     <div layout="row"  layout-align="center">
         <menu active="new_suggestion"></menu>
      <div flex="5></div>
-        <div flex="40">
+        <div flex="50">
             <md-card>
                 <md-card-content>
                     <md-content class="md-padding">
@@ -25,15 +25,23 @@
                             <md-tab label="Lets' Begin!" ng-disabled="checkDisabled(selectedIndex)">
                                 <md-content class="md-padding">
                                     <div class="md-headline" tabindex="1">Let's Begin!</div>
-                                    <br>
 
+
+                                    <ol>
                                     <md-list>
 
+                                        <md-list-item>
+                                            <li><u><a style="cursor:help" class="md-primary" ng-click='showInstructions($event)'>
+                                                Read Instructions!</a>
+                                            </u></li>
+                                        </md-list-item>
+
                                         <md-list-item ng-repeat="instruction in instructions">
-                                            <p> {{instruction.instruction}}</p>
+                                            <li> {{instruction.instruction}}</li>
                                         </md-list-item>
 
                                     </md-list>
+                                    </ol>
 
                                     <md-button class="md-raised md-accent md-hue-4" ng-click="begin()"
                                                aria-label="Begin">
@@ -412,7 +420,7 @@
                 </md-card-content>
             </md-card>
         </div>
-      <div hide-sm flex="30">
+      <div hide-sm flex="20">
         </div>
     </div>
 </md-content>

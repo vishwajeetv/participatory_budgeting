@@ -8,7 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('SuggestionCtrl', function ($scope, $timeout, Restangular, $mdToast,
+  .controller('SuggestionCtrl', function ($scope, $timeout, Restangular, $mdToast, $mdDialog,
                                           InstanceProvider, UserProvider, $location, SuggestionProvider, DateTime, $filter) {
 
         $scope.citizen = null;
@@ -75,10 +75,27 @@ angular.module('frontendApp')
 
         $scope.instructions =
             [
-                {'instruction': 'First instruction'},
-                {'instruction': 'Second instruction'},
-                {'instruction': 'Third instruction'}
+                {'instruction': 'Go out! Gather details about exact location of the problem!'},
+                {'instruction': 'Brainstorm, discuss to produce a concise suggestion!'},
+                {'instruction': 'Begin!'}
             ];
+
+        $scope.showInstructions = function(ev) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            // Modal dialogs should fully cover application
+            // to prevent interaction outside of dialog
+            $mdDialog.show(
+                {
+                    parent:angular.element(document.body),
+                    clickOutsideToClose: true,
+                    //.title('This is an alert title')
+                    templateUrl:'views/instructions.html',
+                    ariaLabel:'Alert Dialog Demo',
+                    ok : 'Got it!',
+                    targetEvent :(ev)
+        }
+            );
+        };
 
         $scope.checkDisabled = function(selectedIndex)
         {
