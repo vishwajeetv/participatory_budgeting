@@ -18,7 +18,7 @@ class City_function extends Model {
      *
      * @var array
      */
-    protected $fillable = ['id','function','city_id'];
+    protected $fillable = ['id','function','city_id','indicative_code'];
 
     /**
      * The attributes excluded from the model's JSON form.
