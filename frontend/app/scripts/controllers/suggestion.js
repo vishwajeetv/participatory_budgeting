@@ -191,7 +191,7 @@ angular.module('frontendApp')
 
         $scope.showAreas = function()
         {
-            $scope.selectedZones = $filter('filter')($scope.zones,
+            $scope.selectedZones = $filter('filter')($scope.divisions,
                 {
                    division_id: $scope.suggestion.zone.division_id
                 }
@@ -199,11 +199,11 @@ angular.module('frontendApp')
             )
         }
 
+
         $scope.instanceError = null;
         $scope.loadZones = function() {
 
-            $scope.zones = [];
-            var getZones = Restangular.one('city');
+            var getZones = Restangular.one('city/show-zones');
             getZones.get().then(function (response)
             {
                $scope.zones = response.body;
@@ -213,6 +213,20 @@ angular.module('frontendApp')
 
             });
         };
+
+        $scope.loadDivisions = function() {
+
+            var getDivisions = Restangular.one('city/show-divisions/?zone_id='+$scope.suggestion.zone.zone_id);
+            getDivisions.get().then(function (response)
+            {
+                $scope.divisions = response.body;
+
+            }, function () {
+                console.log('error');
+
+            });
+        };
+
         $scope.loadWorks = function() {
 
             $scope.works = [];

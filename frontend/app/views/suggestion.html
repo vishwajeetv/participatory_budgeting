@@ -186,7 +186,9 @@
                                             <md-tooltip md-direction="right">
                                                 Select your zone from list.
                                             </md-tooltip>
-                                            <md-select name="zone" ng-model="suggestion.zone" md-on-open="loadZones()" required>
+                                            <md-select name="zone" ng-model="suggestion.zone"
+                                                       md-on-open="loadZones()"
+                                                       required>
                                             <md-option ng-value="zone" ng-repeat="zone in zones"
                                                 value="{{zone.name}}"  >{{zone.name}}</md-option>
 
@@ -208,8 +210,8 @@
                                             <md-tooltip md-direction="right">
                                               Select your division from list.
                                             </md-tooltip>
-                                            <md-select ng-change="showAreas()" name="division" ng-model="suggestion.division" required>
-                                            <md-option ng-value="division" ng-repeat="division in zones |  filter:suggestion.zone"
+                                            <md-select  md-on-open="loadDivisions()" ng-change="showAreas()" name="division" ng-model="suggestion.division" required>
+                                            <md-option ng-value="division" ng-repeat="division in divisions"
                                                       value="{{division.division_name}}" >{{division.division_name}}</md-option>
                                         </md-select>
                                         <div class="errors" ng-messages="suggestionForm.division.$error"
