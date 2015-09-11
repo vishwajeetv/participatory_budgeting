@@ -3,10 +3,10 @@
 <header></header>
 
 
-    <div layout="row" layout-sm="column"  layout-wrap layout-align="center">
+    <div layout="row" layout-sm="row"  layout-wrap layout-align="center">
         <menu  active="new_suggestion"></menu>
-     <div  flex="5></div>
-    <div flex="50">
+     <div flex-sm="100"  flex="5></div>
+    <div  flex-sm="100" flex="50">
         <md-card>
             <md-card-content>
                 <md-content class="md-padding">
@@ -420,8 +420,13 @@
             </md-card-content>
         </md-card>
     </div>
-      <div  flex="20">
+      <div flex-sm="0" flex="20">
         </div>
     </div>
 
 
+<style>
+    body{
+        background: transparent;
+    }
+</style>
