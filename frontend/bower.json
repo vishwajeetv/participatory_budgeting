@@ -4,14 +4,12 @@
   "dependencies": {
     "angular": "^1.4.5",
     "angular-animate": "^1.4.5",
-    "angular-cookies": "^1.4.5",
     "angular-material": "*",
     "angular-route": "^1.4.5",
     "angular-sanitize": "^1.4.5",
     "angular-touch": "^1.4.5",
-    "cartodb.js": "~3.15.1",
     "material-design-icons": "~2.0.0",
-    "mdi": "~1.0.62-beta",
+    "mdi": "*",
     "restangular": "~1.5.1"
   },
   "devDependencies": {
