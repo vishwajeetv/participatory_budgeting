@@ -191,6 +191,8 @@ angular.module('frontendApp')
             var getInstance = Restangular.one('instance');
             getInstance.get().then(function (response) {
                 $scope.instance = response.body;
+                console.log($scope.instance);
+
                 $scope.instance.start_time = DateTime.convertDateTime($scope.instance.start_time);
                 InstanceProvider.setInstance(response.body);
                 $scope.instance.end_time = DateTime.convertDateTime($scope.instance.end_time);
@@ -223,6 +225,10 @@ angular.module('frontendApp')
             var getZones = Restangular.one('city/show-zones');
             getZones.get().then(function (response)
             {
+                angular.forEach(response.body, function (zone) {
+                    zone.zone_id = parseInt(zone.zone_id);
+                });
+
                $scope.zones = response.body;
 
             }, function () {
@@ -236,6 +242,9 @@ angular.module('frontendApp')
             var getDivisions = Restangular.one('city/show-divisions/?zone_id='+$scope.suggestion.zone.zone_id);
             getDivisions.get().then(function (response)
             {
+                angular.forEach(response.body, function (division) {
+                    division.division_id = parseInt(division.division_id);
+                });
                 $scope.divisions = response.body;
 
             }, function () {
@@ -301,6 +310,7 @@ angular.module('frontendApp')
         }
         function init() {
             $scope.loadInstance();
+            $scope.loadZones();
             $scope.loadUser();
         }
 
