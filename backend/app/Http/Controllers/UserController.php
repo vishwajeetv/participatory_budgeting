@@ -51,7 +51,7 @@ class UserController extends Controller {
 		$user->instance_id = $input['instance_id'];
 		$saveStatus = $user->save();
 
-		return $this->respond($saveStatus,'SignUp Successful','SignUp Failed',$user,'none');
+		return $this->respond($saveStatus,'Registration Successful !','SignUp Failed',$user,'none');
 	}
 
     public function login(Requests\LoginRequest $request)

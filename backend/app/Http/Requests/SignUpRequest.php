@@ -22,7 +22,7 @@ class SignUpRequest extends Request {
 	public function rules()
 	{
         return [
-            'email' => 'required|unique:users',
+            'email' => 'email | required|unique:users',
             'name' => 'required',
             'password' => 'required',
             'role' => 'required',
