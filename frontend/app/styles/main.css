@@ -68,3 +68,8 @@ ol
 {
     list-style-type: decimal;
 }
+
+.help
+{
+    cursor:help
+}
