@@ -18,12 +18,12 @@ body {
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: url(../bower_components/material-design-icons/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: url(MaterialIcons-Regular.eot); /* For IE6-8 */
   src: local('Material Icons'),
   local('MaterialIcons-Regular'),
-  url(../bower_components/material-design-icons/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
-  url(../bower_components/material-design-icons/iconfont/MaterialIcons-Regular.woff) format('woff'),
-  url(../bower_components/material-design-icons/iconfont/MaterialIcons-Regular.ttf) format('truetype');
+  url(iconfont/MaterialIcons-Regular.woff2) format('woff2'),
+  url(iconfont/MaterialIcons-Regular.woff) format('woff'),
+  url(iconfont/MaterialIcons-Regular.ttf) format('truetype');
 }
 
 .material-icons {
@@ -63,4 +63,8 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+ol
+{
+    list-style-type: decimal;
 }
