@@ -31,6 +31,7 @@ angular.module('frontendApp')
                     "password": $scope.user.password
                 };
 
+                $scope.authFailedMesesage = "";
                 var loginUser = Restangular.all('user/login');
                 loginUser.post(loginData).then(function (response)
                 {
@@ -46,12 +47,12 @@ angular.module('frontendApp')
                     else
                     {
                         console.log(response.header.message);
+                        $scope.authFailedMesesage = "Incorrect email or password. Please retry.";
+                        $mdToast.show($mdToast.simple().content("Incorrect email or password. Please retry."));
                         $scope.invalidCredentials = true;
                     }
                 }, function (response) {
-                    $scope.user.errors = response;
-                    console.log('error');
-
+                        $scope.user.errors = response.data;
                 });
 
                 console.log(loginData);

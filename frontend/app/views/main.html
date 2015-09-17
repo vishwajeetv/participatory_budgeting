@@ -50,13 +50,14 @@
                                     <div ng-message="required" ng-show="registrationForm.name.$error.required">
                                         Required.</div>
                                 </div>
-                            </div>
-
-                            <div class="errors" ng-show="new_user.errors.name">
+                                <div class="errors" ng-show="new_user.errors.name">
                                                 <span ng-repeat="error in new_user.errors.name">
                                                     {{error}}
                                                 </span>
+                                </div>
                             </div>
+
+
                         </md-input-container>
 
                         <md-input-container class="md-icon-float" >
@@ -75,14 +76,15 @@
                                     <div ng-message="email" ng-show="registrationForm.email.$error.email">
                                             Invalid Email ID.</div>
                                         </div>
-                                    </div>
 
-
-                            <div class="errors" ng-show="new_user.errors.email">
+                                <div class="errors" ng-show="new_user.errors.email">
                                                 <span ng-repeat="error in new_user.errors.email">
                                                     {{error}}
                                                 </span>
-                            </div>
+                                </div>
+                                    </div>
+
+
 
 
                         </md-input-container>
@@ -101,12 +103,13 @@
                                     <div ng-message="required" ng-show="registrationForm.password.$error.required">
                                         Required.</div>
                                 </div>
-                            </div>
-                            <div class="errors" ng-show="new_user.errors.email">
+                                <div class="errors" ng-show="new_user.errors.email">
                                                 <span ng-repeat="error in new_user.errors.password">
                                                     {{error}}
                                                 </span>
+                                </div>
                             </div>
+
                         </md-input-container>
 
                         <md-input-container>
@@ -139,7 +142,13 @@
                                     <div ng-message="email" ng-show="loginForm.email.$error.email">
                                         Invalid Email ID.</div>
                                 </div>
+                                <div class="errors" ng-show="user.errors.email">
+                                            <span ng-repeat="error in user.errors.email">
+                                                {{error}}
+                                            </span>
+                                </div>
                             </div>
+
 
                         </md-input-container>
                         <md-input-container class="md-icon-float">
@@ -151,19 +160,34 @@
                                 <div ng-message="required"
                                      ng-show="(!loginForm.password.$valid) && (loginForm.password.$dirty || submitedLogin)">
                                     Required.</div>
+                                <div class="errors" ng-show="user.user.password">
+                                            <span ng-repeat="error in user.errors.password">
+                                                {{error}}
+                                            </span>
+
+                                </div>
                             </div>
 
                         </md-input-container>
-
+                        <div class="errors" ng-show="authFailedMesesage">
+                            {{authFailedMesesage}}
+                        </div>
                         <md-input-container>
                             <md-button class="md-raised md-primary" ng-click="login(loginForm)">Login</md-button>
                         </md-input-container>
+
                     </form>
                 </md-card-content>
             </md-card>
 
         </div>
         <div hide-sm flex-sm="0" flex="15"></div>
+    </div>
+    <div layout="row">
+        <md-button class="btn md-raised md-warn" href="http://nikhilvj.techydudes.net/files/pune-pb.html?ckattempt=1"
+                   class="md-subhead help" target="_blank">
+            Suggestions Status for Year 2015-2016
+        </md-button>
     </div>
 
 
