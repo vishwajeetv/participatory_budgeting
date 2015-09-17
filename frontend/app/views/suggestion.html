@@ -27,7 +27,7 @@
                                 <div class="md-headline" tabindex="1">Let's Begin!</div>
 
 
-                                <ol>
+                                <ul>
                                 <md-list>
 
                                     <md-list-item>
@@ -41,7 +41,7 @@
                                     </md-list-item>
 
                                 </md-list>
-                                </ol>
+                                </ul>
 
                                 <md-button class="md-raised md-accent md-hue-4" ng-click="begin()"
                                            aria-label="Begin">
@@ -131,11 +131,11 @@
                                     <md-input-container class="md-icon-float">
 
                                         <label>Address</label>
-
-                                        <md-icon><i class="material-icons">home</i></md-icon>
                                         <md-tooltip md-direction="right">
                                             e.g. B-45, Shanti Nivas, Kasba Peth, Pune 411008
                                         </md-tooltip>
+                                        <md-icon><i class="material-icons">home</i></md-icon>
+
                                         <input ng-enter="submitCitizen(citizenForm)" required name="address" type="text" ng-model="citizen.address">
 
                                         <div ng-messages="citizenForm.address.$error">
@@ -244,11 +244,10 @@
 
                                     <md-input-container class="md-icon-float">
                                         <label>Area</label>
-
-                                        <md-icon><i class="material-icons">location_searching</i> </md-icon>
                                         <md-tooltip md-direction="right">
                                             e.g. Kasba Peth
                                         </md-tooltip>
+                                        <md-icon><i class="material-icons">location_searching</i> </md-icon>
                                         <input required name="area" type="text" ng-model="suggestion.area"/>
 
                                         <div ng-messages="suggestion.area.$error">
