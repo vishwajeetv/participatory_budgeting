@@ -76,7 +76,7 @@
                         <div class="mui-text-left mui-text-subhead  mui-panel">
                             <strong>Name of the citizen : </strong>{{ $suggestion->name}}<br>
                             <strong>Address : </strong> {{$suggestion->address }}<br>
-                            <strong>Zone : </strong> {{$zone->name }}   <span class="mui-divider-left"><strong> Division : </strong>{{$zone->division_name }}</span>
+                            <strong>Ward : </strong> {{$zone->name }}   <span class="mui-divider-left"><strong> Prabhag : </strong>{{$zone->division_name }}</span>
                         </div>
 
 
@@ -103,7 +103,8 @@
                 </ol>
                         </div>
                 <br>
-                For any further queries/assistance, kindly mail us at abc@xyz.com <br><br>
+                For any further queries/assistance, kindly mail us at
+                    pooja.shetty@janwani.net<br><br>
                 Regards,<br>
                 Participatory Budgeting Team<br>
 

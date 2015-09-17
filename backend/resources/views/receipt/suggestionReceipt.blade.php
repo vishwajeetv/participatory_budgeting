@@ -8,8 +8,8 @@
 <div align="left">
     <h4>Name of the citizen: {{ $suggestion->name}} </h4>
     <h4>Address: {{$suggestion->address }} </h4>
-    <h4>Zone: {{$zone->name }} </h4>
-    <h4>Division: {{$zone->division_name }} </h4>
+    <h4>Ward: {{$zone->name }} </h4>
+    <h4>Prabhag: {{$zone->division_name }} </h4>
 
 </div>
 <div>
