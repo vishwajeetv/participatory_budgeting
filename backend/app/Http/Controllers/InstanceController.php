@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Instance;
+use Log;
 
 class InstanceController extends Controller
 {
@@ -47,12 +48,16 @@ class InstanceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  int $instanceId
      * @return Response
      */
-    public function show($id)
+    public function show($instanceId)
     {
-        //
+        $instance = Instance::find($instanceId);
+        Log::info($instance);
+        $city = $instance->city;
+        array_merge( (array)$instance,(array)$city);
+        return $this->respond($instance, 'Instances retrieved successfully', 'Instances can not be retrieved',$instance , null);
     }
 
     /**
