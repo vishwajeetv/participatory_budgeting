@@ -7,6 +7,12 @@
     <meta name="description" content="Participatory Budgeting Web App for Pune Municipal Corporation">
     <meta name="keywords" content="Budgeting, Participatory Budgeting,Pune Municipal Corporation">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta property="og-url" content="http://pmc.participatorybudgeting.in/">
+    <meta property="og-title" content="Participatory Budgeting - Pune Municipal Corporation">
+    <meta property="og-description" content="Participatory Budgeting web application for Pune Municipal Corporation">
+    <meta property="og:image" content="http://pmc.participatorybudgeting.in/Pune.jpg" />
+    <meta property="fb:admins" content="1733548410" />
+
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
@@ -19,9 +25,10 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-    <!--<script>window.scrollback = {"room":"pbudget-pune-2015","form":"toast","minimize":true};(function(d,s,h,e){e=d.createElement(s);e.async=1;e.src=(location.protocol === "https:" ? "https:" : "http:") + "//scrollback.io/client.min.js";d.getElementsByTagName(s)[0].parentNode.appendChild(e);}(document,"script"));</script>-->
+    <script>window.scrollback = {"room":"pbudget-pune-2015","form":"toast","minimize":true};(function(d,s,h,e){e=d.createElement(s);e.async=1;e.src=(location.protocol === "https:" ? "https:" : "http:") + "//scrollback.io/client.min.js";d.getElementsByTagName(s)[0].parentNode.appendChild(e);}(document,"script"));</script>
 </head>
 <body ng-app="frontendApp">
+
 <!--[if lte IE 8]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -48,6 +55,7 @@
 <script src="bower_components/angular-material/angular-material.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-socialshare/angular-socialshare.js"></script>
 <script src="bower_components/angular-touch/angular-touch.js"></script>
 <script src="bower_components/lodash/lodash.js"></script>
 <script src="bower_components/restangular/dist/restangular.js"></script>
@@ -71,5 +79,9 @@
 <script src="scripts/directives/header.js"></script>
 <script src="scripts/directives/ngenter.js"></script>
 <!-- endbuild -->
+<script src="http://platform.twitter.com/widgets.js"></script>
+<!-- Load Facebook SDK for JavaScript -->
+
+=
 </body>
 </html>

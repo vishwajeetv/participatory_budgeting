@@ -13,7 +13,7 @@ angular
 , 'restangular', 'ngRoute','ngAnimate',
         'ngSanitize',
         'ngTouch',
-        'ngMaterial'
+        'ngMaterial','djds4rce.angular-socialshare'
   ])
     .config(function (RestangularProvider, SERVER_URL) {
         RestangularProvider.setBaseUrl(SERVER_URL);
@@ -52,4 +52,7 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+.run(function($FB){
+    $FB.init('153549254988542');
+});
