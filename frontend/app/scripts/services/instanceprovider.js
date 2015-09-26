@@ -8,7 +8,7 @@
  * Service in the frontendApp.
  */
 angular.module('frontendApp')
-  .service('InstanceProvider', function () {
+  .service('InstanceProvider', function ($http, $q, INSTANCE_ID, SERVER_URL) {
     // AngularJS will instantiate a singleton by calling "new" on this function
       this.setInstance = function(instance)
       {
@@ -24,6 +24,29 @@ angular.module('frontendApp')
       {
         return sessionStorage.instance_id;
       }
+
+    this.loadInstance = function()
+    {
+       var url = SERVER_URL + 'instance/'+INSTANCE_ID;
+        var deferred = $q.defer();
+        $http.get(url).
+            success(function (data, status, headers, config) {
+                if(data.header.status == 'success')
+                {
+                    deferred.resolve(data.body);
+                }
+                else
+                {
+                    deferred.reject();
+                }
+            }).
+            error(function (data, status, headers, config) {
+                console.log("could not get person type id");
+                deferred.reject();
+            });
+        return deferred.promise;
+
+        }
 
         this.checkInstanceDates = function (instance) {
 
