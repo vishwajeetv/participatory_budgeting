@@ -58,8 +58,8 @@
                 <div class="mui-container">
 
                     <div class="mui-text-body1 mui-text-black">
-                    Dear {{ $suggestion->name }},<br>
-                        This email is regarding the status of suggestion submitted by you for the year 2014 - 2015.
+                    Dear {{ $suggestion->name }},<br><br>
+                        This email is regarding the status of the suggestion submitted by you for the Budget 2015-16 of the Pimpri Chinchwad Municipal Corporation.
                     </div>
                     <br>
                     <div class="mui-panel">
@@ -85,7 +85,9 @@
                         </div>
                         <div class="mui-text-left mui-text-subhead  mui-panel">
                             <strong>Status : </strong>{{ $suggestion->status }}<br>
+                            @if ($suggestion->status == 'Rejected')
                             <strong>Reason for rejection : </strong>{{ $suggestion->reason_for_rejection }}
+                            @endif
                         </div>
                     </div>
                 <br>
@@ -93,7 +95,9 @@
 
                         </div>
                 <br>
-                For any further queries/assistance, kindly mail us at abc@xyz.com <br><br>
+                    For any further queries/assistance, kindly contact the respective zone office. Click here http://www.pcmcindia.gov.in/ward_info.php for your zone office contact info.
+                    <br><br>
+
                 Regards,<br>
                 Participatory Budgeting Team<br>
 
