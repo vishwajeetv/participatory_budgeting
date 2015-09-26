@@ -58,10 +58,7 @@ body {
 
 body {
 
-    background: url(../images/Pune.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
+    background: url(../images/city_cover.jpg) no-repeat center center fixed;
     background-size: cover;
 }
 ol
@@ -72,4 +69,8 @@ ol
 .help
 {
     cursor:help
+}
+.title-inspiration
+{
+    color:black;   text-shadow: 0.3px 0.3px 3px #FFFFFF;
 }
