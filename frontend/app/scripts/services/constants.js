@@ -9,3 +9,4 @@
  */
 angular.module('frontendApp')
     .constant('SERVER_URL', 'http://localhost:8000/')
+    .constant('INSTANCE_ID', '2')
