@@ -13,8 +13,7 @@ angular
 , 'restangular', 'ngRoute','ngAnimate',
         'ngSanitize',
         'ngTouch',
-        'ngMaterial',
-        'djds4rce.angular-socialshare'
+        'ngMaterial'
   ])
     .config(function (RestangularProvider, SERVER_URL) {
         RestangularProvider.setBaseUrl(SERVER_URL);

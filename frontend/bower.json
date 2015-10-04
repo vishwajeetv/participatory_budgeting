@@ -7,7 +7,6 @@
     "angular-material": "*",
     "angular-route": "^1.4.5",
     "angular-sanitize": "^1.4.5",
-    "angular-socialshare": "~1.4.1",
     "angular-touch": "^1.4.5",
     "material-design-icons": "~2.0.0",
     "mdi": "*",
