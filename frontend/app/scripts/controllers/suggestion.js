@@ -9,7 +9,8 @@
  */
 angular.module('frontendApp')
   .controller('SuggestionCtrl', function ($scope, $timeout, Restangular, $mdToast, $mdDialog,
-                                          InstanceProvider, UserProvider, $location, SuggestionProvider, DateTime, $filter) {
+                                          InstanceProvider, UserProvider, $location, SuggestionProvider,
+                                          DateTime, $filter, CityProvider) {
 
         $scope.citizen = null;
         $scope.suggestion = null;
@@ -188,19 +189,19 @@ angular.module('frontendApp')
 
         $scope.loadInstance = function () {
 
-            var getInstance = Restangular.one('instance');
-            getInstance.get().then(function (response) {
-                $scope.instance = response.body;
-                console.log($scope.instance);
-
+            InstanceProvider.loadInstance().then(function (response) {
+                console.log(response);
+                $scope.instance = response;
+                $scope.city_name = response.city.name;
                 $scope.instance.start_time = DateTime.convertDateTime($scope.instance.start_time);
-                InstanceProvider.setInstance(response.body);
+                InstanceProvider.setInstance(response);
                 $scope.instance.end_time = DateTime.convertDateTime($scope.instance.end_time);
                 $scope.instanceError = InstanceProvider.checkInstanceDates($scope.instance);
             }, function () {
                 console.log('error');
 
             });
+
         };
 
         $scope.begin= function()
@@ -218,19 +219,15 @@ angular.module('frontendApp')
             )
         }
 
-
         $scope.instanceError = null;
-        $scope.loadZones = function() {
 
-            var getZones = Restangular.one('city/show-zones');
-            getZones.get().then(function (response)
-            {
+        $scope.loadZones = function() {
+            CityProvider.getZones().then(function (response) {
                 angular.forEach(response.body, function (zone) {
                     zone.zone_id = parseInt(zone.zone_id);
                 });
 
-               $scope.zones = response.body;
-
+                $scope.zones = response.body;
             }, function () {
                 console.log('error');
 
