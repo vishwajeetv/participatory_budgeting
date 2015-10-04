@@ -31,11 +31,10 @@ class CityController extends Controller {
 
     }
 
-	public function getShowZones()
+	public function postShowZones()
 	{
-        $instance = 1;//TODO find a logic to get instance ID
-        $city = Instance::find($instance)->first();
-
+        $instanceId = Input::get('instance_id');
+        $city = Instance::find($instanceId)->first();
         if(isset($city->id))
         {
             $zones = DB::table('zones')->distinct()->groupBy('zone_id')->get();
