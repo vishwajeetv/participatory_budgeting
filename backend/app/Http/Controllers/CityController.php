@@ -54,14 +54,14 @@ class CityController extends Controller {
         return $this->respond($zones,'Zones found','Zones couldnt be found',$zones,'no zone');
 
     }
-    public function getWorks()
+    public function postShowWorks()
     {
-        $instance = 1;
-        $city = Instance::find($instance)->first();
-
-        if(isset($city->id))
+        $instanceId = Input::get('instance_id');
+        $instance = Instance::find($instanceId);
+        Log::info($instance);
+        if(isset($instance->id))
         {
-            $functions = City_function::where('city_id','=',$city->id)->get();
+            $functions = City_function::where('city_id','=',$instance->city_id)->get();
             return $this->respond('success','Works found','No works!',$functions,'no work');
         }
         return $this->respond(null,'City found','Can not find city for this instance',null,'No city');
