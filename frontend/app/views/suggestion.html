@@ -273,7 +273,7 @@
                                         <md-tooltip md-direction="right">
                                           Select work type from list.
                                         </md-tooltip>
-                                        <md-select name="work" ng-model="suggestion.work" md-on-open="loadWorks()" required>
+                                        <md-select name="work" ng-model="suggestion.work"  required>
                                             <md-option ng-value="work" ng-repeat="work in works" value="{{work.function}}">{{work.function}}</md-option>
                                         </md-select>
 
