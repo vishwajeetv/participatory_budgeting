@@ -34,10 +34,10 @@ class CityController extends Controller {
 	public function postShowZones()
 	{
         $instanceId = Input::get('instance_id');
-        $city = Instance::find($instanceId)->first();
+        $city = Instance::find($instanceId);
         if(isset($city->id))
         {
-            $zones = DB::table('zones')->distinct()->groupBy('zone_id')->get();
+            $zones = DB::table('zones')->where('city_id','=',$city->id)->distinct()->groupBy('zone_id')->get();
             return $this->respond('$zones','Zones found','Zones couldnt be found',$zones,'no zone');
         }
         return $this->respond($city,'City found','Can not find zone for this instance',$city,'No city');
