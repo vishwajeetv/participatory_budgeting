@@ -97,7 +97,6 @@ angular.module('frontendApp')
             }
         }
 
-
         $scope.loadUser= function(){
 
             $scope.citizen = UserProvider.getUserById
@@ -107,26 +106,39 @@ angular.module('frontendApp')
                     console.log(user);
                 });
         }
-
         $scope.loadZones = function() {
+            CityProvider.getZones().then(function (response) {
+                angular.forEach(response.body, function (zone) {
+                    zone.zone_id = parseInt(zone.zone_id);
+                });
 
-            $scope.zones = [];
-            var getZones = Restangular.one('city');
-            getZones.get().then(function (response)
-            {
                 $scope.zones = response.body;
+            }, function () {
+                console.log('error');
+
+            });
+        };
+
+        $scope.loadDivisions = function() {
+
+            var getDivisions = Restangular.one('city/show-divisions/?zone_id='+$scope.suggestion.zone.zone_id);
+            getDivisions.get().then(function (response)
+            {
+                angular.forEach(response.body, function (division) {
+                    division.division_id = parseInt(division.division_id);
+                });
+                $scope.divisions = response.body;
 
             }, function () {
                 console.log('error');
 
             });
         };
+
         $scope.loadWorks = function() {
 
             $scope.works = [];
-            var getWorks = Restangular.one('city/works');
-            getWorks.get().then(function (response)
-            {
+            CityProvider.getWorks().then(function (response) {
                 $scope.works = response.body;
 
             }, function () {
@@ -135,15 +147,15 @@ angular.module('frontendApp')
             });
         };
 
-
         $scope.logout = function(){
             UserProvider.logout();
             $location.path('/');
         }
         function init() {
             $scope.loadInstance();
+            $scope.loadZones();
             $scope.loadUser();
-            $scope.loadSuggestions();
+            $scope.loadWorks();
         }
 
         init();
