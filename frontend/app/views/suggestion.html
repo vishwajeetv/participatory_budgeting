@@ -8,7 +8,7 @@
         </menu>
 
      <div flex-sm="100"  flex="0"></div>
-    <div  flex-sm="100" flex="50">
+    <div  flex-sm="100" flex="45">
         <md-card>
             <md-card-content>
                 <md-content class="md-padding">
@@ -192,9 +192,9 @@
 
                                     <div class="md-body-2"><i class="material-icons">place</i> Location</div>
                                     <md-input-container>
-                                        <label>Ward</label>
+                                        <label>Zone</label>
                                         <md-tooltip md-direction="right">
-                                            Select your ward from list.
+                                            Select your Zone from list.
                                         </md-tooltip>
                                         <md-select name="zone" ng-model="suggestion.zone"
                                                    required>
@@ -215,9 +215,9 @@
 
 
                                     <md-input-container>
-                                        <label>Prabhag</label>
+                                        <label>Ward</label>
                                         <md-tooltip md-direction="right">
-                                          Select your Prabhag from list.
+                                          Select your Ward from list.
                                         </md-tooltip>
                                         <md-select  md-on-open="loadDivisions()" ng-change="showAreas()" name="division" ng-model="suggestion.division" required>
                                         <md-option ng-value="division" ng-repeat="division in divisions | orderBy : 'division_id' "
@@ -370,7 +370,7 @@
                             </md-content>
                         </md-tab>
 
-                        <md-tab label="Voila!"  ng-disabled="checkDisabled(selectedIndex)">
+                        <md-tab label="Submit"  ng-disabled="checkDisabled(selectedIndex)">
                             <md-content class="md-padding">
 
                                 <div ng-hide="submitedFinal == true">
@@ -409,7 +409,8 @@
                                 </div>
                                 <div ng-show="submitedFinal == true">
                                     Thank you for making this city a better place to live!<br><br>
-                                    The receipt has been sent to  {{citizen.email}}
+                                    Suggestion Receipt will be mailed to  {{citizen.email}}<br><br>
+                                    he final status of your suggestion (accepted/ rejected in the Budget) will be communicated to you by Email and SMS.
                                 </div>
                             </md-content>
                         </md-tab>
@@ -420,11 +421,55 @@
             </md-card-content>
         </md-card>
     </div>
-      <div hide-sm flex-sm="0" flex="20">
+      <div hide-sm flex-sm="0" flex="25">
 <br>
 
                             <md-content>
+                                <md-card>
+                                    <md-toolbar class="md-accent">
+                                        <h3 class="md-toolbar-tools"><md-icon><i class="material-icons">history</i> </md-icon>Activity Status - Last Year </h3>
+                                    </md-toolbar>
 
+                                    <md-button href="https://nikhilvj.cartodb.com/viz/5e089174-4aee-11e5-815c-0e0c41326911/embed_map"
+                                               class="md-subhead" target="_blank">
+                                        <md-icon><i class="material-icons">map</i></md-icon>  Suggestions Submitted
+                                    </md-button>
+
+                                    <md-divider></md-divider>
+
+                                    <md-button href="https://drive.google.com/open?id=0B5v3zggft3cmSHhfWVh0TkozekU"
+                                               class="md-subhead" target="_blank">
+                                       <md-icon> <i class="material-icons">view_list</i> </md-icon> Suggestions List
+                                    </md-button>
+
+                                    <md-divider></md-divider>
+
+                                    <md-button href="http://cdb.io/1j20ROw"
+                                               class="md-subhead" target="_blank">
+                                        Accepted / Rejected Suggestions
+                                    </md-button>
+
+
+
+                                    </md-card>
+
+                                <md-card>
+
+                                    <md-toolbar class="md-primary md-hue-4">
+                                        <h4 class="md-toolbar-tools"> <md-icon> <i class="material-icons">help</i> </md-icon> Need Help? Contact us!</h4>
+                                    </md-toolbar>
+                                    <md-button href="mailto:citizen.pb@pcmcindia.gov.in"
+                                               class="md-subhead help" target="_blank">
+                                        <md-icon><i class="material-icons">email</i></md-icon> citizen.pb@pcmcindia.gov.in
+                                    </md-button>
+                                    <md-divider></md-divider>
+
+                                    <md-button href="https://drive.google.com/open?id=0B-TbiydL7uW4S0F1M3A2eS1LeHc"
+                                               class="md-subhead help" target="_blank">
+                                        <md-icon><i class="material-icons">phone</i> </md-icon> SARATHI : 8888006666
+                                    </md-button>
+
+                                </md-card>
 
                                 <!--<a twitter  data-lang="en" data-count='horizontal'-->
                                    <!--data-url='http://pmc.participatorybudgeting.in' data-via='PuneBudget'-->
