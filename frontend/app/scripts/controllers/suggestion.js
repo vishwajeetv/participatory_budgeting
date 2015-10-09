@@ -224,7 +224,7 @@ angular.module('frontendApp')
         $scope.loadZones = function() {
             CityProvider.getZones().then(function (response) {
                 angular.forEach(response.body, function (zone) {
-                    zone.zone_id = parseInt(zone.zone_id);
+                    zone.zone_id = (zone.zone_id);
                 });
 
                 $scope.zones = response.body;
@@ -240,7 +240,7 @@ angular.module('frontendApp')
             getDivisions.get().then(function (response)
             {
                 angular.forEach(response.body, function (division) {
-                    division.division_id = parseInt(division.division_id);
+                    division.division_id = (division.division_id);
                 });
                 $scope.divisions = response.body;
 

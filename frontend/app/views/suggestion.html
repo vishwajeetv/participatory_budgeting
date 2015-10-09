@@ -199,7 +199,7 @@
                                         <md-select name="zone" ng-model="suggestion.zone"
                                                    required>
                                         <md-option ng-value="zone" ng-repeat="zone in zones | orderBy : 'zone_id' "
-                                            value=" {{zone.zone_id}} - {{zone.name}}"  >{{zone.zone_id}} - {{zone.name}}</md-option>
+                                            value=" {{zone.zone_id}}  {{zone.name}}"  >{{zone.zone_id}} - {{zone.name}}</md-option>
 
                                     </md-select>
                                     <div class="errors" ng-messages="suggestionForm.zone.$error"
@@ -410,7 +410,7 @@
                                 <div ng-show="submitedFinal == true">
                                     Thank you for making this city a better place to live!<br><br>
                                     Suggestion Receipt will be mailed to  {{citizen.email}}<br><br>
-                                    he final status of your suggestion (accepted/ rejected in the Budget) will be communicated to you by Email and SMS.
+                                    The final status of your suggestion (accepted/ rejected in the Budget) will be communicated to you by Email and SMS.
                                 </div>
                             </md-content>
                         </md-tab>
@@ -446,7 +446,7 @@
 
                                     <md-button href="http://cdb.io/1j20ROw"
                                                class="md-subhead" target="_blank">
-                                        Accepted / Rejected Suggestions
+                                        <md-icon><i class="material-icons">thumbs_up_down</i> </md-icon> Accepted / Rejected
                                     </md-button>
 
 

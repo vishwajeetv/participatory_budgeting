@@ -76,7 +76,7 @@
                         <div class="mui-text-left mui-text-subhead  mui-panel">
                             <strong>Name of the citizen : </strong>{{ $suggestion->name}}<br>
                             <strong>Address : </strong> {{$suggestion->address }}<br>
-                            <strong>Zone : </strong> {{$zone->zone_id}} - {{$zone->name }}   <span class="mui-divider-left"><strong> Ward : </strong>{{$zone->division_id}} - {{$zone->division_name }}</span>
+                            <strong>Zone : </strong> {{$zone->zone_id}} {{$zone->name }}   <span class="mui-divider-left"><strong> Ward : </strong>{{$zone->division_id}} - {{$zone->division_name }}</span>
                         </div>
 
 
