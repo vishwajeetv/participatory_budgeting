@@ -253,9 +253,7 @@ angular.module('frontendApp')
         $scope.loadWorks = function() {
 
             $scope.works = [];
-            var getWorks = Restangular.one('city/works');
-            getWorks.get().then(function (response)
-            {
+            CityProvider.getWorks().then(function (response) {
                 $scope.works = response.body;
 
             }, function () {
@@ -309,6 +307,7 @@ angular.module('frontendApp')
             $scope.loadInstance();
             $scope.loadZones();
             $scope.loadUser();
+            $scope.loadWorks();
         }
 
         init();
