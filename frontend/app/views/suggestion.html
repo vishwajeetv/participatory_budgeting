@@ -154,13 +154,34 @@
 
                                     </md-input-container>
 
+                                    <md-input-container class="md-icon-float">
+
+                                        <md-tooltip md-direction="right">
+                                            Select Gender
+                                        </md-tooltip>
+
+                                        <md-radio-group name="gender" ng-model="citizen.gender">
+
+                                            <div flex layout='row' layout-padding layout-align="start center" >
+                                                <span>Gender : </span>
+                                                <md-radio-button value="male" class="md-primary"> Male</md-radio-button>
+
+
+                                                <md-radio-button value="female"> Female </md-radio-button>
+                                                <md-radio-button value="other">Other</md-radio-button>
+                                            </div>
+
+                                        </md-radio-group>
+
+                                    </md-input-container>
 
                                     <div layout="row" layout-wrap>
                                         <div flex="20">
                                             <md-input-container>
                                                 <md-button tabindex="3" ng-click="previousTab(1)" class="md-fab md-primary"
                                                            aria-label="Use Android">
-                                                    <md-icon><i class="material-icons">navigate_before</i> </md-icon>
+                                                    <md-icon><i class="material-icons">chevron_left</i></md-icon>
+
                                                 </md-button>
                                             </md-input-container>
 
@@ -173,7 +194,8 @@
                                             <md-input-container>
                                                 <md-button type=submit tabindex="2" ng-click="submitCitizen(citizenForm)" class="md-fab md-primary" aria-label="Use Android">
 
-                                                    <md-icon><i class="material-icons">navigate_next</i> </md-icon>
+                                                    <md-icon><i class="material-icons">chevron_right</i></md-icon>
+
                                                 </md-button>
                                             </md-input-container>
                                         </div>
@@ -344,8 +366,7 @@
                                         <div flex="20">
                                             <md-input-container>
                                                 <md-button tabindex="5" ng-click="previousTab(selectedIndex)" class="md-fab md-primary" aria-label="Use Android">
-                                                    <md-icon
-                                                            md-svg-src="images/icons/ic_navigate_before_24px.svg"></md-icon>
+                                                    <md-icon><i class="material-icons">chevron_left</i></md-icon>
                                                 </md-button>
                                             </md-input-container>
 
@@ -357,8 +378,8 @@
                                         <div flex="20">
                                             <md-input-container>
                                                 <md-button tabindex="4" ng-click="submitSuggestion(suggestionForm)" aria-label="submit suggestion" class="md-fab md-primary">
-                                                    <md-icon
-                                                            md-svg-src="images/icons/ic_navigate_next_24px.svg"></md-icon>
+                                                    <md-icon><i class="material-icons">chevron_right</i></md-icon>
+
                                                 </md-button>
                                             </md-input-container>
                                         </div>
@@ -383,8 +404,8 @@
                                         <div flex="20">
                                             <md-input-container>
                                                 <md-button tabindex="7" ng-click="previousTab(selectedIndex)" class="md-fab md-primary" aria-label="Use Android">
-                                                    <md-icon
-                                                            md-svg-src="images/icons/ic_navigate_before_24px.svg"></md-icon>
+                                                    <md-icon><i class="material-icons">chevron_left</i></md-icon>
+
                                                 </md-button>
                                             </md-input-container>
 
@@ -397,8 +418,8 @@
                                             <md-input-container>
                                                 <md-button  tabindex="6" ng-click="submitFinal(citizenForm, suggestionForm)"
                                                            class="md-fab md-accent" aria-label="Final submit">
-                                                    <md-icon
-                                                            md-svg-src="images/icons/ic_done_all_24px.svg"></md-icon>
+                                                    <md-icon><i class="material-icons">done_all</i></md-icon>
+
                                                 </md-button>
                                             </md-input-container>
                                         </div>
@@ -422,64 +443,10 @@
         </md-card>
     </div>
       <div hide-sm flex-sm="0" flex="25">
-<br>
-
-                            <md-content>
-                                <md-card>
-                                    <md-toolbar class="md-accent">
-                                        <h3 class="md-toolbar-tools"><md-icon><i class="material-icons">history</i> </md-icon>Activity Status - Last Year </h3>
-                                    </md-toolbar>
-
-                                    <md-button href="https://nikhilvj.cartodb.com/viz/5e089174-4aee-11e5-815c-0e0c41326911/embed_map"
-                                               class="md-subhead" target="_blank">
-                                        <md-icon><i class="material-icons">map</i></md-icon>  Suggestions Submitted
-                                    </md-button>
-
-                                    <md-divider></md-divider>
-
-                                    <md-button href="https://drive.google.com/open?id=0B5v3zggft3cmSHhfWVh0TkozekU"
-                                               class="md-subhead" target="_blank">
-                                       <md-icon> <i class="material-icons">view_list</i> </md-icon> Suggestions List
-                                    </md-button>
-
-                                    <md-divider></md-divider>
-
-                                    <md-button href="http://cdb.io/1j20ROw"
-                                               class="md-subhead" target="_blank">
-                                        <md-icon><i class="material-icons">thumbs_up_down</i> </md-icon> Accepted / Rejected
-                                    </md-button>
-
-
-
-                                    </md-card>
-
-                                <md-card>
-
-                                    <md-toolbar class="md-primary md-hue-4">
-                                        <h4 class="md-toolbar-tools"> <md-icon> <i class="material-icons">help</i> </md-icon> Need Help? Contact us!</h4>
-                                    </md-toolbar>
-                                    <md-button href="mailto:citizen.pb@pcmcindia.gov.in"
-                                               class="md-subhead help" target="_blank">
-                                        <md-icon><i class="material-icons">email</i></md-icon> citizen.pb@pcmcindia.gov.in
-                                    </md-button>
-                                    <md-divider></md-divider>
-
-                                    <md-button href="https://drive.google.com/open?id=0B-TbiydL7uW4S0F1M3A2eS1LeHc"
-                                               class="md-subhead help" target="_blank">
-                                        <md-icon><i class="material-icons">phone</i> </md-icon> SARATHI : 8888006666
-                                    </md-button>
-
-                                </md-card>
-
-                                <!--<a twitter  data-lang="en" data-count='horizontal'-->
-                                   <!--data-url='http://pmc.participatorybudgeting.in' data-via='PuneBudget'-->
-                                   <!--data-size="large" data-text="Let's make our city awesome again through citizen participatory budgeting ! #Pune">-->
-
-                                <!--</a>-->
-                            </md-content>
-
-        </div>
+        <br>
+        <sidebar></sidebar>
     </div>
+</div>
 
 
 <style>

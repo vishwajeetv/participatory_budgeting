@@ -12,7 +12,7 @@ angular.module('frontendApp')
                                           InstanceProvider, UserProvider, $location, SuggestionProvider,
                                           DateTime, $filter, CityProvider) {
 
-        $scope.citizen = null;
+        //$scope.citizen = null;
         $scope.suggestion = null;
 
 
@@ -37,6 +37,7 @@ angular.module('frontendApp')
                     'email' : citizenForm.email.$modelValue,
                     'mobile': citizenForm.mobile.$modelValue,
                     'address': citizenForm.address.$modelValue,
+                    'gender': $scope.citizen.gender,
                     'role':'citizen'
 
                 };
