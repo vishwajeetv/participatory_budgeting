@@ -8,23 +8,9 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-    .controller('AdminCtrl', function ($scope, $timeout, $location, Restangular, $mdToast, $rootScope, InstanceProvider, UserProvider, SuggestionProvider ) {
+    .controller('AdminCtrl', function ($scope, $timeout, $location, Restangular, $mdToast, $rootScope, $filter,
+                                       InstanceProvider, UserProvider, SuggestionProvider, CityProvider, DateTime ) {
 
-        var init = function () {
-            $scope.loadSuggestions();
-        };
-        $scope.loadSuggestions = function () {
-            console.log("In load suggestions");
-            $scope.suggestions = [];
-            var getSuggestions = Restangular.one('suggestion/?instance_id=1');
-            getSuggestions.get().then(function (response) {
-                $scope.suggestions = response.body;
-
-            }, function () {
-                console.log('error');
-
-            });
-        };
 
         $scope.options = {
             rowHeight: 50,
@@ -51,7 +37,7 @@ angular.module('frontendApp')
         {
             $scope.submitedSuggestion = true;
 
-            if(suggestionForm.$valid == true && $scope.suggestion)
+            if( $scope.suggestion)
             {
                 var suggestion = $scope.suggestion;
 
@@ -62,9 +48,9 @@ angular.module('frontendApp')
                     'work_id' : suggestion.work.id,
                     'division_id' : suggestion.division.id,
                     'zone_id' : suggestion.zone.id,
-                    'area' : suggestionForm.area.$modelValue,
-                    'suggestion' : suggestionForm.suggestion.$modelValue,
-                    'work_purpose' : suggestionForm.work_purpose.$modelValue,
+                    'area' : suggestion.area,
+                    'suggestion' : suggestion.suggestion,
+                    'work_purpose' : suggestion.work_purpose,
                     'mode' : 'OFFLINE'
                 };
 
@@ -78,6 +64,7 @@ angular.module('frontendApp')
 
                         $scope.citizen = {};
                         $scope.suggestion = {};
+                        $scope.submitedSuggestion = false;
                         return true;
                     },
                     function (response) {
@@ -97,19 +84,23 @@ angular.module('frontendApp')
             }
         }
 
-        $scope.loadUser= function(){
 
-            $scope.citizen = UserProvider.getUserById
-            (UserProvider.getUserId())
-                .then(function (user) {
-                    $scope.citizen = user;
-                    console.log(user);
-                });
+        $scope.showAreas = function()
+        {
+            $scope.selectedZones = $filter('filter')($scope.divisions,
+                {
+                    division_id: $scope.suggestion.zone.division_id
+                }
+
+            )
         }
+
+        $scope.instanceError = null;
+
         $scope.loadZones = function() {
             CityProvider.getZones().then(function (response) {
                 angular.forEach(response.body, function (zone) {
-                    zone.zone_id = parseInt(zone.zone_id);
+                    zone.zone_id = (zone.zone_id);
                 });
 
                 $scope.zones = response.body;
@@ -125,7 +116,7 @@ angular.module('frontendApp')
             getDivisions.get().then(function (response)
             {
                 angular.forEach(response.body, function (division) {
-                    division.division_id = parseInt(division.division_id);
+                    division.division_id = (division.division_id);
                 });
                 $scope.divisions = response.body;
 
@@ -147,10 +138,38 @@ angular.module('frontendApp')
             });
         };
 
+        $scope.loadUser= function(){
+
+            $scope.citizen = UserProvider.getUserById
+            (UserProvider.getUserId())
+                .then(function (user) {
+                    //$scope.citizen = user;
+                    console.log(user);
+                });
+        }
+
         $scope.logout = function(){
             UserProvider.logout();
             $location.path('/');
         }
+
+        $scope.loadInstance = function () {
+
+            InstanceProvider.loadInstance().then(function (response) {
+                console.log(response);
+                $scope.instance = response;
+                $scope.city_name = response.city.name;
+                $scope.instance.start_time = DateTime.convertDateTime($scope.instance.start_time);
+                InstanceProvider.setInstance(response);
+                $scope.instance.end_time = DateTime.convertDateTime($scope.instance.end_time);
+                $scope.instanceError = InstanceProvider.checkInstanceDates($scope.instance);
+            }, function () {
+                console.log('error');
+
+            });
+
+        };
+
         function init() {
             $scope.loadInstance();
             $scope.loadZones();
