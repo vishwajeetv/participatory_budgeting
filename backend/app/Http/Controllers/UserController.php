@@ -81,9 +81,9 @@ class UserController extends Controller {
     public function login(Requests\LoginRequest $request)
     {
         $input = Request::all();
-
-        $user = User::where('email','=',$input['email'])->where('password', '=', Crypt::encrypt($input['password']))->first();
-
+        $user = User::where('email','=',$input['email'])->first();
+        if(Crypt::decrypt($user->password) == (($input['password'])))
+            return $this->respond($user,'Login Successful','Login failed',$user,'Email id or password incorrect');
         return $this->respond($user,'Login Successful','Login failed',$user,'Email id or password incorrect');
     }
 
