@@ -107,6 +107,38 @@ angular.module('frontendApp')
 
         };
 
+        $scope.forgetPassword = function (forgetPasswordForm) {
+
+            $scope.submitedForgetPassword = true;
+
+            if(forgetPasswordForm.$valid)
+            {
+
+                var forgetPasswordData = {
+                    "email" : $scope.user.email,
+                    'instance_id' : InstanceProvider.getInstanceId()
+                };
+
+                UserProvider.forgetPassword(forgetPasswordData).
+                    then(function(response)
+                    {
+                        $mdToast.show($mdToast.simple().content('Password Sent Successfully!'));
+                    },
+                    function (response) {
+                        if (response) {
+                            $scope.user.errors = response;
+                        }
+                    });
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        };
+
         $scope.loadInstance = function () {
 
 

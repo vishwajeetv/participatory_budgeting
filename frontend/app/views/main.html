@@ -21,7 +21,7 @@
     </div>
 
 
-    <div layout="row"  layout-sm="row" layout-wrap layout-align="center center">
+    <div layout="row"  layout-sm="row" layout-wrap layout-align="start start">
         <div flex="15" flex-sm="0"></div>
 
 
@@ -177,6 +177,36 @@
                         </md-input-container>
 
                     </form>
+
+                    <md-button ng-click="activeForgetPassword = true">Forget Password ?</md-button>
+
+                    <form ng-show="activeForgetPassword" name="forgetPasswordForm" novalidate>
+
+                        <md-input-container class="md-icon-float">
+                            <label>Email</label>
+                            <md-icon><i class="material-icons">email</i> </md-icon>
+                            <input required name="email" type="email" ng-model="user.email">
+
+                            <div ng-messages="forgetPasswordForm.email.$error">
+                                <div ng-show="(!forgetPasswordForm.email.$valid) && (forgetPasswordForm.email.$dirty || submitedForgetPassword)">
+                                    <div ng-message="required" ng-show="forgetPasswordForm.email.$error.required">
+                                        Required.</div>
+                                    <div ng-message="email" ng-show="forgetPasswordForm.email.$error.email">
+                                        Invalid Email ID.</div>
+                                </div>
+                                <div class="errors" ng-show="user.errors.email">
+                                            <span ng-repeat="error in user.errors.email">
+                                                {{error}}
+                                            </span>
+                                </div>
+                            </div>
+
+
+                        </md-input-container>
+                        <md-input-container>
+                            <md-button class="md-raised md-warn" ng-click="forgetPassword(forgetPasswordForm)">Send Password</md-button>
+                        </md-input-container>
+                        </form>
                 </md-card-content>
             </md-card>
 
