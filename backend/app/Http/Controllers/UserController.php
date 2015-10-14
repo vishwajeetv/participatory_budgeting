@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Request, Crypt;
 use App\User;
+use Log;
 
 class UserController extends Controller {
 
@@ -40,13 +41,36 @@ class UserController extends Controller {
 		return $this->respond($user,'User saved successfully','could not save user',$user,'user error');
 	}
 
+    public function postForgetPassword()
+    {
+        $input = Request::all();
+        $user = User::where('email','=',$input['email'])->first();
+        if(empty($user))
+        {
+            return $this->respond($user,'Password sent successfully','could not send password',$user,'password forget error');
+
+        }
+        Log::info("in forget password");
+        Log::info($user);
+        $password = Crypt::decrypt($user->password);
+        $emailData = array(
+            'user'=>$user,
+            'password' => $password,
+            'email'=>$user->email
+        );
+        $this->sendMail($emailData, 'emails.authentication.forgetPassword',
+            'Participatory Budgeting - Credentials');
+        return $this->respond($user,'Password sent successfully','could not send password',$user,'password forget error');
+
+    }
+
 	public function postSignup(Requests\SignUpRequest $request)
 	{
 		$input = Request::all();
 		$user = new User;
 		$user->email = $input['email'];
 		$user->name = $input['name'];
-		$user->password = md5( $input['password'] );
+		$user->password = Crypt::encrypt( $input['password'] );
 		$user->role = $input['role'];
 		$user->instance_id = $input['instance_id'];
 		$saveStatus = $user->save();
@@ -58,7 +82,7 @@ class UserController extends Controller {
     {
         $input = Request::all();
 
-        $user = User::where('email','=',$input['email'])->where('password', '=', md5($input['password']))->first();
+        $user = User::where('email','=',$input['email'])->where('password', '=', Crypt::encrypt($input['password']))->first();
 
         return $this->respond($user,'Login Successful','Login failed',$user,'Email id or password incorrect');
     }
