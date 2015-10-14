@@ -8,7 +8,11 @@
             <span flex-sm="70" flex="70"> Participatory Budgeting  | <small>Pimpri Chinchwad Municipal Corporation</small>  </span>
 
             <span hide-sm flex="20"><span class="md-body-copy-2">{{name}}</span></span>
-            <span hide-sm flex="5"><span class="md-body-copy-2"><md-button ng-click="logout()"><i class="material-icons">power_settings_new</i></md-button> </span></span>
+            <span hide-sm flex="5"><span class="md-body-copy-2"><md-button ng-click="logout()">
+                <md-tooltip md-direction="bottom">
+                    Logout
+                </md-tooltip>
+                <i class="material-icons">power_settings_new</i></md-button> </span></span>
 
         </h2>
 
