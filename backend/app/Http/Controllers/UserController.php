@@ -84,7 +84,7 @@ class UserController extends Controller {
         $user = User::where('email','=',$input['email'])->first();
         if(Crypt::decrypt($user->password) == (($input['password'])))
             return $this->respond($user,'Login Successful','Login failed',$user,'Email id or password incorrect');
-        return $this->respond($user,'Login Successful','Login failed',$user,'Email id or password incorrect');
+        return $this->respond(null,'Login Successful','Login failed',$user,'Email id or password incorrect');
     }
 
 	/**
