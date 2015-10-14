@@ -13,7 +13,8 @@ angular.module('frontendApp')
       restrict: 'E',
       scope:
       {
-        active : '@'
+        active : '@',
+          progress : '='
       },
       controller : function ($scope, $location, $route) {
 
