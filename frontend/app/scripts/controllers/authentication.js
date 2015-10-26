@@ -107,10 +107,11 @@ angular.module('frontendApp')
 
         };
 
+        $scope.forgetPasswordFailedMessage = null;
         $scope.forgetPassword = function (forgetPasswordForm) {
 
             $scope.submitedForgetPassword = true;
-
+            $scope.forgetPasswordFailedMessage = null;
             if(forgetPasswordForm.$valid)
             {
 
@@ -126,6 +127,9 @@ angular.module('frontendApp')
                     },
                     function (response) {
                         if (response) {
+                            $scope.forgetPasswordFailedMessage = "Account with provided email does not exist. Please retry.";
+                            $mdToast.show($mdToast.simple().content("The account with provided email does not exist."));
+
                             $scope.user.errors = response;
                         }
                     });

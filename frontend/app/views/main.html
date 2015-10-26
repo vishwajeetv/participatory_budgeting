@@ -178,7 +178,7 @@
 
                     </form>
 
-                    <md-button ng-click="activeForgetPassword = true">Forget Password ?</md-button>
+                    <md-button ng-click="activeForgetPassword = true">Forgot Password ?</md-button>
 
                     <form ng-show="activeForgetPassword" name="forgetPasswordForm" novalidate>
 
@@ -203,6 +203,9 @@
 
 
                         </md-input-container>
+                        <div class="errors" ng-show="forgetPasswordFailedMessage">
+                            {{forgetPasswordFailedMessage}}
+                        </div>
                         <md-input-container>
                             <md-button class="md-raised md-warn" ng-click="forgetPassword(forgetPasswordForm)">Send Password</md-button>
                         </md-input-container>
