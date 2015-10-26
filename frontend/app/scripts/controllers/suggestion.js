@@ -214,7 +214,7 @@ angular.module('frontendApp')
         {
             $scope.selectedZones = $filter('filter')($scope.divisions,
                 {
-                   division_id: $scope.suggestion.zone.division_id
+                   division_id: $scope.suggestion.division.division_id
                 }
 
             )
