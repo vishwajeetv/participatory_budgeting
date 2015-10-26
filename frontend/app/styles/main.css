@@ -68,7 +68,8 @@ ol
 
 .help
 {
-    cursor:help
+    cursor:help;
+text-align: left
 }
 .title-inspiration
 {
