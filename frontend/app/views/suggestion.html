@@ -222,7 +222,7 @@
                                         <md-tooltip md-direction="right">
                                             Select your Zone from list.
                                         </md-tooltip>
-                                        <md-select name="zone" ng-model="suggestion.zone"
+                                        <md-select ng-change="loadDivisions()" name="zone" ng-model="suggestion.zone"
                                                    required>
                                         <md-option ng-value="zone" ng-repeat="zone in zones | orderBy : 'zone_id' "
                                             value=" {{zone.zone_id}}  {{zone.name}}"  >{{zone.zone_id}} - {{zone.name}}</md-option>
@@ -245,7 +245,7 @@
                                         <md-tooltip md-direction="right">
                                           Select your Ward from list.
                                         </md-tooltip>
-                                        <md-select  md-on-open="loadDivisions()" ng-change="showAreas()" name="division" ng-model="suggestion.division" required>
+                                        <md-select ng-change="showAreas()" name="division" ng-model="suggestion.division" required>
                                         <md-option ng-value="division" ng-repeat="division in divisions | orderBy : 'division_id' "
                                                   value="{{division.division_id}} - {{division.division_name}}" >{{division.division_id}} - {{division.division_name}}</md-option>
                                     </md-select>
