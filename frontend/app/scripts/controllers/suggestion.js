@@ -113,6 +113,10 @@ angular.module('frontendApp')
             {
                 return true;
             }
+            if(selectedIndex == 3 && $scope.disabledSecond == true)
+            {
+                return true;
+            }
             else
             {
                 return false;
