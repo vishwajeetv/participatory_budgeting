@@ -20,19 +20,25 @@ class SuggestionController extends Controller {
 	public function index()
     {
         $instanceId = Request::input('instance_id');
-
+        Log::info($instanceId);
         $suggestion = DB::table('suggestions')
             ->join('zones', 'suggestions.zone_division_id', '=', 'zones.id')
-            ->join('users', 'suggestions.user_id', '=', 'users.id')
             ->join('city_functions', 'suggestions.city_function_id', '=', 'city_functions.id')
             ->join('instances', 'instances.id', '=', 'suggestions.instance_id')
-            ->join('cities', 'cities.id', '=', 'instances.city_id')
-            ->where('suggestions.instance_id', '=', $instanceId)
-            ->select('cities.name as city_name', 'zones.name as zone_name',
-                'zones.division_name as division_name', 'users.name as citizen_name', 'suggestions.suggestion',
+            ->where('suggestions.instance_id', '=', 2)
+            ->select(
+                'zones.zone_id as zone_id',
+                'zones.division_name as division_name',
+                'suggestions.name as citizen_name',
+                'suggestions.address as citizen_address',
+                'suggestions.mobile as citizen_mobile',
+                'suggestions.email as citizen_email',
+                'suggestions.receipt_number',
+                'suggestions.suggestion',
                 'suggestions.work_purpose','suggestions.mode',
-                'city_functions.function as work_name')
+                'city_functions.function as work_type')
             ->get();
+
         return $this->respond($suggestion,"Suggestions retrieved successfully",'Suggestions could not be retrieved',$suggestion,"no suggestion");
 	}
 
