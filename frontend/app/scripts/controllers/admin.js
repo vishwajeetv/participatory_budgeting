@@ -51,7 +51,8 @@ angular.module('frontendApp')
                     'area' : suggestion.area,
                     'suggestion' : suggestion.suggestion,
                     'work_purpose' : suggestion.work_purpose,
-                    'mode' : 'OFFLINE'
+                    'mode' : 'OFFLINE',
+                    'inward_number':suggestion.inward_number
                 };
 
                 console.log(saveSuggestionData);
@@ -84,18 +85,19 @@ angular.module('frontendApp')
             }
         }
 
-
         $scope.showAreas = function()
         {
+            $scope.selectedZones = {};
             $scope.selectedZones = $filter('filter')($scope.divisions,
                 {
-                    division_id: $scope.suggestion.zone.division_id
+                    division_id: $scope.suggestion.division.division_id
                 }
 
             )
         }
 
         $scope.instanceError = null;
+
 
         $scope.loadZones = function() {
             CityProvider.getZones().then(function (response) {
@@ -125,6 +127,8 @@ angular.module('frontendApp')
 
             });
         };
+
+
 
         $scope.loadWorks = function() {
 
