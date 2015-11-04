@@ -107,7 +107,7 @@ angular.module('frontendApp')
 
                 $scope.zones = response.body;
             }, function () {
-                console.log('error');
+                console.log('zones loading error');
 
             });
         };
@@ -123,7 +123,7 @@ angular.module('frontendApp')
                 $scope.divisions = response.body;
 
             }, function () {
-                console.log('error');
+                console.log('divisions loading error');
 
             });
         };
@@ -137,7 +137,7 @@ angular.module('frontendApp')
                 $scope.works = response.body;
 
             }, function () {
-                console.log('error');
+                console.log('work types loading error');
 
             });
         };
@@ -147,8 +147,6 @@ angular.module('frontendApp')
             $scope.citizen = UserProvider.getUserById
             (UserProvider.getUserId())
                 .then(function (user) {
-                    //$scope.citizen = user;
-                    console.log(user);
                 });
         }
 
@@ -160,7 +158,7 @@ angular.module('frontendApp')
         $scope.loadInstance = function () {
 
             InstanceProvider.loadInstance().then(function (response) {
-                console.log(response);
+
                 $scope.instance = response;
                 $scope.city_name = response.city.name;
                 $scope.instance.start_time = DateTime.convertDateTime($scope.instance.start_time);
@@ -168,7 +166,7 @@ angular.module('frontendApp')
                 $scope.instance.end_time = DateTime.convertDateTime($scope.instance.end_time);
                 $scope.instanceError = InstanceProvider.checkInstanceDates($scope.instance);
             }, function () {
-                console.log('error');
+                console.log('instance loading error');
 
             });
 
