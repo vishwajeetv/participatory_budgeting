@@ -77,6 +77,12 @@ class SuggestionController extends Controller {
         $suggestion->address = $citizenInfo['address'];
         $suggestion->mode = $request->input('mode',null);
         $suggestionSaveSuccess = $suggestion->save();
+        if($request->input('mode') == 'OFFLINE')
+        {
+            $suggestionSaved = Suggestion::find($suggestion->id);
+            $suggestionSaved->receipt_number = $this->generateReceiptNumber( $suggestionSaved );
+            $suggestionSaveSuccess = $suggestionSaved->save();
+        }
         return $this->respond($suggestion,'Suggestion saved successfully','could not save suggestion',$suggestion,'suggestion error');
 
 	}
