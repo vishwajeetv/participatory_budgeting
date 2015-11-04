@@ -62,7 +62,8 @@ class SuggestionController extends Controller {
         $citizenInfo = Request::input('citizen');
 
         $suggestion = new Suggestion;
-        $suggestion->instance_id = $request->input('instance_id', null);;
+        $suggestion->instance_id = $request->input('instance_id', null);
+        $suggestion->inward_number = $request->input('inward_number',null);
         $suggestion->user_id = $request->input('user_id', null);
         $suggestion->city_function_id = $request->input('work_id', null);
         $suggestion->zone_division_id = $request->input('division_id', null);

@@ -21,7 +21,7 @@ class Suggestion extends Model {
      */
     protected $fillable = ['id','city_id','suggestion','instance_id',
         'zone_division_id','city_function_id','area','status', 'work_purpose',
-    'name','email','mobile','address','mode'];
+    'name','email','mobile','address','mode','inward_number'];
 
 
     public function city_function()
