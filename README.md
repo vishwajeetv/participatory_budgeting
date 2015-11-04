@@ -9,6 +9,12 @@ Built with Laravel 5.1 , AngularJS 1.4, Angular Material (following Google Mater
 
 Frontend app is scaffolded using Yeomen generator for Angular
 
+The system is multi-tenant, it uses single database and single backend application, and instance based (multiple) frontends.
+
+The backend is service oriented - it has RESTful web services for every functionality it offers, as a result, the backend heterogeneous interoperability - means, It is easily pluggable with other systems and does not depend upon type of client.
+
+The system is designed to be extensible, so that most of the possible changes and feature requirements can be implemented easily, without much of a change or breaking anything else.
+
 ##How to get up and running?
 
 1. `cd backend && mv .env.example .env`
@@ -21,11 +27,11 @@ Frontend app is scaffolded using Yeomen generator for Angular
 6. configure server url and instance id in `frontend/app/scripts/services/constants.js`
 7. `grunt serve` to serve frontend app in the browser; `grunt build` to build the production ready web app (available in `frontend/dist`)
 
-For loading zones, administrative divisions data, use `zones` table should be used.
+For loading zones, administrative divisions data, `zones` table should be used.
 
 For loading suggestions work types, `city functions` table should be used.
 
-`Suggestions` table is denormalized to keep user informatio along with suggestions data, so as to remove data integrity problems (such as user data is already sent when receipt is generated and emailed, and the same data must persist.)
+`Suggestions` table is denormalized to keep user information along with suggestions data, so as to remove data integrity problems (such as user data is already sent when receipt is generated and emailed, and the same data must persist.)
 
 `Users` can have two different roles, `citizen` and `admin`
 
