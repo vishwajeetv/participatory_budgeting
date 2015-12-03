@@ -29,6 +29,7 @@ class SuggestionController extends Controller {
             ->select(
                 'zones.zone_id as zone_id',
                 'zones.division_name as division_name',
+                'zones.division_id as division_id',
                 'suggestions.name as citizen_name',
                 'suggestions.address as citizen_address',
                 'suggestions.mobile as citizen_mobile',
