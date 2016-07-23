@@ -41,6 +41,7 @@ class UserController extends Controller {
 		return $this->respond($user,'User saved successfully','could not save user',$user,'user error');
 	}
 
+	//@TODO fix this . this will not work now.
     public function postForgetPassword()
     {
         $input = Request::all();
@@ -52,7 +53,7 @@ class UserController extends Controller {
         }
         Log::info("in forget password");
         Log::info($user);
-        $password = Crypt::decrypt($user->password);
+        $password = md5($user->password);
         $emailData = array(
             'user'=>$user,
             'password' => $password,
@@ -70,7 +71,7 @@ class UserController extends Controller {
 		$user = new User;
 		$user->email = $input['email'];
 		$user->name = $input['name'];
-		$user->password = Crypt::encrypt( $input['password'] );
+		$user->password = md5( $input['password'] );
 		$user->role = $input['role'];
 		$user->instance_id = $input['instance_id'];
 		$saveStatus = $user->save();
@@ -82,7 +83,7 @@ class UserController extends Controller {
     {
         $input = Request::all();
         $user = User::where('email','=',$input['email'])->first();
-        if(Crypt::decrypt($user->password) == (($input['password'])))
+        if( ($user->password) == md5(($input['password'])))
             return $this->respond($user,'Login Successful','Login failed',$user,'Email id or password incorrect');
         return $this->respond(null,'Login Successful','Login failed',$user,'Email id or password incorrect');
     }
