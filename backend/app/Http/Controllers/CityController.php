@@ -31,9 +31,9 @@ class CityController extends Controller {
 
     }
 
-	public function postShowZones()
+	public function postShowZones(Request $request)
 	{
-        $instanceId = Input::get('instance_id');
+        $instanceId = $request->input('instance_id');
         $city = Instance::find($instanceId);
         if(isset($city->id))
         {
@@ -45,18 +45,19 @@ class CityController extends Controller {
     }
 
 
-	public function getShowDivisions()
+	public function getShowDivisions(Request $request)
 	{
-		$zone_id = Input::get('zone_id');
+		$zone_id = $request->input('zone_id');
         Log::info($zone_id);
 		$zones = Zone::where('zone_id','=',$zone_id)->get();
 
         return $this->respond($zones,'Zones found','Zones couldnt be found',$zones,'no zone');
 
     }
-    public function postShowWorks()
+
+    public function postShowWorks(Request $request)
     {
-        $instanceId = Input::get('instance_id');
+        $instanceId = $request->input('instance_id');
         $instance = Instance::find($instanceId);
         Log::info($instance);
         if(isset($instance->id))
