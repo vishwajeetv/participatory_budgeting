@@ -1,20 +1,25 @@
 
 <md-content>
     <md-toolbar>
-        <h2 class="md-toolbar-tools">
+        <div class="md-toolbar-tools">
             <span flex="5" flex-sm="15" class="accent">
                <img src="images/corporation_logo.png" height="50" width="50">
            </span>
-            <span flex-sm="70" flex="70"> Participatory Budgeting  | <small>Pimpri Chinchwad Municipal Corporation</small>  </span>
+            <span flex-sm="65" flex="65"> Participatory Budgeting  | <small>Pimpri Chinchwad Municipal Corporation</small>  </span>
 
-            <span hide-sm flex="20"><span class="md-body-copy-2">{{name}}</span></span>
-            <span hide-sm flex="5"><span class="md-body-copy-2"><md-button ng-click="logout()">
-                <md-tooltip md-direction="bottom">
-                    Logout
-                </md-tooltip>
-                <i class="material-icons">power_settings_new</i></md-button> </span></span>
+            <span hide-sm flex="20"><md-button>{{name}}</md-button></span>
 
-        </h2>
+            <span hide-sm flex="10">
+                <md-button class="md-warn md-hue-1 md-mini md-icon-button md-raised" ng-click="logout()">
+                    <md-tooltip md-direction="bottom">
+                        Logout
+                    </md-tooltip>
+
+                    <i class="material-icons">power_settings_new</i>
+                </md-button>
+            </span>
+
+        </div>
 
     </md-toolbar>
 </md-content>
