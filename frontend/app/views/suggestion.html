@@ -4,11 +4,12 @@
 
 
     <div layout="row" layout-sm="row"  layout-wrap layout-align="center">
-       <menu hide-sm progress = "progress" active="new_suggestion">
-        </menu>
+       <!--<menu hide-sm progress = "progress" active="new_suggestion">-->
+        <!--</menu>-->
 
-     <div flex-sm="100"  flex="0"></div>
-    <div  flex-sm="100" flex="45">
+     <div flex-sm="100"  flex="20"></div>
+
+    <div  flex-sm="100" flex="60">
         <md-card>
             <md-card-content>
                 <md-content class="md-padding">
@@ -55,10 +56,10 @@
 
                         <md-tab label="About You"  ng-disabled="checkDisabled(selectedIndex)">
                             <md-content class="md-padding">
-                                <div class="md-headline">About You</div>
+                                <div class="md-headline">Tell us about yourself...</div><br>
                                 <form name="citizenForm" novalidate>
 
-                                    <md-input-container class="md-icon-float">
+                                    <md-input-container class="md-block md-icon-float">
                                         <label>Email</label>
                                         <md-tooltip md-direction="right">
                                             e.g. abc@xyz.com
@@ -84,8 +85,7 @@
                                     </md-input-container>
 
 
-                                    <md-input-container class="md-icon-float" >
-                                        <!-- Use floating label instead of placeholder -->
+                                    <md-input-container class="md-block md-icon-float" >
                                         <label>Name</label>
                                         <md-icon><i class="material-icons">face</i></md-icon>
                                         <md-tooltip md-direction="right">
@@ -106,7 +106,7 @@
                                         </div>
                                     </md-input-container>
 
-                                    <md-input-container class="md-icon-float">
+                                    <md-input-container class="md-block md-icon-float">
 
                                         <label>Mobile</label>
 
@@ -130,7 +130,7 @@
 
                                     </md-input-container>
 
-                                    <md-input-container class="md-icon-float">
+                                    <md-input-container class="md-block md-icon-float">
 
                                         <label>Address</label>
                                         <md-tooltip md-direction="right">
@@ -154,30 +154,9 @@
 
                                     </md-input-container>
 
-                                    <md-input-container class="md-icon-float">
-
-                                        <md-tooltip md-direction="right">
-                                            Select Gender
-                                        </md-tooltip>
-
-                                        <md-radio-group name="gender" ng-model="citizen.gender">
-
-                                            <div flex layout='row' layout-padding layout-align="start center" >
-                                                <span>Gender </span>
-                                                <md-radio-button value="male" class="md-primary"> Male</md-radio-button>
-
-
-                                                <md-radio-button value="female"> Female </md-radio-button>
-                                                <md-radio-button value="other">Other</md-radio-button>
-                                            </div>
-
-                                        </md-radio-group>
-
-                                    </md-input-container>
-
                                     <div layout="row" layout-wrap>
                                         <div flex="20">
-                                            <md-input-container>
+                                            <md-input-container class="md-block md-icon-float">
                                                 <md-button tabindex="3" ng-click="previousTab(1)" class="md-fab md-primary"
                                                            aria-label="Use Android">
                                                     <md-icon><i class="material-icons">chevron_left</i></md-icon>
@@ -193,7 +172,7 @@
                                         </div>
 
                                         <div flex="20">
-                                            <md-input-container>
+                                            <md-input-container class="md-block md-icon-float">
                                                 <md-button type=submit tabindex="2" ng-click="submitCitizen(citizenForm)" class="md-fab md-primary" aria-label="Use Android">
                                                     <md-tooltip md-direction="bottom">
                                                         Next
@@ -212,12 +191,12 @@
                         </md-tab>
                         <md-tab label="Suggestion"  ng-disabled="checkDisabled(selectedIndex)">
                             <md-content class="md-padding">
-                                <div class="md-headline">Suggestion</div>
-
+                                <div class="md-headline">Share a suggestion...</div>
+                                <br>
                                 <form name="suggestionForm" novalidate>
 
                                     <div class="md-body-2"><i class="material-icons">place</i> Location</div>
-                                    <md-input-container>
+                                    <md-input-container class="md-block md-icon-float">
                                         <label>Zone</label>
                                         <md-tooltip md-direction="right">
                                             Select your Zone from list.
@@ -240,7 +219,7 @@
                                     </md-input-container>
 
 
-                                    <md-input-container>
+                                    <md-input-container class="md-block md-icon-float">
                                         <label>Ward</label>
                                         <md-tooltip md-direction="right">
                                           Select your Ward from list.
@@ -261,7 +240,7 @@
                                     </md-input-container>
 
 
-                                    <md-input-container>
+                                    <md-input-container class="md-block md-icon-float">
                                         <div class="md-body-2"> Areas</div>
                                         <div ng-repeat="zone in selectedZones">
                                             {{zone.areas}}
@@ -294,7 +273,7 @@
                                     </md-input-container>
 
                                     <div class="md-body-2"><i class="material-icons">build</i> Work Type</div>
-                                    <md-input-container>
+                                    <md-input-container class="md-block md-icon-float">
                                         <label>Work</label>
                                         <md-tooltip md-direction="right">
                                           Select work type from list.
@@ -317,17 +296,19 @@
                                         </div>
                                     </md-input-container>
 
-                                    <md-input-container class="md-icon-float">
-                                        <label>Suggestion</label>
+         
 
-                                        <md-icon><i class="material-icons">stars</i> </md-icon>
+                                    <md-input-container class="md-block md-icon-float">
+                                        <label>Suggestion</label>
                                         <md-tooltip md-direction="right">
                                             Input detailed suggestion.
                                         </md-tooltip>
-                                        <input required name="suggestion" type="text" ng-model="suggestion.suggestion"></input>
+                                        <md-icon><i class="material-icons">stars</i> </md-icon>
+                                        <input required name="work_purpose" type="text" ng-model="suggestion.suggestion"/>
 
                                         <div ng-messages="suggestion.suggestion.$error">
-                                            <div ng-show="(!suggestionForm.suggestion.$valid) && (suggestionForm.suggestion.$dirty || submitedSuggestion)">
+                                            <div ng-show="(!suggestionForm.suggestion.$valid) &&
+                                            (suggestionForm.suggestion.$dirty || submitedSuggestion)">
                                                 <div ng-message="required" ng-show="suggestionForm.suggestion.$error.required">
                                                     Required.</div>
 
@@ -341,7 +322,9 @@
 
                                     </md-input-container>
 
-                                    <md-input-container class="md-icon-float">
+
+
+                                    <md-input-container class="md-block md-icon-float">
                                             <label>Work Purpose</label>
                                         <md-tooltip md-direction="right">
                                             e.g. For the better future.
@@ -458,10 +441,11 @@
             </md-card-content>
         </md-card>
     </div>
-      <div hide-sm flex-sm="0" flex="25">
-        <br>
-        <sidebar></sidebar>
-    </div>
+    <div flex="20"></div>
+      <!--<div hide-sm flex-sm="0" flex="25">-->
+        <!--<br>-->
+        <!--<sidebar></sidebar>-->
+    <!--</div>-->
 </div>
 
 
