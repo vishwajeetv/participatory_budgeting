@@ -11,9 +11,7 @@
 angular
   .module('frontendApp', [
 , 'restangular', 'ngRoute','ngAnimate',
-        'ngSanitize',
-        'ngTouch',
-        'ngMaterial'
+        'ngSanitize','ngMaterial'
   ])
     .config(function (RestangularProvider, SERVER_URL) {
         RestangularProvider.setBaseUrl(SERVER_URL);
@@ -21,7 +19,7 @@ angular
     })
     .config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
-            .primaryPalette('indigo')
+            .primaryPalette('blue')
             .accentPalette('pink')
             .warnPalette('red')
             .backgroundPalette('grey');
