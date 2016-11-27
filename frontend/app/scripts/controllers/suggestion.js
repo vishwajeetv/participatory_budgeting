@@ -10,7 +10,7 @@
 angular.module('frontendApp')
   .controller('SuggestionCtrl', function ($scope, $timeout, Restangular, $mdToast, $mdDialog,
                                           InstanceProvider, UserProvider, $location, SuggestionProvider,
-                                          DateTime, $filter, CityProvider) {
+                                          DateTime, $filter, CityProvider, $window, $route) {
 
         //$scope.citizen = null;
         $scope.suggestion = null;
@@ -137,7 +137,7 @@ angular.module('frontendApp')
                     'instance_id' : InstanceProvider.getInstanceId(),
                     'user_id' : UserProvider.getUserId(),
                     'work_id' : suggestionForm.work.$modelValue.id,
-                    'division_id' : suggestionForm.division.$modelValue.id,
+                    'division_id' : $scope.suggestion.division.id,
                     'zone_id' : suggestionForm.zone.$modelValue.id,
                     'area' : suggestionForm.area.$modelValue,
                     'suggestion' : suggestionForm.suggestion.$modelValue,
@@ -247,7 +247,14 @@ angular.module('frontendApp')
                 angular.forEach(response.body, function (division) {
                     division.division_id = (division.division_id);
                 });
-                $scope.divisions = response.body;
+
+                var divisions = response.body;
+                divisions = divisions.map(function (division) {
+                    division._lowername = division.division_name.toLowerCase();
+                    return division;
+                });
+                $scope.divisions = divisions;
+
 
             }, function () {
                 console.log('error');
@@ -315,5 +322,23 @@ angular.module('frontendApp')
             $scope.loadWorks();
         }
 
+      $scope.querySearch = function(query) {
+          console.log(query);
+          var results = query ? $scope.divisions.filter(createFilterFor(query)) : $scope.divisions;
+          return results;
+      }
+
+      function createFilterFor(query) {
+          var lowercaseQuery = angular.lowercase(query);
+
+          return function filterFn(division) {
+              return (division._lowername.indexOf(lowercaseQuery) === 0);
+          };
+
+      }
+
+        $scope.reload = function () {
+            $route.reload();
+        }
         init();
   });
