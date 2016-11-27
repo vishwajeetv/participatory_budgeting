@@ -35,7 +35,7 @@
 
                                     <md-list-item>
                                         <li><u><a class="md-primary help" ng-click='showInstructions($event)'>
-                                            Read Instructions!</a>
+                                            Go through the instructions!</a>
                                         </u></li>
                                     </md-list-item>
 
@@ -46,10 +46,14 @@
                                 </md-list>
                                 </ul>
 
-                                <md-button class="md-raised md-accent md-hue-4" ng-click="begin()"
-                                           aria-label="Begin">
-                                    Begin!
-                                </md-button>
+                                <md-input-container align="center" class="md-block md-icon-float">
+                                    <md-button class="md-raised md-accent md-hue-4" ng-click="begin()"
+                                               aria-label="Begin">
+                                       <md-icon>send</md-icon>
+                                        Begin!
+                                    </md-button>
+                                </md-input-container>
+
 
                             </md-content>
                         </md-tab>
