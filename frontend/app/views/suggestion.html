@@ -225,22 +225,14 @@
                                     </md-input-container>
 
 
-                                    <md-input-container class="md-icon-float">
+                                    <md-input-container ng-show="suggestion.division" class="md-block md-icon-float">
                                         <label>Work Location</label>
                                         <md-tooltip md-direction="right">
                                             e.g. Kasba Peth
                                         </md-tooltip>
-                                        <md-icon><i class="material-icons">location_searching</i> </md-icon>
+                                        <md-icon>location_searching </md-icon>
                                         <input required name="area" type="text" ng-model="suggestion.area"/>
 
-                                        <div ng-messages="suggestion.area.$error">
-                                            <div ng-show="(!suggestionForm.area.$valid) && (suggestionForm.area.$dirty ||
-                                             submitedSuggestion)">
-                                                <div ng-message="required" ng-show="suggestionForm.area.$error.required">
-                                                    Required.</div>
-
-                                            </div>
-                                        </div>
                                         <div class="errors" ng-show="suggestion.errors.area">
                                             <span ng-repeat="error in suggestion.errors.area">
                                                 {{error}}
@@ -259,13 +251,6 @@
                                             <md-option ng-value="work" ng-repeat="work in works" value="{{work.function}}">{{work.function}}</md-option>
                                         </md-select>
 
-                                        <div ng-messages="suggestion.suggestion.$error">
-                                            <div ng-show="(!suggestionForm.suggestion.$valid) && (suggestionForm.suggestion.$dirty || submitedSuggestion)">
-                                                <div ng-message="required" ng-show="suggestionForm.suggestion.$error.required">
-                                                    Required.</div>
-
-                                            </div>
-                                        </div>
                                         <div class="errors" ng-show="suggestion.errors.work_id">
                                             <span ng-repeat="error in suggestion.errors.work_id">
                                                 {{error}}
@@ -280,17 +265,9 @@
                                         <md-tooltip md-direction="right">
                                             Input detailed suggestion.
                                         </md-tooltip>
-                                        <md-icon><i class="material-icons">stars</i> </md-icon>
+                                        <md-icon>stars </md-icon>
                                         <input required name="suggestion" type="text" ng-model="suggestion.suggestion"/>
 
-                                        <div ng-messages="suggestion.suggestion.$error">
-                                            <div ng-show="(!suggestionForm.suggestion.$valid) &&
-                                            (suggestionForm.suggestion.$dirty || submitedSuggestion)">
-                                                <div ng-message="required" ng-show="suggestionForm.suggestion.$error.required">
-                                                    Required.</div>
-
-                                            </div>
-                                        </div>
                                         <div class="errors" ng-show="suggestion.errors.suggestion">
                                             <span ng-repeat="error in suggestion.errors.suggestion">
                                                 {{error}}
@@ -306,16 +283,10 @@
                                         <md-tooltip md-direction="right">
                                             e.g. For the better future.
                                         </md-tooltip>
-                                            <md-icon><i class="material-icons">thumb_up</i> </md-icon>
+                                            <md-icon>thumb_up</md-icon>
                                             <input ng-enter="submitSuggestion(suggestionForm)" required name="work_purpose" type="text" ng-model="suggestion.work_purpose"/>
 
-                                            <div ng-messages="suggestion.work_purpose.$error">
-                                                <div ng-show="(!suggestionForm.work_purpose.$valid) && (suggestionForm.work_purpose.$dirty || submitedSuggestion)">
-                                                    <div ng-message="required" ng-show="suggestionForm.work_purpose.$error.required">
-                                                        Required.</div>
 
-                                                </div>
-                                            </div>
                                         <div class="errors" ng-show="suggestion.errors.work_purpose">
                                             <span ng-repeat="error in suggestion.errors.work_purpose">
                                                 {{error}}
