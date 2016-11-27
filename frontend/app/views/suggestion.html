@@ -196,28 +196,39 @@
                                     </md-input-container>
 
 
-                                    <md-input-container class="md-block md-icon-float">
-                                        <label>Ward</label>
-                                        <md-tooltip md-direction="right">
-                                          Select your Ward from list.
-                                        </md-tooltip>
-                                        <md-select ng-change="showAreas()" name="division" ng-model="suggestion.division" required>
-                                        <md-option ng-value="division" ng-repeat="division in divisions | orderBy : 'division_id' "
-                                                  value="{{division.division_id}} - {{division.division_name}}" >{{division.division_id}} - {{division.division_name}}</md-option>
-                                    </md-select>
-                                    <div class="errors" ng-messages="suggestionForm.division.$error"
-                                         ng-if="suggestionForm.$dirty || submitedSuggestion">
-                                        <div ng-message="required" ng-show="suggestionForm.division.$error.required">Required</div>
-                                    </div>
-                                        <div class="errors" ng-show="suggestion.errors.division_id">
+
+
+
+
+                                        <md-autocomplete flex
+                                                         md-input-name="division" md-require-match
+                                                         md-selected-item="suggestion.division"
+                                                         md-search-text="searchText"
+                                                         md-items="division in querySearch(searchText)"
+                                                         md-item-text="division.division_name"
+                                                         md-selected-item-change="showAreas()"
+                                                         md-floating-label="Choose Ward"
+                                                         md-no-cache="true" required
+                                                         md-min-length="0">
+                                            <md-item-template>
+                                                <span md-highlight-text="searchText">{{division.division_id}} - {{division.division_name}}</span>
+                                            </md-item-template>
+
+                                            <div ng-messages="suggestionForm.division.$error" ng-if="suggestionForm.division.$touched">
+                                                <div ng-message="required"></div>
+                                            </div>
+                                            <div class="errors" ng-show="suggestion.errors.division_id">
                                             <span ng-repeat="error in suggestion.errors.division_id">
                                                 {{error}}
                                             </span>
-                                        </div>
-                                    </md-input-container>
+                                            </div>
+                                        </md-autocomplete>
 
 
-                                    <md-input-container class="md-block md-icon-float">
+
+
+
+                                    <md-input-container ng-show="suggestion.division" class="md-block md-icon-float">
                                         <div class="md-body-2"> Areas</div>
                                         <div ng-repeat="zone in selectedZones">
                                             {{zone.areas}}
