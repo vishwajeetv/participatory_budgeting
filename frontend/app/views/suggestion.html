@@ -61,26 +61,17 @@
                         <md-tab label="About You"  ng-disabled="checkDisabled(selectedIndex)">
                             <md-content class="md-padding">
                                 <div class="md-headline">Tell us about yourself...</div><br>
-                                <form name="citizenForm" novalidate>
+                                <form name="citizenForm">
 
                                     <md-input-container class="md-block md-icon-float">
                                         <label>Email</label>
                                         <md-tooltip md-direction="right">
                                             e.g. abc@xyz.com
                                         </md-tooltip>
-                                        <md-icon><i class="material-icons">email</i>
+                                        <md-icon>email
                                         </md-icon>
                                         <input required name="email" type="email" ng-model="citizen.email">
 
-                                        <div ng-messages="citizenForm.email.$error">
-                                            <div ng-show="(!citizenForm.email.$valid) && (citizenForm.email.$dirty || submitedCitizen)">
-                                                <div ng-message="required" ng-show="citizenForm.email.$error.required">
-                                                    Required.</div>
-                                                <div ng-message="email" ng-show="citizenForm.email.$error.email">
-                                                    Invalid Email ID.</div>
-                                            </div>
-
-                                        </div>
                                         <div class="errors" ng-show="citizen.errors.email">
                                             <span ng-repeat="error in citizen.errors.email">
                                                 {{error}}
@@ -89,20 +80,14 @@
                                     </md-input-container>
 
 
-                                    <md-input-container class="md-block md-icon-float" >
+                                    <md-input-container class="md-block md-icon-float">
                                         <label>Name</label>
-                                        <md-icon><i class="material-icons">face</i></md-icon>
+                                        <md-icon>face</md-icon>
                                         <md-tooltip md-direction="right">
                                             e.g. John Doe
                                         </md-tooltip>
                                         <input required name="name" type="text" ng-model="citizen.name">
 
-                                        <div ng-messages="citizenForm.name.$error">
-                                            <div ng-show="(!citizenForm.name.$valid) && (citizenForm.name.$dirty || submitedCitizen)">
-                                                <div ng-message="required" ng-show="citizenForm.name.$error.required">
-                                                    Required.</div>
-                                            </div>
-                                        </div>
                                         <div class="errors" ng-show="citizen.errors.name">
                                             <span ng-repeat="error in citizen.errors.name">
                                                 {{error}}
@@ -114,18 +99,12 @@
 
                                         <label>Mobile</label>
 
-                                        <md-icon><i class="material-icons">phone</i></md-icon>
+                                        <md-icon>phone</md-icon>
                                         <md-tooltip md-direction="right">
                                             e.g. 9922657745
                                         </md-tooltip>
                                         <input required name="mobile" type="text" ng-model="citizen.mobile">
 
-                                        <div ng-messages="citizenForm.mobile.$error">
-                                            <div ng-show="(!citizenForm.mobile.$valid) && (citizenForm.mobile.$dirty || submitedCitizen)">
-                                                <div ng-message="required" ng-show="citizenForm.mobile.$error.required">
-                                                    Required.</div>
-                                            </div>
-                                        </div>
                                         <div class="errors" ng-show="citizen.errors.phone">
                                             <span ng-repeat="error in citizen.errors.phone">
                                                 {{error}}
@@ -140,16 +119,10 @@
                                         <md-tooltip md-direction="right">
                                             e.g. B-45, Shanti Nivas, Bijalinagar, Chinchwad 411044
                                         </md-tooltip>
-                                        <md-icon><i class="material-icons">home</i></md-icon>
+                                        <md-icon>home</md-icon>
 
                                         <input ng-enter="submitCitizen(citizenForm)" required name="address" type="text" ng-model="citizen.address">
 
-                                        <div ng-messages="citizenForm.address.$error">
-                                            <div ng-show="(!citizenForm.address.$valid) && (citizenForm.address.$dirty || submitedCitizen)">
-                                                <div ng-message="required" ng-show="citizenForm.address.$error.required">
-                                                    Required.</div>
-                                            </div>
-                                        </div>
                                         <div class="errors" ng-show="citizen.errors.address">
                                             <span ng-repeat="error in citizen.errors.address">
                                                 {{error}}
