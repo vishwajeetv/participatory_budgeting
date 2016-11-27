@@ -411,8 +411,17 @@
                                 </div>
                                 <div ng-show="submitedFinal == true">
                                     Thank you for making this city a better place to live!<br><br>
-                                    Suggestion Receipt will be mailed to  {{citizen.email}}<br><br>
+                                    Suggestion Receipt has been mailed to  {{citizen.email}}<br><br>
                                     The final status of your suggestion (accepted/ rejected in the Budget) will be communicated to you by Email and SMS.
+
+                                    <md-input-container align="center" class="md-block md-icon-float">
+                                        <md-button class="md-button md-warn md-raised" ng-click="reload()">
+                                            <md-tooltip md-direction="down">
+                                                Submit New Suggestion!
+                                            </md-tooltip>
+                                           <md-icon>add</md-icon> New Suggestion
+                                        </md-button>
+                                    </md-input-container>
                                 </div>
                             </md-content>
                         </md-tab>
