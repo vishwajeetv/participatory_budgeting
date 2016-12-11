@@ -3,7 +3,7 @@ For municipal corporations in India.
 
 A web application for Citizen Participatory Budgeting Management in India.
 
-Live demo - [Participatory Budgeting - Pimpri Chinchwad Municipal Corporation](http://pcmc.participatorybudeting.in)
+### Demo Video - https://www.youtube.com/watch?v=7B-IBEWYnvk
 
 Built with Laravel 5.1 , AngularJS 1.4, Angular Material (following Google Material Design specifications) and MySQL database
 
